@@ -1,0 +1,181 @@
+<html lang="ja" class="no-js no-svg">
+<head>
+<meta charset="UTF-8">
+<title>Bus Information Board System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="description" content="Bus Information Board System" />
+<link rel="icon" href="toppg/favicon.ico">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="toppg/apple-touch-icon-180x180.png" sizes="180x180">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NQVFDDY566"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').then(registration => {
+        console.log('ServiceWorker registration successful.');
+      }).catch(err => {
+        console.log('ServiceWorker registration failed.');
+      });
+    }
+    window.onload = function() {
+  
+        const spinner = document.getElementById('loading');
+  spinner.classList.add('loaded');
+
+
+}
+  </script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NQVFDDY566');
+</script>
+<style>
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: #F1F1F1;
+  margin: 0px;
+  -webkit-text-size-adjust: 100%;
+}
+
+.main {
+
+  width: 100%;
+  height: 100%;
+  min-height: 700px;
+  z-index: 10;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box30 {
+  padding: 0;
+  margin: auto;
+  width: 95%;
+  max-width: 700px;
+
+}
+
+img {
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  margin: none;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  vertical-align: bottom;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+  box-shadow: 0 0 5px #cecece;
+}
+.a-radius {
+border-radius: 20px 20px 0px 0px; /* 左上・右上・右下・左下 */
+}
+.l-radius {
+border-radius: 0px 0px 0px 20px; /* 左上・右上・右下・左下 */
+}
+.r-radius {
+border-radius: 0px 0px 20px 0px; /* 左上・右上・右下・左下 */
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size:0.5rem;
+  padding: 0.25rem;
+    color: #444;
+
+}
+/* ローディング画面 */
+#loading {
+  width: 100vw;
+  height: 100vh;
+  transition: 0.5s 1.5s ;
+  background-color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.spinner {
+  width: 100vw;
+  max-width:100vh ;
+  height: 100vh;
+  max-height: 100vw;
+  margin: 0;
+  box-shadow: none;
+  animation: sk-scaleout 0.4s ;
+}
+/* ローディングアニメーション */
+@keyframes sk-scaleout {
+  0% {
+    transform: scale(2.0);
+  } 
+  10% {
+    transform: scale(2.0);
+  } 
+  100% {
+    transform: scale(1.0);
+  }
+}
+ 
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+</style>
+<body>
+  <!-- ローディング画面 -->
+<div id="loading">
+  <img src="./toppg/start.svg" class="spinner">
+ 
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 0 0">
+</svg>
+ </img>
+</div>
+<!-- コンテンツ部分 -->
+  <div class="main">
+    <div class="box30">
+      <div>
+        <table>
+          <tbody>
+<tr>
+              <td colspan="2"><a href="./common/"><img class="a-radius" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/title.jpg?2023/11/9" alt="松戸駅のバス発車表示" /></a></td>
+            </tr>
+            <tr>
+              <td colspan="2"><img onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/map.jpg?2023/11/9" usemap="#ImageMap" alt="京成バスのマップ" /></td>
+            </tr>
+            <tr>
+              <td><a href="matsudoeki.html"><img class="l-radius" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/matsudoeki.jpg?2023/11/9" alt="松戸駅のバス発車表示" /></a></div></td>
+              <td><a href="nichidaishika.html"><img class="r-radius" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/nichidaishika.jpg?2023/11/9" alt="日大歯科病院のバス発車表示" /></a></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    Version 3.64
+  </footer>
+</body>
+</html>
