@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta content="#005ab3" name="theme-color">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
+  <title>歯のお勉強（歯種の鑑別）　ToothStudyApp Ver. 2.0.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="loadFunc()">
+<div class="content">
+  <div class="hwrapper" onclick=location.href='#modal-03'>
+    <div class="header"> <span>歯のお勉強</span></div>
+  </div>
+  <div class="CommonBox">
+    <div class="BtnBox"> <button type=“button” class="class1" onclick="location.href='#modal-01'">問題設定</button> </div>
+  </div>
+  <div class="container">
+    <div class="Main-box" id="explain-box">
+      <h2>このサイトの取説</h2>
+      <div class="inner">
+        <div class="inner-for-text">
+          <h3>● はじめに</h3>
+          <p>歯のお勉強（以下，本サイトとする）は，画像から歯種の鑑別を練習するために，有志で作ったサイトです。</p>
+          <p>予告なく本サイトを非公開や停止する場合もあるということですです。</p>
+          <p>近年著作権が厳しくなっていますが，このサイトは画像を引用しています。（引用元は以下に記載。）「引用」とは，他人が作った著作物を，自分の表現物（コンテンツ）に取り入れることをいいます。
+            <br> 引用といえば文章というイメージかもしれませんが，画像や動画も引用することが可能となっています。
+
+            <br>さて，先ほども説明したように，著作物の無断利用は原則として違法になりますが，「引用」が成立する場合には，他人の著作物を無断で利用する場合でも，違法になりません。
+            
+            <br>「引用」という例外が認められる理由は，人が何かを主張したり批判するなど，自由な言論のためには他人の著作物を用いる必要性の高い場面がたくさんあるため，利用を制限しすぎるのは問題だからです。
+            
+            <br>例えば，何か自論を展開しようとしたときなど、その根拠として誰かの文章を引用すれば，より説得力や信頼度が増しますよね。これに応えたものが「引用」のルールなのです。
+            
+            <br>・そして，「引用」が認められるためには、次の条件をすべてみたす必要があります。
+            <br>・主従関係が明確であること（明確性）
+            <br>・引用部分が他とはっきりと区別されていること（明瞭区別性）
+            <br>・引用をする必要性があること（必要性）
+            <br>・出典元が明記されていること（出典）
+            <br>・改変しないこと
+            <br>上記を踏まえて，このサイトは引用を経て公開を行っています。
+            </p>
+          <hr>
+          <h3>● 写真の引用元について</h3>
+          <p>本サイトはニッシンデジタルの以下URLの画像を引用しています。</br> <a href="http://www.nissin-dental.net/download/diagram.pdf">http://www.nissin-dental.net/download/diagram.pdf</a></p>
+          <hr>
+          <h3>● 基本操作</h3> <img width="100%" height="auto" src="img/in/1.jpg" />
+          <p>練習を開始するには上部の［問題設定］ボタンを押し，歯種，練習する本数を選択し，［勉強する］ボタンを押してください。</p>
+          <hr> <img width="100%" height="auto" src="img/in/2.jpg" />
+          <p>［勉強する］ボタンを押した後，回答画面が表示されます。プルダウンタブより上下左右顎，歯種を選択して［回答する］ボタンを押してください。［回答する］ボタンを押した後，問題の正誤が表示されます。次の問題に行く場合はオレンジ色で表示される［次へ］ボタンを押してください。</p>
+          <hr> <img width="100%" height="auto" src="img/in/3.jpg" />
+          <p>全問題終了後は正誤一覧表が表示されます。再び練習する場合は上部の［問題設定］ボタンを押し，歯種，練習する本数を選択し，［勉強する］ボタンを押してください。</p>
+          <hr>
+          <h3>● 途中変更</h3> <img width="100%" height="auto" src="img/in/4.jpg" />
+          <p>回答中に歯種，練習する本数を変更する場合は，上部の［問題設定］ボタンを押し，歯種，練習する本数を選択し，オレンジ色の［再設定］ボタンを押してください。</p>
+          <hr>
+          <h3>● 仕様について</h3> <img width="100%" height="auto" src="img/in/5.jpg" />
+          <p>出題から１分経過後，回答が完了していない場合は，その時点での選択状態が自動的に回答され，次の問題に進みます。</p>
+          <p>毎度の設定で問題はランダムに出題されます。ただし問題は重複はしません。</p>
+          <p>大体の機器に表示が合うように，レスポンシブ表示対応しています。</p>
+          <p>当たり前ですが，間違えがあったりバグが取り切れていないかもしれません。その他いろいろな細かいツッコミは禁止で。</p>
+          <hr>
+          <h3>● 鑑別の順番</h3>
+          <p>永久歯/入試の区別→歯種の区別→上下の区別→歯種内の順位</p>
+          <hr>
+          <h3>● 鑑別の裏技</h3>
+          <p>上顎の歯を舌側面または、咬合面からみた「近心」の存在する「左・右」の位置は、その歯の「左・右」側に一致</br> (ex:上顎第一小臼歯を咬合面から見たとき近心が左側にある場合は左側の歯である。<br> 下顎の歯を舌側面または、咬合面からみた「遠心」の存在する「左・右」の位置は、その歯の「左・右」側に一致</br> (ex:下顎中側切歯を咬合面から見たとき遠心が右側にある場合は右側の歯である。</p>
+          <hr>
+          <h3>● 更新履歴</h3>
+          <p>Ver. 2.0.0 2021/07/15　大規模改修</br> Ver. 1.4.0 2021/07/07　回答開始１分後自動遷移機能追加</br> Ver. 1.3.7 2021/07/05　一部修正</br> Ver. 1.3.6 2021/06/29　説明文変更</br> Ver. 1.3.5 2021/06/02　一部表示変更</br> Ver. 1.3.0 2021/06/02　画像対応</br> Ver. 1.2.5 2021/05/21　一部表示変更</br> Ver. 1.2.0 2021/05/18　画像問題対応化</br> Ver. 1.1.5 2021/05/17　乳歯対応化</br> Ver. 1.1.0 2021/05/16　CSS作成。永久歯のみ</br> Ver. 1.0.0 2021/05/15　新規作成・初版リリース</br>
+          </p>
+          <hr>
+          <p> Copyright © 2021 NUSDM GAKUSEI-KAI All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+    <div class="Main-box" id="question-box">
+      <h2><span id="text_q"></span></h2>
+      <div class="inner">
+        <div class="container-box-1"><img width="auto" height="100%" max-width="100%" id="Q-IMG" src="" /></div>
+        <div class="container-box-2">
+          <div id="text_s">
+            <div class="TestSetdiv"> <label>
+          <select id="FDI1">
+          <option value="1">上顎右側</option>
+          <option value="2">上顎左側</option>
+          <option value="3">下顎左側</option>
+          <option value="4">下顎右側</option>
+          </select>
+          <select id="FDI2">
+          <optgroup label="永久歯">
+          <option value="1" selected>中切歯</option>
+          <option value="2">側切歯</option>
+          <option value="3">犬歯</option>
+          <option value="4">第一小臼歯</option>
+          <option value="5">第二小臼歯</option>
+          <option value="6">第一大臼歯</option>
+          <option value="7">第二大臼歯</option>
+          </optgroup>
+          <optgroup label="乳歯">
+          <option value="A" disabled>乳中切歯</option>
+          <option value="B" disabled>乳側切歯</option>
+          <option value="C" disabled>乳犬歯</option>
+          <option value="D" disabled>第一乳臼歯</option>
+          <option value="E" disabled>第二乳臼歯</option>
+          </optgroup>
+          </select></label> </div>
+          </div>
+        </div>
+        <div class="container-box-3">
+          <div id="TF-Box" class="TF-Box">
+            <div id="TF-Box-title" class="TF-Box-title"><span id="TF"></span></div>
+            <div class="TF-Box-text"><span id="TA"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Main-box" id="result-box">
+      <h2>正誤一覧表</h2>
+      <div class="inner">
+        <table id='result-box-table'></table>
+      </div>
+    </div>
+  </div>
+  <div class="CommonBox">
+    <div class="BtnBox"> <button id="anser" class="class1" type="submit" onclick="Anser()">回答する</button> </div>
+  </div>
+  <!-- モーダル -->
+  <div class="modal-wrapper" id="modal-00"> <a href="#!" class="modal-overlay"></a>
+    <div class="modal-window">
+      <div class="modal-content">
+        <center>
+          <h3>試験注意書き（抜粋）</h3>
+        </center>
+        <p>2021/8/24(火) 13:40~</p>
+        <p>【2】鑑別試験</p>
+        <p>(1)出題範囲は乳⻭と永久⻭の両方である。<br>
+          (2)解答の際には,<br>
+          ①⻭の名称(日本語),<br>
+          ②パルマ―とチグモンジーの記号<br>
+          ①と②の両方の解答が求められる。<br>
+          (3)⻭の名称は「上/下顎⇒左/右側⇒⻭の名称」の順となる。<br>
+          (例:上顎右側中切⻭)<br>
+          この順序が違っている場合は誤答なるので注意すること。</p>
+        <center><button class="class1" type="submit" onclick="location.href='#!'">閉じる</button></center>
+      </div> <a href="#!" class="modal-close">×</a> </div>
+  </div>
+  <div class="modal-wrapper" id="modal-01"> <a href="#!" class="modal-overlay"></a>
+    <div class="modal-window">
+      <div class="modal-content">
+        <div class="TestSetdiv">
+          <h3>出題形式を設定してください</h3> <label>
+<select id="type" name="type">
+<option value="permanent">永久歯</option>
+<option value="deciduous" disabled>乳歯</option>
+<option value="all" disabled>乳歯・永久歯</option>
+<select>
+<select id="TestSet" name="number">
+</select>
+</label> <button id="setReady" class="class1" type="submit" onclick="setReady()">勉強する</button> </div>
+      </div> <a href="#!" class="modal-close">×</a> </div>
+  </div>
+  <div class="modal-wrapper" id="modal-02"> <a href="#!" class="modal-overlay"></a>
+    <div class="modal-window">
+      <div class="modal-content">
+        <center>
+          <h3>出題から１分が経過しました</h3>
+        </center>
+        <p>出題から１分経過後，現在選択の状態が自動的に回答されます。</p>
+        <center><button class="class1" type="submit" onclick="location.href='#!'">閉じる</button></center>
+      </div> <a href="#!" class="modal-close">×</a> </div>
+  </div>
+  <div class="modal-wrapper" id="modal-03"> <a href="#!" class="modal-overlay"></a>
+    <div class="modal-window">
+      <div class="modal-content">
+        <center>
+          <h3>隠し機能(Android,windowのみ)</h3>
+        </center>
+        <center><button class="class1" type="submit" onclick="FULL()">全画面表示開始</button></center>
+        <p></p>
+        <center><button class="class2" type="submit" onclick="ESC()">全画面表示終了</button></center>
+      </div> <a href="#!" class="modal-close">×</a> </div>
+  </div>
+</div>
+  <style>
+    html,body{
+        height: 100%;
+        font-family: 'Noto Sans JP', sans-serif;
+    	font-weight: 400;
+    }
+    body {  
+       margin: 0px;
+       -webkit-text-size-adjust: 100%;
+    }
+    .content{
+       height: 100%;
+       background-color:#fff;
+       min-height: 600px;
+    }
+
+    .hwrapper{
+    	height: 5%;
+       width: 100%;
+       background: #005ab3;
+       display: flex;
+      align-items: center;
+      justify-content: center;
+    cursor:pointer;
+    }
+    
+    .header{
+      margin: auto;
+      max-width: 800px;
+      color:#fff;
+    }
+    
+    .container {
+      height: 73%;
+      margin: auto;
+      max-width: 800px;
+    overflow: auto;
+    }
+    
+    .CommonBox{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+       height: 11%;
+       width: 100%;
+    overflow: hidden;
+      background: -webkit-repeating-linear-gradient(-45deg, #f4f9ff, #f4f9ff 3px, #eaf4ff 3px, #eaf4ff 6px);/*ストライプ*/
+        background: repeating-linear-gradient(-45deg, #f4f9ff, #f4f9ff 3px, #eaf4ff 3px, #eaf4ff 6px);/*ストライプ*/
+    
+    }
+    
+    .BtnBox{
+    
+      max-width: 800px;
+    
+    }
+    
+    .modal-wrapper {
+      z-index: 999;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 40px 10px;
+      text-align: center;
+    }
+    
+    .modal-wrapper:not(:target) {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s, visibility .2s;
+    }
+    
+    .modal-wrapper:target {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .2s, visibility .2s;
+    }
+    
+    .modal-wrapper::after {
+      display: inline-block;
+      height: 100%;
+      margin-left: -.05em;
+      vertical-align: middle;
+      content: "";
+    }
+    
+    .modal-wrapper .modal-window {
+      box-sizing: border-box;
+      display: inline-block;
+      z-index: 20;
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+      padding: 30px 30px 50px;
+      border-radius: 2px;
+      background: #fff;
+      box-shadow: 0 0 30px rgba(0, 0, 0, .6);
+      vertical-align: middle;
+    }
+    
+    
+    .modal-wrapper .modal-window .modal-content {
+      max-height: 75vh;
+      overflow-y: auto;
+      text-align: left;
+    }
+    
+    .modal-overlay {
+      z-index: 10;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, .8);
+    }
+    
+    .modal-wrapper .modal-close {
+      z-index: 20;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      color: #000 !important;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 30px;
+      text-align: center;
+      text-decoration: none;
+      text-indent: 0;
+    
+    }
+    
+    .modal-wrapper .modal-close:hover {
+      color: #fff !important;
+      background: red;
+    }
+    .TestSetdiv{
+    text-align: center;
+    }
+    
+    select {
+      font-family: 'Noto Sans JP', sans-serif;
+    	font-weight: 400;
+      width: 50vw;
+      max-width: 300px;
+    background-color: #fff;
+    height:50px;
+    border:solid #000 ;
+    border-width:2px;
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+    cursor:pointer;
+    outline: none;
+    }
+    .class1{
+      font-family: 'Noto Sans JP', sans-serif;
+    	font-weight: 600;
+      width: 50vw;
+      max-width: 300px;
+    background-color: #005ab3;
+    height:50px;
+    text-align: center;
+    border: 2px solid #005ab3;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    cursor:pointer;
+    outline: none;
+    }
+    
+    .class1:active {
+    background-color: #d1e5ff;
+    border-color: #005ab3;
+    color: #005ab3;
+    }
+    .class2{
+      font-family: 'Noto Sans JP', sans-serif;
+    	font-weight: 600;
+      width: 50vw;
+      max-width: 300px;
+    background-color: #FF8000;
+    height:50px;
+    text-align: center;
+    border: 2px solid #FF8000;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    cursor:pointer;
+    outline: none;
+    
+    }
+    
+    .class2:active {
+    background-color: #ffe6cc ;
+    border-color: #FF8000;
+    color: #FF8000;
+    }
+    
+    
+    
+    
+    
+    .Main-box {
+    height: 100%;
+    border: 2px solid #005ab3;
+    box-sizing: border-box;
+    
+    }
+    .Main-box h2{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 8%;
+      color: #005ab3;
+      border-bottom: 2px solid #005ab3;
+      box-sizing: border-box;
+      margin:0;
+    }
+    .Main-box .inner{
+      height: 92%;
+      overflow: auto;
+    }
+    .Main-box .inner-for-text{
+    padding: 0 5%;
+    }
+    
+    @media screen and (min-width:520px){/*PC表示 */
+    .container-box-1 {
+      width: 100%;
+    height: 65%;
+    display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+    }
+    .container-box-2 {
+    height: 17.5%;
+    display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container-box-3 {
+    height: 17.5%;
+    } 
+  }
+  @media screen and (max-width:520px){/*SP表示 */
+    .container-box-1 {
+      width: 100%;
+    height: 50%;
+    display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+    }
+    .container-box-2 {
+    height: 25%;
+    display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container-box-3 {
+    height: 25%;
+    } 
+  }
+    
+    .TF-Box {
+    position: relative;
+    min-height: 100px;
+    height: 100%;
+    background: #fff; /* ボックス背景色 */
+    border-radius: 25px 25px 0px 0px;
+    }
+    .TF-Box-title {
+    padding: 10px;
+    background: #777; /* タイトル背景色 */
+    color: #fff; /* タイトル文字色 */
+    
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    }
+    .TF-Box-text {
+    padding: 10px;
+    text-align: left;
+    }
+    
+    
+    table{
+    border-collapse:collapse;
+    margin:0 auto;
+    width:100%;
+    }
+    td,th{
+    padding:0px 10px 0px 10px;
+    border:1px solid #ccc;
+    text-align: center;
+    }
+    table td:nth-of-type(3){
+    text-align: left;
+    }
+    th{
+    color:#fff;
+    background:#005ab3;
+    }
+    table tr:nth-child(odd){
+    background:#e6f2ff;
+    }
+  </style>
+  <script type="text/javascript">
+  
+    //問題と解答[写真,判別ビット.名称,コメント]
+qa = new Array();
+qa[0] = ["11","11","上顎右側中切歯","null"];
+qa[1] = ["12","12","上顎右側側切歯","null"];
+qa[2] = ["13","13","上顎右側犬歯","null"];
+qa[3] = ["14","14","上顎右側第一小臼歯","null"];
+qa[4] = ["15","15","上顎右側第二小臼歯","null"];
+qa[5] = ["16","16","上顎右側第一大臼歯","null"];
+qa[6] = ["17","17","上顎右側第二大臼歯","null"];
+
+qa[7] = ["21","21","上顎左側中切歯","null"];
+qa[8] = ["22","22","上顎左側側切歯","null"];
+qa[9] = ["23","23","上顎左側犬歯","null"];
+qa[10] = ["24","24","上顎左側第一小臼歯","null"];
+qa[11] = ["25","25","上顎左側第二小臼歯","null"];
+qa[12] = ["26","26","上顎左側第一大臼歯","null"];
+qa[13] = ["27","27","上顎左側第二大臼歯","null"];
+
+qa[14] = ["31","31","下顎左側中切歯","null"];
+qa[15] = ["32","32","下顎左側側切歯","null"]
+qa[16] = ["33","33","下顎左側犬歯","null"];
+qa[17] = ["34","34","下顎左側第一小臼歯","null"];
+qa[18] = ["35","35","下顎左側第二小臼歯","null"];
+qa[19] = ["36","36","下顎左側第一大臼歯","null"];
+qa[20] = ["37","37","下顎左側第二大臼歯","null"];
+
+qa[21] = ["41","41","下顎右側中切歯","null"];
+qa[22] = ["42","42","下顎右側側切歯","null"]
+qa[23] = ["43","43","下顎右側犬歯","null"];
+qa[24] = ["44","44","下顎右側第一小臼歯","null"];
+qa[25] = ["45","45","下顎右側第二小臼歯","null"];
+qa[26] = ["46","46","下顎右側第一大臼歯","null"];
+qa[27] = ["47","47","下顎右側第二大臼歯","null"];
+
+qa[28] = ["51","1A","上顎右側乳中切歯","null"];
+qa[29] = ["52","1B","上顎右側乳側切歯","null"];
+qa[30] = ["53","1C","上顎右側乳犬歯","null"];
+qa[31] = ["54","1D","上顎右側第一乳臼歯","null"];
+qa[32] = ["55","1E","上顎右側第二乳臼歯","null"];
+
+qa[33] = ["61","2A","上顎左側乳中切歯","null"];
+qa[34] = ["62","2B","上顎左側乳側切歯","null"];
+qa[35] = ["63","2C","上顎左側乳犬歯","null"];
+qa[36] = ["64","2D","上顎左側第一乳臼歯","null"];
+qa[37] = ["65","2E","上顎左側第二乳臼歯","null"];
+
+qa[38] = ["71","3A","下顎左側乳中切歯","null"];
+qa[39] = ["72","3B","下顎左側乳側切歯","null"];
+qa[40] = ["73","3C","下顎左側乳犬歯","null"];
+qa[41] = ["74","3D","下顎左側第一乳臼歯","null"];
+qa[42] = ["75","3E","下顎左側第二乳臼歯","null"];
+
+qa[43] = ["81","4A","下顎右側乳中切歯","null"];
+qa[44] = ["82","4B","下顎右側乳側切歯","null"];
+qa[45] = ["83","4C","下顎右側乳犬歯","null"];
+qa[46] = ["84","4D","下顎右側第一乳臼歯","null"];
+qa[47] = ["85","4E","下顎右側第二乳臼歯","null"];
+//初期設定
+document.getElementById("question-box").style.display ="none";
+document.getElementById("result-box").style.display ="none";
+document.getElementById("anser").style.display ="none";
+//問題設定プルダウン
+let versionArray = new Array();
+versionArray['permanent'] = new Array('28本', '20本', '16本', '10本', '5本', '1本');
+versionArray['deciduous'] = new Array('20本', '10本', '5本', '1本');
+versionArray['all'] = new Array('48本', '40本', '30本', '20本', '10本', '5本', '1本');
+
+document.getElementsByName('type')[0].onchange = function () {
+let os = this.value;
+let elm = document.getElementsByName('number')[0];
+elm.options.length = 0;
+for (let i = 0; i < versionArray[os].length; i++) {
+let op = document.createElement('option');
+op.value = versionArray[os][i];
+op.textContent = versionArray[os][i];
+elm.appendChild(op);
+}
+};
+window.onload = function () {
+  location.href='#modal-00'
+document.getElementsByName('type')[0].onchange();
+};
+//開始設定
+function setReady() {
+  //モーダル閉じる
+  location.href='#!'
+//出題数
+var q_max_row =document.getElementById("TestSet").value;
+q_max = q_max_row.slice( 0, -1 ) ;;
+//歯類選別
+if (document.getElementById("type").value == "permanent") {
+var values = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27];
+}else if(document.getElementById("type").value == "deciduous"){
+var values = [28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47];
+}else if(document.getElementById("type").value == "all"){
+var values = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47];
+}
+//問題シャッフル
+var shuffleByES5 = function (array) {
+var ary = array.slice();
+for (var i = ary.length - 1; 0 < i; i--) {
+var r = Math.floor(Math.random() * (i + 1));
+var temp = ary[i];
+ary[i] = ary[r];
+ary[r] = temp;
+}
+return ary;
+};
+shuffledTEST = shuffleByES5(values);
+//問題番号
+count = 0;
+//解答記録
+ToothName = new Array();
+ansers = new Array();
+//最初の問題
+quiz();
+document.getElementById("explain-box").style.display ="none";
+document.getElementById("result-box").style.display ="none";
+document.getElementById("question-box").style.display ="block";
+document.getElementById("anser").style.display ="block";
+}
+var timerid;//時間制限
+
+//問題表示
+function quiz() {
+  window.clearTimeout(timerid);
+document.getElementById("setReady").innerHTML = "再設定";
+document.getElementById("setReady").className = 'class2';
+document.getElementById("TF").innerHTML = "回答してください";
+document.getElementById("TF-Box").style.backgroundColor = "#fff";
+document.getElementById("TF-Box-title").style.backgroundColor = "#777";
+document.getElementById("anser").innerHTML = "回答する";
+document.getElementById("anser").className = 'class1';
+document.getElementById("TA").innerHTML = '';
+var s, n;
+//問題
+rnd = shuffledTEST[count]; //乱数
+document.getElementById("text_q").innerHTML =  "第" +(count + 1) + "問 ／ 全"+q_max + "問" ;
+document.getElementById("Q-IMG").src = "img/"+qa[rnd][0]+".jpg";
+timerid = window.setTimeout(function(){
+
+  location.href='#modal-02'
+        Anser();
+    }, 60000);
+}
+//解答表示
+function Anser() {
+  window.clearTimeout(timerid);
+if (document.getElementById("anser").innerHTML == "回答する") {
+document.getElementById("anser").innerHTML = "次へ";
+document.getElementById("anser").className = 'class2';
+var FDI1select = document.getElementById("FDI1");
+var FDI2select = document.getElementById("FDI2");
+var FDIAnser = FDI1select.value + FDI2select.value;
+ToothName[count] = qa[rnd][2];
+if (FDIAnser == qa[rnd][1]) {
+document.getElementById("TF").innerHTML = '〇｜正解です';
+document.getElementById("TF-Box").style.backgroundColor = "#cfe7ff";
+document.getElementById("TF-Box-title").style.backgroundColor = "#1f8fff";
+ansers[count] = "〇";
+} else {
+document.getElementById("TF").innerHTML = '×｜間違えです';
+document.getElementById("TF-Box").style.backgroundColor = "#ffcfcf";
+document.getElementById("TF-Box-title").style.backgroundColor = "#ff1f1f";
+ansers[count] = "×";
+}
+document.getElementById("TA").innerHTML = "答え：" + qa[rnd][2];
+}else{
+//次の問題を表示
+count++;
+if (count < q_max) {
+quiz();
+} else {
+document.getElementById("TF").innerHTML = '';
+document.getElementById("TA").innerHTML = '';
+document.getElementById("setReady").innerHTML = "勉強する";
+document.getElementById("setReady").className = 'class1';
+//終了
+document.getElementById("question-box").style.display ="none";
+document.getElementById("anser").style.display ="none";
+document.getElementById("result-box").style.display ="block";
+var tableEle = document.getElementById('result-box-table');
+tableEle.innerHTML = "<tr><th>番号</th><th>正誤</th><th>問題</th></tr>";
+for (n=0;n<q_max;n++) {
+// テーブルの行を 5行追加する
+var tr = document.createElement('tr');
+// テーブルの列を 3行追加する
+var td = document.createElement('td');
+td.innerHTML =  (n+1) ;
+tr.appendChild(td);
+var td = document.createElement('td');
+td.innerHTML =   ansers[n] ;
+tr.appendChild(td);
+var td = document.createElement('td');
+td.innerHTML =   ToothName[n] ;
+tr.appendChild(td);
+tableEle.appendChild(tr);
+}
+}
+}
+}
+// フルスクリーン表示
+function FULL() {
+  document.body.requestFullscreen();
+  location.href='#!'				
+} 
+function ESC() {
+  document.exitFullscreen();
+  location.href='#!'
+}
+  </script>
+</body>
