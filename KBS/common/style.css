@@ -104,6 +104,9 @@
     display: inline-grid;
     align-items: center;
     text-align: right;
+    line-height: 1;
+    font-size: 4.5vmin;
+
   }
   .box-left-type {
     color: #fff;

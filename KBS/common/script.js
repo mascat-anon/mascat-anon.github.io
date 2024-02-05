@@ -132,10 +132,10 @@ function showClock2() {
   var nowHour = nowTime.getHours();
   var nowMin = nowTime.getMinutes();
   if (nowMin < 10) nowMin = "0" + nowMin;
-   var msg ="" + nowHour + ":" + nowMin   ;
+   var msg ="<span class='' style='font-size: 2.3vmin;' id=''>現在時刻&ensp;</span><br><i>" + nowHour + ":" + nowMin +"</i>"  ;
   document.getElementById("NowTime").innerHTML = msg;
 window.setTimeout(function(){
-  var msg ="" + nowHour + "<span style='opacity: 0;'>:</span>" + nowMin  ;
+  var msg ="<span class='' style='font-size: 2.3vmin;' id=''>現在時刻&ensp;</span><br><i>" + nowHour + "<span style='opacity: 0;'>:</span>" + nowMin+"</i>"  ;
   document.getElementById("NowTime").innerHTML = msg;
   }, 1000);
   }
