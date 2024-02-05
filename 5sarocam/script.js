@@ -23,8 +23,8 @@ async function fetchImage(target) {
       ctx.font = '20px Roboto medium';
       ctx.fillStyle = "#ffffff"
       ctx.lineWidth = "6";
-      ctx.strokeText("古ヶ崎→", 500, 150);
-      ctx.fillText("古ヶ崎→", 500, 150);
+      ctx.strokeText("古ヶ崎方向→", 500, 150);
+      ctx.fillText("古ヶ崎方向→", 500, 150);
       ctx.strokeText("←松戸営業所方向", 20, 140);
       ctx.fillText("←松戸営業所方向", 20, 140);
       ctx.strokeText("小僧弁天方向↘︎", 410, 270);
