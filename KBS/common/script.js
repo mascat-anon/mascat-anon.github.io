@@ -126,6 +126,19 @@ function showClock() {
 		SetTimeTable();
 	}
 }
+function showClock2() {
+    var nowTime = new Date();
+
+  var nowHour = nowTime.getHours();
+  var nowMin = nowTime.getMinutes();
+  if (nowMin < 10) nowMin = "0" + nowMin;
+   var msg ="" + nowHour + ":" + nowMin   ;
+  document.getElementById("NowTime").innerHTML = msg;
+window.setTimeout(function(){
+  var msg ="" + nowHour + "<span style='opacity: 0;'>:</span>" + nowMin  ;
+  document.getElementById("NowTime").innerHTML = msg;
+  }, 1000);
+  }
 //共通仕様
 function GetXMLHR(FILE_URL, AFTER_SCRIPT_NAME) {
 	var XMLHR = new XMLHttpRequest();
