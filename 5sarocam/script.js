@@ -34,8 +34,8 @@ ctx.strokeText("古ヶ崎→", 500, 150);
 ctx.fillText("古ヶ崎→", 500, 150);
 ctx.strokeText("←松戸営業所方向", 20, 140);
 ctx.fillText("←松戸営業所方向", 20, 140);
- ctx.strokeText("小僧弁天方向↘", 410, 270);
-ctx.fillText("小僧弁天方向↘", 410, 270);   
+ ctx.strokeText("小僧弁天方向↘︎", 410, 270);
+ctx.fillText("小僧弁天方向↘︎", 410, 270);   
   }
     return response;
   } else {
