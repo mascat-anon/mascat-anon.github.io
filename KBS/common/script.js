@@ -329,6 +329,7 @@ function JSON_RealTimeTable(DATA_LIST) {
 			RealTimeTable[i][6] = BusInformationData.values[i][4];
 			RealTimeTable[i][7] = BusInformationData.values[i][5];
 			RealTimeTable[i][8] = BusInformationData.values[i][6];
+			RealTimeTable[i][9] = BusInformationData.values[i][7];
 			//上から振ってくるJSONとマッチング
 
 			for (let j = 0; j < TodayTimeTable.length; j++) {
@@ -343,6 +344,7 @@ function JSON_RealTimeTable(DATA_LIST) {
 					TodayTimeTable[j][6] = RealTimeTable[i][6];
 					TodayTimeTable[j][7] = RealTimeTable[i][7];
 					TodayTimeTable[j][8] = RealTimeTable[i][8];
+					TodayTimeTable[j][9] = RealTimeTable[i][9];
 				}
 			}
 			if (RealTimeTable[i][1] == ":") { //臨時ダイヤの取得
@@ -372,12 +374,13 @@ function JSON_RealTimeTable(DATA_LIST) {
 	console.log(TodayTimeTable)
 	console.log(CheckTime)
 }
-
+var DispPattern =  0;//初期0
 function 表示() {
 	for (let j = 0; j < 5; j++) { //初期状態にもどしてく
 		document.getElementById('Type' + j).innerHTML = "";
 		document.getElementById('TypeBox' + j).style.backgroundColor = "";
 		document.getElementById('Time' + j).innerHTML = "";
+		document.getElementById('Time' + j).style.color = "";
 		document.getElementById('Dist' + j).innerHTML = "";
 		document.getElementById('Dist' + j).style.color = "";
 		document.getElementById('Delay' + j).innerHTML = "";
@@ -442,18 +445,52 @@ function 表示() {
 		}
 		if (TodayTimeTable[i][0] == "当日") { //当日データが取れているものだけ吐く
 
-			if (DelayTime > 15) {
-				document.getElementById('Delay' + i).innerHTML = "大幅な遅れ";
-				document.getElementById('Delay' + i).style.color = 'red';
-				document.getElementById('Time' + i).innerHTML = "約"+ DepWill + "分後"
-			} else if (DelayTime > 0) {
-				document.getElementById('Delay' + i).innerHTML = "約"+DelayTime + "分遅れ";
-				document.getElementById('Delay' + i).style.color = 'Orange';
-			} else {
-				document.getElementById('Delay' + i).innerHTML = "定刻通り出発";
-				document.getElementById('Delay' + i).style.color = '#00ff00';
+
+			if (DispPattern == 0) {//表示パターン
+				if (DelayTime > 15) {
+					document.getElementById('Delay' + i).innerHTML = "大幅な遅れ";
+					document.getElementById('Delay' + i).style.color = 'red';
+					document.getElementById('Time' + i).innerHTML = "約"+ DepWill + "分後"
+				} else if (DelayTime > 0) {
+					document.getElementById('Delay' + i).innerHTML = "約"+DelayTime + "分遅れ";
+					document.getElementById('Delay' + i).style.color = 'Orange';
+				} else {
+					document.getElementById('Delay' + i).innerHTML = "定刻通り出発";
+					document.getElementById('Delay' + i).style.color = '#00ff00';
+	
+				}
+			}else if (DispPattern == 1) {
+				if (TodayTimeTable[i][9] !== "") {
+
+					if (DelayTime > 15) {
+						document.getElementById('Delay' + i).innerHTML = "大幅な遅れ";
+						document.getElementById('Delay' + i).style.color = 'red';
+						document.getElementById('Time' + i).innerHTML = "約"+ DepWill + "分後"
+					} else if (DelayTime > 0) {
+						document.getElementById('Delay' + i).innerHTML = TodayTimeTable[i][9]+"(約"+ DepWill + "分後)";
+						document.getElementById('Delay' + i).style.color = 'Orange';
+					} else {
+						document.getElementById('Delay' + i).innerHTML = TodayTimeTable[i][9]+"(約"+ DepWill + "分後)";
+						document.getElementById('Delay' + i).style.color = '#00ff00';
+		
+					}
+				}else{
+					if (DelayTime > 15) {
+						document.getElementById('Delay' + i).innerHTML = "大幅な遅れ";
+						document.getElementById('Delay' + i).style.color = 'red';
+						document.getElementById('Time' + i).innerHTML = "約"+ DepWill + "分後"
+					} else if (DelayTime > 0) {
+						document.getElementById('Delay' + i).innerHTML = "約"+DelayTime + "分遅れ";
+						document.getElementById('Delay' + i).style.color = 'Orange';
+					} else {
+						document.getElementById('Delay' + i).innerHTML = "定刻通り出発";
+						document.getElementById('Delay' + i).style.color = '#00ff00';
+		
+					}
+				}
 
 			}
+
 			if (TodayTimeTable[i][8] == "far") { 
 				document.getElementById('Remark' + i).innerHTML = "出発まであと" + DepWill + "分。" +
 				TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定。"; //上書き
@@ -485,6 +522,11 @@ function 表示() {
 
 	}
 	console.log("TodayTimeTable")
+	if (DispPattern == 0) {//表示パターン
+		DispPattern = 1;
+	}else if (DispPattern == 1) {
+		DispPattern = 0;
+	}
 
 	//平体のフィッテング
 	Choootype();
