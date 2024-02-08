@@ -369,7 +369,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  }
 	}
 	表示();
-	setTimeout(表示, 6000);
+	setTimeout(表示, 5000);
   }
   var DispPattern = 0; //初期0
   function 表示() {
@@ -483,14 +483,11 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		} else if (DispPattern == 1) {
 		  if (DelayTime > 15) {
 			document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
-			document.getElementById('Delay' + i).style.color = 'red';
 			document.getElementById('Time' + i).innerHTML = ""
 		  } else if (DelayTime > 0) {
 			document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
-			document.getElementById('Delay' + i).style.color = 'Orange';
 		  } else {
 			document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
-			document.getElementById('Delay' + i).style.color = '#00ff00';
 		  }
 		}
 		if (TodayTimeTable[i][8] == "far") {
