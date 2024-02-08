@@ -1,16 +1,18 @@
 <html lang="ja">
-<html>
 <meta charset="UTF-8">
 <meta name="description" content="This page is created anonymously by a current NusdM student.">
+
 <head>
   <title>mascat anonymous</title>
   <meta http-equiv="Cache-Control" content="no-cache">
-  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="theme-color" content="#282828">
-  <link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet"> </head>
+  <link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
+</head>
+
 <body>
   <style>
-    body {
+  body {
         margin: 0px;
         -webkit-text-size-adjust: 100%;
     }
@@ -28,7 +30,7 @@
         overflow:auto;
     }
     .box27 {
-    position: sticky;
+      position: relative;
         top: 0;
     margin: 0;
     padding:10px 20px;
@@ -38,10 +40,70 @@
         font-size: 20px;
       z-index:9;
     }
-    .box27 p {
-    margin: 0;
-    padding: 0;
+
+.text {
+    display: flex;
+    transform-origin: center center -10px;
+    opacity: 0;
+  }
+    
+  #p1 {
+    animation: para_1 6s linear infinite; /* アニメーション時間を増やしました */
+  }
+
+  #p2 {
+    margin: -30px 0px 0;
+    animation: para_2 6s linear infinite; /* アニメーション時間を増やしました */
+    opacity: 0;
+    animation-delay: 3s; /* 変更点 */
+  }
+
+  @keyframes para_1 {
+    0% {
+      opacity: 0;
+      transform: rotate3d(1, 0, 0, 90deg);
     }
+    10% {
+      opacity: 1;
+      transform: rotate3d(1, 0, 0, 0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: rotate3d(1, 0, 0, 0deg);
+    }
+    60% {
+      opacity: 0;
+      transform: rotate3d(1, 0, 0, -90deg);
+    }
+    100% {
+      opacity: 0;
+      transform: rotate3d(1, 0, 0, -90deg);
+    }
+  }
+
+  @keyframes para_2 {
+    0% {
+      opacity: 0;
+      transform: rotate3d(1, 0, 0, 90deg);
+    }
+    10% {
+      opacity: 1;
+      transform: rotate3d(1, 0, 0, 0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: rotate3d(1, 0, 0, 0deg);
+    }
+    60% {
+      opacity: 0;
+      transform: rotate3d(1, 0, 0, -90deg);
+    }
+    100% {
+      opacity: 0;
+      transform: rotate3d(1, 0, 0, -90deg);
+    }
+  }
+
     .box28 {
       width: 100%;
       position: fixed;
@@ -114,18 +176,28 @@
   </style>
   <div class="back">
     <div class="box27">
-      <p>mascat anonymous</p>
+      <span class="text" id="p1">mascat anonymous</span>
+      <span class="text" id="p2">トップページ</span>
     </div>
     <div class="menu-content">
       <ul>
         <p>公開コンテンツ一覧</p>
-        <li><a href="./KBS/">Bus Information Board System</a></li>
-        <li><a href="./ToothStudyApp/">ToothStudyApp（1年歯の鑑別試験対策）</a></li>
-        <li><a href="./map/">松戸歯学部マップ</a></li>
-
-        <li><a href="./5sarocam/">古ヶ崎五差路ライブカメラ</a></li>
+        <li>
+          <a href="./KBS/">Bus Information Board System</a>
+        </li>
+        <li>
+          <a href="./ToothStudyApp/">ToothStudyApp（1年歯の鑑別試験対策）</a>
+        </li>
+        <li>
+          <a href="./map/">松戸歯学部マップ</a>
+        </li>
+        <li>
+          <a href="./5sarocam/">古ヶ崎五差路ライブカメラ</a>
+        </li>
         <p>お問い合わせ</p>
-        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdJ1BxJQ8X0uJuoKOYCCiGTM_YlTfC9x7sSYK_HA9Na_e5mnw/viewform?usp=sharing">制作依頼・ご意見・ご要望</a></li>
+        <li>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdJ1BxJQ8X0uJuoKOYCCiGTM_YlTfC9x7sSYK_HA9Na_e5mnw/viewform?usp=sharing">制作依頼・ご意見・ご要望</a>
+        </li>
       </ul>
     </div>
     <div class="box28">
@@ -134,4 +206,5 @@
     </div>
   </div>
 </body>
+
 </html>
