@@ -2,13 +2,14 @@ function getId(ele) {
   var id_value = ele.id;
   var id_text = ele.innerText;
 
-  document.getElementById('map').src = "img/" + id_value + ".jpg";
   document.getElementById("MapTitle").innerText = id_text;
   document.getElementById("menu-btn-check").checked = false;
   const aniDiv = document.getElementById("map");
   aniDiv.classList.remove('fadeIn');
   window.requestAnimationFrame((time1) => {
       window.requestAnimationFrame((time2) => {
+        
+  document.getElementById('map').src = "img/" + id_value + ".jpg";
           aniDiv.classList.add('fadeIn');
       });
   });
