@@ -558,19 +558,25 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  if (ScrollForceParam == 1) {
 		const marquee = document.getElementById("marquee5");
 		const spanElement = marquee.querySelector('span');
-		spanElement.innerHTML = ScrollForceMessage;
+		var str =ScrollForceMessage;
+var Result_str = str.replace(/<so>/g, "<span class='str_orange'>").replace(/<sr>/g, "<span class='str_red'>").replace(/<sg>/g, "<span class='str_green'>").replace(/<eo>/g, "</span>").replace(/<er>/g, "</span>").replace(/<eg>/g, "</span>");
+		spanElement.innerHTML = Result_str;
 		startMarquee(marquee);
 		CheckEmpty = ScrollForceMessage;
 	  } else if (ScrollCommonParam == 0) {
 		const marquee = document.getElementById("marquee5");
 		const spanElement = marquee.querySelector('span');
-		spanElement.innerHTML = ScrollInfoMessage;
+		var str =ScrollInfoMessage;
+		var Result_str = str.replace(/<so>/g, "<span class='str_orange'>").replace(/<sr>/g, "<span class='str_red'>").replace(/<sg>/g, "<span class='str_green'>").replace(/<eo>/g, "</span>").replace(/<er>/g, "</span>").replace(/<eg>/g, "</span>");
+		spanElement.innerHTML = Result_str;
 		startMarquee(marquee);
 		CheckEmpty = ScrollInfoMessage;
 	  } else if (ScrollCommonParam == 1) {
 		const marquee = document.getElementById("marquee5");
 		const spanElement = marquee.querySelector('span');
-		spanElement.innerHTML = TrainInfoMessage;
+		var str =TrainInfoMessage;
+		var Result_str = str.replace(/<so>/g, "<span class='str_orange'>").replace(/<sr>/g, "<span class='str_red'>").replace(/<sg>/g, "<span class='str_green'>").replace(/<eo>/g, "</span>").replace(/<er>/g, "</span>").replace(/<eg>/g, "</span>");
+		spanElement.innerHTML = Result_str;
 		startMarquee(marquee);
 		CheckEmpty = TrainInfoMessage;
 	  }
