@@ -1,0 +1,244 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+  background: #F1F1F1;
+  margin: 0px;
+  -webkit-text-size-adjust: 100%;
+}
+
+.main {
+
+  width: 100%;
+  height: 100%;
+  min-height: 700px;
+  z-index: 10;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box30 {
+  padding: 0;
+  margin: auto;
+  width: 95%;
+  max-width: 700px;
+
+}
+
+img {
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  margin: none;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  vertical-align: bottom;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+  box-shadow: 0 0 5px #cecece;
+}
+.a-radius {
+border-radius: 20px 20px 0px 0px; /* 左上・右上・右下・左下 */
+}
+.l-radius {
+border-radius: 0px 0px 0px 20px; /* 左上・右上・右下・左下 */
+}
+.r-radius {
+border-radius: 0px 0px 20px 0px; /* 左上・右上・右下・左下 */
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size:0.6rem;
+  padding: 0.25rem;
+    color: #444;
+
+}
+/* ローディング画面 */
+#loading {
+  width: 100vw;
+  height: 100vh;
+  transition: 0.5s 1.5s ;
+  background-color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.spinner {
+  width: 100vw;
+  max-width:100vh ;
+  height: 100vh;
+  max-height: 100vw;
+  margin: 0;
+  box-shadow: none;
+  animation: sk-scaleout 0.4s ;
+}
+/* ローディングアニメーション */
+@keyframes sk-scaleout {
+  0% {
+    transform: scale(2.0);
+  } 
+  10% {
+    transform: scale(2.0);
+  } 
+  100% {
+    transform: scale(1.0);
+  }
+}
+ 
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.panzoom {
+  box-shadow: 5px 5px 8px 3px #ccc;
+  background-color: #fff;
+  width: 100%;
+  max-height: 100vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  z-index: 90;
+  background-color: #333333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.menu-btn span, .menu-btn span:before, .menu-btn span:after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  position: absolute;
+}
+
+.menu-btn span:before {
+  bottom: 8px;
+}
+
+.menu-btn span:after {
+  top: 8px;
+}
+
+#menu-btn-check:checked~.menu-btn span {
+  background-color: rgba(255, 255, 255, 0);
+  /*メニューオープン時は真ん中の線を透明にする*/
+}
+
+#menu-btn-check:checked~.menu-btn span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+#menu-btn-check:checked~.menu-btn span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+#menu-btn-check:checked~.menu-btn span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+#menu-btn-check {
+  display: none;
+}
+
+.menu-content {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 100%;
+  /*rightの値を変更してメニューを画面外へ*/
+  z-index: 80;
+  background: rgba(255, 255, 255, 0.950);
+  transition: all 0.5s;
+  /*アニメーション設定*/
+  overflow: auto;
+}
+
+
+.menu-text {
+  color: #000;
+padding: 0;
+margin: auto;
+width: auto;
+max-width: 700px;
+text-align: justify;
+padding: 80px 40px 20px 20px;
+}
+
+
+
+
+#menu-btn-check:checked~.menu-content {
+  right: 0;
+  /*メニューを画面内へ*/
+}
+
+.balloon1-left {
+  position: fixed;
+  top: 16.5px;
+  left: 28px;
+  display: flex;
+  z-index: 85;
+  padding: 0 18px 3px 50px;
+  height: 40px;
+  max-width: 100%;
+  color: #46494c;
+  font-size: 18px;
+  border-radius: 40px;
+  background: #fff;
+  border: solid 2px #333333;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.balloon1-left p {
+  margin: 0;
+  padding: 0;
+}
+.footer {
+  padding: 10px;
+  color: #ffffff;
+  font-size: 15px;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  padding: 0;
+}
