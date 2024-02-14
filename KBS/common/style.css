@@ -235,3 +235,13 @@
     color: black;
     background-color: #00ff00;
   }
+
+  .str_blink{
+    animation: blinking 1.5s step-end infinite;
+  }
+  
+  @keyframes blinking {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }

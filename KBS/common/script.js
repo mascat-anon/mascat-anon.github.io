@@ -131,7 +131,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	if (NowHour < 10) NowHour = "0" + NowHour;
 	if (NowMin < 10) NowMin = "0" + NowMin;
 	if (NowSec < 10) NowSec = "0" + NowSec;
-	var msg = NowHour + ":" + NowMin + ":" + NowSec;
 	var resetTime = "" + NowHour + NowMin + NowSec;
 	if (resetTime === "000000") { //0時にリセット
 	  SetTimeTable();
@@ -163,31 +162,29 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	XMLHR.open("GET", FILE_URL, true);
 	XMLHR.send(null);
   }
-  var ScrollCommonParam = 0; //運行情報なし[0]あり[1]
-  var ScrollForceParam = 0; //強制情報なし[0]あり[1]
-  var ScrollInfoMessage = "";
-  var ScrollForceMessage = "";
+  var ScrollParam_Common = ""; //運行情報なし[0]運行情報あり[1]
+  var ScrollParam_Force = ""; //強制情報なし[0]あり[1]
+  var ScrollMessage_Info = "";
+  var ScrollMessage_Force = "";
   
   function ScrollINFO(DATA_LIST) {
-	ScrollForceParam = 0;
-	ScrollInfoMessage = ""; //内容クリア
-	ScrollForceMessage = "";
+	ScrollMessage_Info = "";
+	ScrollMessage_Force = "";
 	DATA_LIST = DATA_LIST.replace(/[\n\r]/g, ""); // Ｂ
 	var DATA = eval("(" + DATA_LIST + ")");
 	for (var i = 0; i < DATA.values.length; i++) {
 	  if (DATA.values[i][0] == "標準") {
-		ScrollInfoMessage += "　" + DATA.values[i][1];
+		ScrollParam_Force = 0;
+		ScrollMessage_Info += "　" + DATA.values[i][1];
 	  } else if (DATA.values[i][0] == "強制") {
-		ScrollForceParam = 1;
-		ScrollForceMessage += "　" + DATA.values[i][1];
+		ScrollParam_Force = 1;
+		ScrollMessage_Force += "　" + DATA.values[i][1];
 	  }
 	}
   }
-  var TrainInfoMessage = "";
-  var TrainInfoMessage_OVER = "";
-  
+  var ScrollMessage_TrainInfo = "";
   function TrainINFO(DATA_LIST) {
-	TrainInfoMessage = ""; //内容クリア
+	ScrollMessage_TrainInfo = ""; //内容クリア
 	var LineName = new Array(); // Ａ
 	var Statues = new Array();
 	var Cause = new Array();
@@ -195,24 +192,15 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	DATA_LIST = DATA_LIST.replace(/[\n\r]/g, ""); // Ｂ
 	var DATA = eval("(" + DATA_LIST + ")"); // Ｃ
 	if (DATA.values[0][0] == "None Train Information") {
-	  ScrollCommonParam = 0; //運行情報なし[0]あり[1]
+		ScrollParam_Common = 0; //運行情報なし[0]あり[1]
 	} else {
-	  ScrollCommonParam = 1; //運行情報なし[0]あり[1]
-	  TrainInfoMessage = "運行情報";
-	  TrainInfoMessage_OVER = "運行情報";
+		ScrollParam_Common =  1; //運行情報なし[0]あり[1]
 	  for (var i = 0; i < DATA.values.length; i++) {
 		LineName[i] = DATA.values[i][0]; // Ｄ
 		Statues[i] = DATA.values[i][1];
 		Cause[i] = DATA.values[i][2];
 		Date[i] = DATA.values[i][3];
-		TrainInfoMessage += "　●" + Cause[i];
-		TrainInfoMessage_OVER += "　● 【" + LineName[i] + "：" + Statues[i] + "】";
-	  }
-	  if (TrainInfoMessage.length > 250) { //運行情報全文が指定文字以上あったら簡易表示
-		TrainInfoMessage = TrainInfoMessage_OVER;
-		if (TrainInfoMessage_OVER.length > 250) { //簡易表示も指定文字以上あったらさらに簡易表示
-		  TrainInfoMessage = "ただいま千葉県内多くの鉄道路線にダイヤ乱れが発生しています。";
-		}
+		ScrollMessage_TrainInfo += "<sb><sr>【"  + Statues[i] + "】 <eb><er>" + Cause[i]+"　";
 	  }
 	}
 	SetScroll();
@@ -539,7 +527,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		document.getElementById('Dist0').innerHTML = "運行終了";
 		document.getElementById('Dist0').style.color = 'red';
 	  } else {
-		document.getElementById('Type0').innerHTML = "情報要求に失敗しました！";
+		document.getElementById('Type0').innerHTML = "情報要求失敗（自動的に再要求します）";
 	  }
 	}
 	console.log("TodayTimeTable")
@@ -551,38 +539,29 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	//平体のフィッテング
 	Choootype();
   }
-  
+  var ScrollMessage_str ="";
+  var ScrollMessage_Before ="";
   function SetScroll() {
-	var CheckEmpty;
 	const timerId = setInterval(function () { //表示成功まで繰り返す
-	  if (ScrollForceParam == 1) {
-		const marquee = document.getElementById("marquee5");
-		const spanElement = marquee.querySelector('span');
-		var str =ScrollForceMessage;
-var Result_str = str.replace(/<so>/g, "<span class='str_orange'>").replace(/<sr>/g, "<span class='str_red'>").replace(/<sg>/g, "<span class='str_green'>").replace(/<eo>/g, "</span>").replace(/<er>/g, "</span>").replace(/<eg>/g, "</span>");
-		spanElement.innerHTML = Result_str;
-		startMarquee(marquee);
-		CheckEmpty = ScrollForceMessage;
-	  } else if (ScrollCommonParam == 0) {
-		const marquee = document.getElementById("marquee5");
-		const spanElement = marquee.querySelector('span');
-		var str =ScrollInfoMessage;
-		var Result_str = str.replace(/<so>/g, "<span class='str_orange'>").replace(/<sr>/g, "<span class='str_red'>").replace(/<sg>/g, "<span class='str_green'>").replace(/<eo>/g, "</span>").replace(/<er>/g, "</span>").replace(/<eg>/g, "</span>");
-		spanElement.innerHTML = Result_str;
-		startMarquee(marquee);
-		CheckEmpty = ScrollInfoMessage;
-	  } else if (ScrollCommonParam == 1) {
-		const marquee = document.getElementById("marquee5");
-		const spanElement = marquee.querySelector('span');
-		var str =TrainInfoMessage;
-		var Result_str = str.replace(/<so>/g, "<span class='str_orange'>").replace(/<sr>/g, "<span class='str_red'>").replace(/<sg>/g, "<span class='str_green'>").replace(/<eo>/g, "</span>").replace(/<er>/g, "</span>").replace(/<eg>/g, "</span>");
-		spanElement.innerHTML = Result_str;
-		startMarquee(marquee);
-		CheckEmpty = TrainInfoMessage;
+	  if (ScrollParam_Force == 1) {
+		 ScrollMessage_str =ScrollMessage_Force;
+	  } else if (ScrollParam_Common == 0) {
+		ScrollMessage_str = ScrollMessage_Info;
+	  } else if (ScrollParam_Common == 1) {
+		ScrollMessage_str = ScrollMessage_TrainInfo;
 	  }
-	  if (!CheckEmpty == "") {
-		Choootype();
+	  if (!ScrollMessage_str == "") {
+
 		clearInterval(timerId)
+	  }
+
+	  var Result_str = ScrollMessage_str.replace(/<sb>/g, "<span class='str_blink'>").replace(/<so>/g, "<span class='str_orange'>").replace(/<sr>/g, "<span class='str_red'>").replace(/<sg>/g, "<span class='str_green'>").replace(/<eb>/g, "</span>").replace(/<eo>/g, "</span>").replace(/<er>/g, "</span>").replace(/<eg>/g, "</span>");
+	  const marquee = document.getElementById("marquee5");
+	  const spanElement = marquee.querySelector('span');
+	  if (ScrollMessage_str !==ScrollMessage_Before) {
+		ScrollMessage_Before = ScrollMessage_str;
+		spanElement.innerHTML = Result_str;
+		startMarquee(marquee);
 	  }
 	}, 100)
   }
