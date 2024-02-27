@@ -1,8 +1,9 @@
 // Cache name
-const CACHE_NAME = 'Bus Information Board System-caches-v3.51';
+const CACHE_NAME = 'Bus Information Board System-caches-v3.67';
 // Cache targets
 const urlsToCache = [
   './',
+  './common/KBS-Disp-JP.woff"',
 ];
 
 self.addEventListener('install', (event) => {
