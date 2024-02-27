@@ -7,7 +7,7 @@
   "start_url": "./index.html",
 	"icons": [
 		{
-			"src": "./toppg/start.svg",
+			"src": "./toppg/favicon.svg",
 			"sizes": "500x500"
 		}
 	]
