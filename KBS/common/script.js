@@ -221,6 +221,9 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  matrix[i][5] = columnDATA[1];
 	  matrix[i][6] = "";
 	  matrix[i][7] = "";
+	  matrix[i][8] = "";
+	  matrix[i][9] = "";
+	  matrix[i][10] = "";
 	}
 	let wi = 0;
 	let si = 0;
@@ -252,6 +255,8 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		}
 	  }
 	}
+	var DaiaCode = new Array("休日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "土曜ﾀﾞｲﾔ");
+	
   }
   var ViaBunData = new Array();
   //経由と背景色のデータをCSVを配列から格納ここから
@@ -323,6 +328,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		RealTimeTable[i][7] = BusInformationData.values[i][5];
 		RealTimeTable[i][8] = BusInformationData.values[i][6];
 		RealTimeTable[i][9] = BusInformationData.values[i][7];
+		RealTimeTable[i][10] = BusInformationData.values[i][8];
 		//上から振ってくるJSONとマッチング
 		for (let j = 0; j < TodayTimeTable.length; j++) {
 		  R_MatchingSource = RealTimeTable[i][1] + RealTimeTable[i][2] + RealTimeTable[i][3];
@@ -334,6 +340,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 			TodayTimeTable[j][7] = RealTimeTable[i][7];
 			TodayTimeTable[j][8] = RealTimeTable[i][8];
 			TodayTimeTable[j][9] = RealTimeTable[i][9];
+			TodayTimeTable[j][10] = RealTimeTable[i][10];
 		  }
 		}
 		if (RealTimeTable[i][1] == ":") { //臨時ダイヤの取得
@@ -346,6 +353,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		  TodayTimeTable[0][5] = NowHour + ":" + NowMin;
 		  TodayTimeTable[0][6] = RealTimeTable[i][6];
 		  TodayTimeTable[0][7] = RealTimeTable[i][7];
+		  TodayTimeTable[0][10] = RealTimeTable[i][10];
 		}
 	  }
 	}
@@ -356,6 +364,32 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		j--
 	  }
 	}
+
+	  //テーブル作成クエリ
+	  var tableEle = document.getElementById('DataTable');
+	  var clrow = TodayTimeTable.length;
+	  tableEle.innerHTML = '';
+	  var tr = document.createElement('tr');
+	  tr.class = "MonitorRow";
+	  var thTitle = new Array("運行", "発時(計)", "系統", "行先", "案内", "発時(予)", "到着地","着時(予)","位置","順序","車両");
+	  for (var j = 0; j < 11; j++) {
+		var th = document.createElement('th');
+		th.innerHTML = thTitle[j];
+		tr.appendChild(th);
+	  }
+
+
+	tableEle.appendChild(tr);
+	  for (var i = 0; i < clrow; i++) {
+		var tr = document.createElement('tr');
+		for (var j = 0; j < 11; j++) {
+		  var td = document.createElement('td');
+		  td.innerHTML = TodayTimeTable[i][j];
+		  tr.appendChild(td);
+		}
+
+		tableEle.appendChild(tr);
+	  }
 	表示();
 	setTimeout(表示, 5000);
   }
@@ -530,7 +564,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		document.getElementById('Type0').innerHTML = "情報要求失敗（自動的に再要求します）";
 	  }
 	}
-	console.log("TodayTimeTable")
+	console.log(TodayTimeTable)
 	if (DispPattern == 0) { //表示パターン
 	  DispPattern = 1;
 	} else if (DispPattern == 1) {
@@ -566,3 +600,8 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	}, 100)
   }
   document.querySelectorAll('.marquee').forEach(startMarquee);
+
+  function toggleModal() {
+    var modal = document.getElementById('modal-01');
+    modal.classList.toggle('open');
+  }
