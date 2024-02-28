@@ -595,6 +595,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  if (ScrollMessage_str !==ScrollMessage_Before) {
 		ScrollMessage_Before = ScrollMessage_str;
 		spanElement.innerHTML = Result_str;
+		document.getElementById("DataScrollMessage").innerHTML = Result_str;
 		startMarquee(marquee);
 	  }
 	}, 100)
