@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  background: #F1F1F1;
+  background: linear-gradient( #fff 15%, #dcdcdc 100%);
   margin: 0px;
   -webkit-text-size-adjust: 100%;
 }
@@ -70,7 +70,7 @@ footer {
   width: 100vw;
   height: 100vh;
   transition: 0.5s 1.5s ;
-  background-color: #333333;
+  background: linear-gradient( #001545 15%, #000d2b 100%);
   display: flex;
   justify-content: center;
   align-items:center;
@@ -128,7 +128,7 @@ footer {
   justify-content: center;
   align-items: center;
   z-index: 90;
-  background-color: #333333;
+  background-color: #000d2b;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }

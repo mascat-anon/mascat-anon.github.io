@@ -281,7 +281,6 @@
   position: relative;
   width: 90%;
   height: 100%;
-  border-radius: 2px;
   padding: 30px 10px 10px;
   background: #fff;
   box-shadow: 0 0 30px rgba(0, 0, 0, .6);
@@ -305,7 +304,8 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, .8);
+  opacity: 0.5;
+  background: #000;
 }
 
 .modal-wrapper .modal-close {
@@ -335,7 +335,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #002281;
+  background: linear-gradient( #001545 15%, #000d2b 100%);
   color: #fff;
 
 
@@ -369,7 +369,7 @@
   }
   .DataTable th{
     white-space: nowrap;
-    color: #002281;
+    color: #001545;
     border-right: 1px solid #999;
     border-bottom: 1px solid #999;
     background: #f2f2f2;
@@ -398,7 +398,7 @@
 }
 .button_solid015 p {
   margin-bottom: 5px;
-  color: #002281;
+  color: #001545;
   letter-spacing: 0.04rem;
   display: inline-block;
   position: relative;
@@ -410,7 +410,7 @@
   width: 20px;
   height: 3px;
   border-radius: 5px;
-  background-color: #002281;
+  background: linear-gradient( #001545 15%, #000d2b 100%);
   content: "";
 }
 .button_solid015 p:before {
@@ -433,14 +433,10 @@
   padding: 30px 40px;
   color: #FFF;
   transition: 0.3s ease-in-out;
-  background: #002281;
+  background: linear-gradient( #001545 15%, #000d2b 100%);
   filter: drop-shadow(0px 2px 4px #ccc);
 
   text-decoration: none;
-}
-.button_solid015 a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgb(0 0 0 / 15%), 0 0 5px rgb(0 0 0 / 10%);
 }
 
 .tab {
@@ -469,7 +465,7 @@ box-sizing: border-box;
 }
 
 .tab > label:hover {
-opacity: .8;
+opacity: 1;
 }
 
 .tab input {
@@ -485,7 +481,7 @@ height: 90%;
 }
 
 .tab label:has(:checked) {
-  background: #002281;
+  background: linear-gradient( #001545 15%, #000d2b 100%);
 color: #fff;
 }
 
