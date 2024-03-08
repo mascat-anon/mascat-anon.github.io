@@ -1,0 +1,135 @@
+<html lang="ja" class="no-js no-svg">
+<head>
+<meta charset="UTF-8">
+<title>京成バス 松戸駅発 日大歯科病院方面行き</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0 ,user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="description" content="京成バス 松戸駅発 日大歯科病院方面行き" />
+<link rel="icon" href="toppg/favicon.ico">
+<link rel="apple-touch-icon" href="toppg/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="stylesheet" href="common/style.css?2024/02/29">
+<script  src="common/holidays.js?2024/02/29"></script>
+<script  src="common/script.js?2024/02/29"></script>
+<script>
+  window.onload = function () {
+    showClock(); //内部時計定期実行
+    setInterval("showClock()", 1000); //内部時計
+    showClock2();
+    setInterval('showClock2()', 2000);//表示時計
+    SetTimeTable();
+    ApiTimeTable();
+    Intervalshow40000();
+    GetXMLHR('common/csv/ViaBunData.csv?' + new Date().getTime(), 'CSV_ViaBunData'); //CSVの指定末尾にタイムスタンプでクエリ
+    GetXMLHR('common/csv/RemarkBunData.csv?' + new Date().getTime(), 'CSV_RemarkBunData'); //CSVの指定末尾にタイムスタンプでクエリ
+    setInterval('ApiTimeTable()', 10000);
+    setInterval("Intervalshow40000()", 40000);
+    Choootype();
+  }
+  function ApiTimeTable() {
+    GetXMLHR('https://sheets.googleapis.com/v4/spreadsheets/1vbzdK7b_Vd0ouKreQp75uPtOSZPnR0ZHEwCxGnEvwSE/values/matsudoeki?key=AIzaSyBuvfU7_ztXcRL9cfTA422dDtSpCBTr7Ac','JSON_RealTimeTable'); // 松戸JSON
+    /**
+    *GetXMLHR('https://sheets.googleapis.com/v4/spreadsheets/1vbzdK7b_Vd0ouKreQp75uPtOSZPnR0ZHEwCxGnEvwSE/values/nichidaishika?key=AIzaSyBuvfU7_ztXcRL9cfTA422dDtSpCBTr7Ac','JSON_RealTimeTable'); // 日大JSONだよ
+    */
+  }
+  function SetTimeTable() {
+    GetXMLHR('common/csv/MatsudoekiTimeTable.csv?' + new Date().getTime(), 'CSV_TimeTable'); //CSVの指定末尾にタイムスタンプでクエリ
+    /**
+    *GetXMLHR('NichidaishikaTimeTable.csv?' + new Date().getTime(), 'CSV_TimeTable'); //CSVの指定末尾にタイムスタンプでクエリ
+    */
+  }
+  function Intervalshow40000() {
+    GetXMLHR('https://sheets.googleapis.com/v4/spreadsheets/1GaR7cVy4Zf0-2yFoxYVQj06g4fa4ZTvQiOUQYEe39h4/values/info?key=AIzaSyAtiNeJhdPeGZU5Gi7BxYlwd8J3LOp0yJE', 'ScrollINFO'); // 運行情報JSONだよ
+    GetXMLHR('https://sheets.googleapis.com/v4/spreadsheets/1GaR7cVy4Zf0-2yFoxYVQj06g4fa4ZTvQiOUQYEe39h4/values/chiba?key=AIzaSyAtiNeJhdPeGZU5Gi7BxYlwd8J3LOp0yJE', 'TrainINFO'); // 運行情報JSONだよ
+  }
+</script>
+</head>
+    <body>
+<div class="container-box">
+  <div id="p1" class="separate-box" onclick="toggleModal()">
+    <div class="common-row0">
+      <div class="title-box"><div class="auto_narrow">京成バス 松戸駅出発</div></div>
+      <div class="time-box"><div class="" id="NowTime" style="padding-right: 2vmin;"></div></div>
+    </div>
+    <div class="common-row1">
+      <div class="box-left-type" id="TypeBox0"><div class="auto_narrow" id="Type0">情報要求中... </div></div>
+      <div class="box-right-remark "><div class="marquee" id="marquee0"><span></span></div></div>
+    </div>
+    <div class="common-row2">
+      <div class="box-left-time"><div class="auto_narrow" id="Time0"></div></div>
+      <div class="box-left-dist"><div class="auto_narrow" id="Dist0"></div></div>
+      <div class="box-left-info"><div class="auto_narrow" id="Delay0"></div></div>
+    </div>
+    <div class="common-row1">
+      <div class="box-left-type" id="TypeBox1"><div class="auto_narrow" id="Type1"></div></div>
+      <div class="box-right-remark"><div class="marquee" id="marquee1"><span></span></div></div>
+    </div>
+    <div class="common-row2">
+      <div class="box-left-time"><div class="auto_narrow" id="Time1"></div></div>
+      <div class="box-left-dist"><div class="auto_narrow" id="Dist1"></div></div>
+      <div class="box-left-info"><div class="auto_narrow" id="Delay1"></div></div>
+    </div>
+    <div class="common-row1">
+      <div class="box-left-type" id="TypeBox2"><div class="auto_narrow" id="Type2"></div></div>
+      <div class="box-right-remark"><div class="marquee" id="marquee2"><span></span></div></div>
+    </div>
+    <div class="common-row2">
+      <div class="box-left-time"><div class="auto_narrow" id="Time2"></div></div>
+      <div class="box-left-dist"><div class="auto_narrow" id="Dist2"></div></div>
+      <div class="box-left-info"><div class="auto_narrow" id="Delay2"></div></div>
+    </div>
+    <div class="common-row1">
+      <div class="box-left-type" id="TypeBox3"><div class="auto_narrow" id="Type3"></div></div>
+      <div class="box-right-remark"><div class="marquee" id="marquee3"><span></span></div></div>
+    </div>
+    <div class="common-row2">
+      <div class="box-left-time"><div class="auto_narrow" id="Time3"></div></div>
+      <div class="box-left-dist"><div class="auto_narrow" id="Dist3"></div></div>
+      <div class="box-left-info"><div class="auto_narrow" id="Delay3"></div></div>
+    </div>
+    <div class="common-row1">
+      <div class="box-left-type" id="TypeBox4"><div class="auto_narrow" id="Type4"></div></div>
+      <div class="box-right-remark"><div class="marquee" id="marquee4"><span></span></div></div>
+    </div>
+    <div class="common-row2">
+      <div class="box-left-time"><div class="auto_narrow" id="Time4"></div></div>
+      <div class="box-left-dist"><div class="auto_narrow" id="Dist4"></div></div>
+      <div class="box-left-info"><div class="auto_narrow" id="Delay4"></div></div>
+    </div>
+    <div id="footer" class="common-row3"><div class="marquee" id="marquee5"><span></span></div></div>
+    </div></div>
+  </div>
+</div>
+<!-- モーダル -->
+<div class="modal-wrapper" id="modal-01"> <a href="JavaScript:" class="modal-overlay" onclick="toggleModal()"></a>
+  <div class="modal-window">
+    <div class="modal-content">
+      <div class="button_box">
+        <div class="button_solid015">
+          <p>ほかのバス停を選択</p> <a href="./">トップページへ</a> </div>
+      </div>
+      <div class="tab"> <label>
+          <input type="radio" name="tab" checked>
+          ダイヤモニタ
+      </label>
+        <div>
+          <div class="DataTable">
+            <table id='DataTable'> </table>
+          </div>
+        </div> <label>
+          <input type="radio" name="tab">
+          ｽｸﾛｰﾙ中文章
+      </label>
+        <div>
+          <div class="DataScrollMessage"> <span style="background-color:#000;color:#ffc800;" id="DataScrollMessage"></span> </div>
+        </div> <label>
+          <input type="radio" name="tab">
+          予備
+      </label>
+        <div>
+          <div class="DataTable"> </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-name">メニュー画面</div> <a href="JavaScript:" class="modal-close" onclick="toggleModal()">×</a> </div>
+</div>
+</body>
