@@ -224,10 +224,10 @@ body {
     visibility: hidden;
   }
 #progress-bar-container {
-    width: 500px;
-    height: 5px;
+    width: 70vw;
+    max-width: 500px;
+    height: 3px;
     margin: 20px auto;
-
 }
 
 #progress-bar {
