@@ -1,3 +1,25 @@
+document.addEventListener("DOMContentLoaded", function() {
+  var progressBar = document.getElementById("progress-bar");
+  var percent = document.getElementById("percent");
+  var imagesLoaded = 0;
+  var totalImages = 17;
+
+  // Preload images
+  for (var i = 0; i <= totalImages; i++) {
+      var img = new Image();
+      img.onload = function() {
+          imagesLoaded++;
+          var progress = (imagesLoaded / totalImages) * 100;
+          progressBar.style.width = progress + "%";
+
+          if (imagesLoaded === totalImages) {
+              // All images loaded, hide loading screen
+              document.getElementById("loading-screen").classList.add('loaded');
+          }
+      };
+      img.src = "img/" + i + ".jpg";
+  }
+});
 function getId(ele) {
   var id_value = ele.id;
   var id_text = ele.innerText;
