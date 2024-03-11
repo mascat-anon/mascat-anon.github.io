@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var percent = document.getElementById("percent");
   var status = document.getElementById("status");
   var imagesLoaded = 0;
-  var totalImages = 17;
+  var totalImages = 16;
 
   // Preload images
   for (var i = 0; i <= totalImages; i++) {

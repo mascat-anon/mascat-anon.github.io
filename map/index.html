@@ -9,7 +9,15 @@
   <link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
   <meta name="description" content="松戸歯学部の構内図をマップにて表示。" /> 
 </head>
-</head>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./dist/sw.js').then(registration => {
+      console.log('ServiceWorker registration successful.');
+    }).catch(err => {
+      console.log('ServiceWorker registration failed.');
+    });
+  }
+</script>
 <body oncontextmenu="return false;">
 
   <div class="container">
