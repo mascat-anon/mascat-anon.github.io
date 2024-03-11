@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var totalImages = 16;
 
   // Preload images
-  for (var i = 0; i <= totalImages; i++) {
+  for (var i = 0; i < totalImages; i++) {
       var img = new Image();
       img.onload = function() {
           imagesLoaded++;
