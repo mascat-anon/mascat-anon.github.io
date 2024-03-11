@@ -216,27 +216,26 @@ body {
     justify-content: center;
     align-items:center;
     background-color: #00aa01;
-    transition: 0.5s 1.5s ;
+    transition: 0.5s 0.5s ;
   }
-
+  #loading-screen table  {
+    width: 70vw;
+    max-width: 500px;
+    color: #fff;
+    font-size: 15px;
+  }
   .loaded {
     opacity: 0;
     visibility: hidden;
   }
 #progress-bar-container {
-    width: 70vw;
-    max-width: 500px;
     height: 3px;
-    margin: 20px auto;
+    margin: 10px auto;
+    text-align: center;
 }
 
 #progress-bar {
     width: 0;
     height: 100%;
     background-color: #fff;
-}
-
-#percent {
-    font-size: 24px;
-
 }

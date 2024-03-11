@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   var progressBar = document.getElementById("progress-bar");
   var percent = document.getElementById("percent");
+  var status = document.getElementById("status");
   var imagesLoaded = 0;
   var totalImages = 17;
 
@@ -11,10 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
           imagesLoaded++;
           var progress = (imagesLoaded / totalImages) * 100;
           progressBar.style.width = progress + "%";
-
+          percent.innerHTML = Math.round(progress) + "%";
           if (imagesLoaded === totalImages) {
               // All images loaded, hide loading screen
               document.getElementById("loading-screen").classList.add('loaded');
+              status.innerHTML = "Loading Completed";
           }
       };
       img.src = "img/" + i + ".jpg";
