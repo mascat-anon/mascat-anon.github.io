@@ -7,7 +7,7 @@
   "start_url": "./",
 	"icons": [
 		{
-
+      "src": "./dist/icon.svg",
 			"sizes": "1000x1000"
 		}
 	]
