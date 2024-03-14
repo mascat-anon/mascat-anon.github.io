@@ -1,0 +1,14 @@
+{
+  "name": "松戸歯学部マップ",
+  "short_name": "松戸歯学部マップ",
+  "theme_color": "#00aa01",
+  "background_color": "#00aa01",
+  "display": "standalone",
+  "start_url": "./",
+	"icons": [
+		{
+
+			"sizes": "1000x1000"
+		}
+	]
+}
