@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var percent = document.getElementById("percent");
   var status = document.getElementById("status");
   var imagesLoaded = 0;
-  var totalImages = 16;
+  var totalImages = 20;
 
   // Preload images
   for (var i = 0; i < totalImages; i++) {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
               status.innerHTML = "Loading Completed";
           }
       };
-      img.src = "img/" + i + ".jpg";
+      img.src = "img/" + i + ".svg";
   }
 });
 function getId(ele) {
@@ -33,7 +33,7 @@ function getId(ele) {
   window.requestAnimationFrame((time1) => {
       window.requestAnimationFrame((time2) => {
         
-  document.getElementById('map').src = "img/" + id_value + ".jpg";
+  document.getElementById('map').src = "img/" + id_value + ".svg";
           aniDiv.classList.add('fadeIn');
       });
   });
