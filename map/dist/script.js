@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
           if (imagesLoaded === totalImages) {
               // All images loaded, hide loading screen
               document.getElementById("loading-screen").classList.add('loaded');
-              status.innerHTML = "Loading Completed";
+              status.innerHTML = "ロード完了";
           }
       };
       img.src = "img/" + i + ".svg";
