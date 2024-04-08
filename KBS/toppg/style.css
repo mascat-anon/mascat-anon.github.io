@@ -234,13 +234,54 @@ padding: 80px 40px 20px 20px;
   padding: 0;
 }
 .footer {
-  padding: 10px;
-  color: #ffffff;
-  font-size: 15px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.6rem;
+  padding: 0.25rem;
+  color: #fff;
   text-align: center;
+  background-color: #000d2b;
 }
 
 .footer p {
   margin: 0;
   padding: 0;
+}
+
+.text-tooltip {
+  color: #fff;
+  border-bottom: dotted 1px #fff;
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip-content {
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  border-radius: 5px;
+  background-color: #555;
+  color: #fff;
+  padding: 5px 10px;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all .6s ease-in-out;
+}
+  
+.tooltip-content:before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: calc(50% - 9px);
+  border: 9px solid transparent;
+  border-top: 9px solid #555;
+}
+  
+.text-tooltip:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
 }

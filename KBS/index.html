@@ -9,7 +9,7 @@
 <link rel="icon" href="toppg/favicon.ico">
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="toppg/apple-touch-icon-180x180.png" sizes="180x180">
-<link rel="stylesheet" href="./toppg/style.css?25">
+<link rel="stylesheet" href="./toppg/style.css?2024/04/09">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQVFDDY566"></script>
@@ -33,6 +33,9 @@
   gtag('js', new Date());
 
   gtag('config', 'G-NQVFDDY566');
+
+
+
 </script>
 <body>
   <!-- ローディング画面 -->
@@ -159,11 +162,27 @@
           </tbody>
         </table>
       </div>
-      <footer>
-        ＜Version 3.68＞ Copyright © 2022-2024 T/M All Rights Reserved.
-        </footer>
+
+
+      <div class="footer">
+        <p><span class="text-tooltip" id="link-btn">Bus Information Board System をシェア<span class="tooltip-content">ホーム画面に追加すると便利です</span></span></p>
+      <p>＜Version 3.71＞ Copyright © 2022-2024 T/M All Rights Reserved.</p>
+        </div>
     </div>
 
 
 </body>
+<script>
+
+  const link_btn = document.getElementById('link-btn');
+  link_btn.addEventListener('click', async () => {
+  try {
+    await navigator.share({ title: document.title, url: "" });
+  } catch (error) {
+    console.error(error);
+  }
+  });
+  
+  
+  </script>
 </html>
