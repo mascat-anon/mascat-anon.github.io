@@ -35,6 +35,7 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(displayGeoInfo);
 }
 
+getLocation(); // Get location once when the page loads
 setInterval(getLocation, 1000); // Update location every second
 </script>
 </head>
