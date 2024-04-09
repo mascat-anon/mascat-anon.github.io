@@ -2,44 +2,100 @@
 <html>
 <head>
 <meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
-var num = 0;
-var watch_id;
+(function(){
+  $(function(){
+    /*
+    Geolocation（緯度・経度）
+    getCurrentPosition :or: watchPosition
+    */
+    // 対応しているかチェック
+    if (!navigator.geolocation){
+      alert("navigator.geolocation の対応しているブラウザを使用してください。");
+    }else{
+      /* 位置情報取得オプション option object */
+      var option = {
+        enableHighAccuracy: true, // より高精度な位置を求める
+        maximumAge: 1,         // 最後の現在地情報取得が [maximuAge][ms]以内であればその情報を再利用する設定
+        timeout: 10000          // timeout[ms]以内に現在地情報を取得できなければ、処理を終了
+      };
 
-function test() {
-    watch_id = navigator.geolocation.watchPosition(test2, function(e) { alert(e.message); }, {"enableHighAccuracy": true, "timeout": 20000, "maximumAge": 2000});
-}
 
-function clear() {
-    navigator.geolocation.clearWatch(watch_id);
-}
 
-function test2(position) {
+      /* watchPosition */
+      var watch = 'watch-position';
+      navigator.geolocation.watchPosition(
+        function(position){
+          success(watch, position);
+        },
+        function(error){ err(watch, error); },
+        option
+      );
 
-    var geo_text = "緯度:" + position.coords.latitude + "\n";
-    geo_text += "経度:" + position.coords.longitude + "\n";
-    geo_text += "高度:" + position.coords.altitude + "\n";
-    geo_text += "位置精度:" + position.coords.accuracy + "\n";
-    geo_text += "高度精度:" + position.coords.altitudeAccuracy  + "\n";
-    geo_text += "移動方向:" + position.coords.heading + "\n";
-    geo_text += "速度:" + position.coords.speed + "\n";
+    }
+    // 位置情報の取得に成功した時の処理
+    function success(id, position) {
 
-    var date = new Date(position.timestamp);
+      var lat = position.coords.latitude;            //緯度
+      var lon = position.coords.longitude;           //経度
+      var alt = position.coords.altitude;            //高度
+      var acc = position.coords.accuracy;            //正確性
+      var alt_acc = position.coords.altitudeAccuracy;//高度の正確性
+      var heading = position.coords.heading;         //方位
+      var speed = position.coords.speed;             //速
+      var date = new Date();
+var y = date.getFullYear();
+var m = ('0' + (date.getMonth() + 1)).slice(-2);
+var d = ('0' +　date.getDate()).slice(-2);
+var h = ('0' +　date.getHours()).slice(-2);
+var min = ('0' + date.getMinutes()).slice(-2);
+var s = ('0' + date.getSeconds()).slice(-2);
+var time = y + '/' + m + '/' + d + ' ' + h + ':' + min + ':' + s;
+      
+      $('#'+id + " .status").html("位置情報表示中");
+      $('#'+id + " .time").html("取得: " + time);
+      $('#'+id + " .lat").html("緯度: " + lat);
+      $('#'+id + " .lon").html("経度: " + lon);
+      $('#'+id + " .alt").html("高度[m]: " + alt);
+      $('#'+id + " .acc").html("精度[m]: " + acc);
+      $('#'+id + " .alt-acc").html("高度の正確性[m]: " + alt_acc);
+      $('#'+id + " .heading").html("方位[deg]: " + heading);
+      $('#'+id + " .speed").html("速度: " + Math.floor(speed*3.6)+"km/h");
 
-    geo_text += "取得時刻:" + date.toLocaleString() + "\n";
-    geo_text += "取得回数:" + (++num) + "\n";
+    }
 
-    document.getElementById('position_view').innerHTML = geo_text;
+    // 位置情報の取得に失敗した場合の処理
+    function err(id, error){
+      var e = "";
+      if (error.code == 1) { //1＝位置情報取得が許可されてない（ブラウザの設定）
+        e = "位置情報が許可されてません";
+      }
+      if (error.code == 2) { //2＝現在地を特定できない
+        e = "現在位置を特定できません";
+      }
+      if (error.code == 3) { //3＝位置情報を取得する前にタイムアウトになった場合
+        e = "位置情報を取得する前にタイムアウトになりました";
+      }
+      $('#'+id + " .status").html("エラー：" + e);
+    }
+  });
 
-}
+})();
 </script>
 </head>
 <body>
+      <div id="watch-position">
 
-<button onclick="test()">test</button>
-<button onclick="clear()">clear</button>
-
-<pre id="position_view"></pre>
-
+        <p class="status">処理中・・・</p>
+        <p class="time">Timestamp: </p>
+        <p class="lat">緯度： wait...</p>
+        <p class="lon">経度： wait...</p>
+        <p class="alt">高度：</p>
+        <p class="acc">正確性：</p>
+        <p class="alt-acc">高度の正確性：</p>
+        <p class="heading">方位：</p>
+        <p class="speed">速度：</p>
+      </div>
 </body>
 </html>
