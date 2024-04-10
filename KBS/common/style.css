@@ -378,6 +378,10 @@
     font-weight: normal;
     padding: 0px 5px;
   }
+  .DataTable tr:hover td {
+    background-color: #001545;
+    color: #fff;
+  }
   .DataScrollMessage{
     overflow: auto;
     width: 100%;

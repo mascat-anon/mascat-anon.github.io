@@ -182,25 +182,31 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  }
 	}
   }
+  var TrainInfoTable = new Array();
   var ScrollMessage_TrainInfo = "";
   function TrainINFO(DATA_LIST) {
 	ScrollMessage_TrainInfo = ""; //内容クリア
 	var LineName = new Array(); // Ａ
 	var Statues = new Array();
-	var Cause = new Array();
+	var Paragraph = new Array();
+
 	var Date = new Array();
+	var Cause = new Array();
 	DATA_LIST = DATA_LIST.replace(/[\n\r]/g, ""); // Ｂ
 	var DATA = eval("(" + DATA_LIST + ")"); // Ｃ
 	if (DATA.values[0][0] == "None Train Information") {
 		ScrollParam_Common = 0; //運行情報なし[0]あり[1]
 	} else {
 		ScrollParam_Common =  1; //運行情報なし[0]あり[1]
+		TrainInfoTable= DATA.values;
+		console.log(TrainInfoTable)
 	  for (var i = 0; i < DATA.values.length; i++) {
 		LineName[i] = DATA.values[i][0]; // Ｄ
 		Statues[i] = DATA.values[i][1];
-		Cause[i] = DATA.values[i][2];
+		Paragraph[i] = DATA.values[i][2];
 		Date[i] = DATA.values[i][3];
-		ScrollMessage_TrainInfo += "<sb><sr>【"  + Statues[i] + "】 <eb><er>" + Cause[i]+"　";
+		Cause[i] = DATA.values[i][4];
+		ScrollMessage_TrainInfo += "<sb><sr>【"  + Statues[i] + "】 <eb><er>" + Paragraph[i]+"　";
 	  }
 	}
 	SetScroll();
@@ -366,7 +372,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	}
 
 	  //テーブル作成クエリ
-	  var tableEle = document.getElementById('DataTable');
+	  var tableEle = document.getElementById('DaiaTable');
 	  var clrow = TodayTimeTable.length;
 	  tableEle.innerHTML = '';
 	  var tr = document.createElement('tr');
@@ -595,7 +601,32 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  if (ScrollMessage_str !==ScrollMessage_Before) {
 		ScrollMessage_Before = ScrollMessage_str;
 		spanElement.innerHTML = Result_str;
-		document.getElementById("DataScrollMessage").innerHTML = Result_str;
+	  //テーブル作成クエリ
+	  var tableEle = document.getElementById('TraininfoTable');
+	  var clrow = TrainInfoTable.length;
+	  tableEle.innerHTML = '';
+	  var tr = document.createElement('tr');
+	  tr.class = "MonitorRow";
+	  var thTitle = new Array("路線", "状況", "内容", "ﾃﾞｰﾀ時刻", "原因");
+	  for (var j = 0; j < 5; j++) {
+		var th = document.createElement('th');
+		th.innerHTML = thTitle[j];
+		tr.appendChild(th);
+	  }
+
+
+	tableEle.appendChild(tr);
+	  for (var i = 0; i < clrow; i++) {
+		var tr = document.createElement('tr');
+		for (var j = 0; j < 5; j++) {
+		  var td = document.createElement('td');
+		  td.innerHTML = TrainInfoTable[i][j];
+		  td.style.textAlign = "left";
+		  tr.appendChild(td);
+		}
+
+		tableEle.appendChild(tr);
+	  }
 		startMarquee(marquee);
 	  }
 	}, 100)
