@@ -1,7 +1,7 @@
 particlesJS("particles-js", {
 	"particles":{
 		"number":{
-			"value":50,//この数値を変更すると桜の数が増減できる
+			"value":30,//この数値を変更すると桜の数が増減できる
 			"density":{
 				"enable":true,
 				"value_area":1121.6780303333778
@@ -16,7 +16,7 @@ particlesJS("particles-js", {
 				"width":0,
 			},
 			"image":{
-				"src":"toppg/particles/img/flower.png",//【重要】画像を指定！桜の画像を設定してください。
+				"src":"toppg/particles/img/sakura.png",//【重要】画像を指定！桜の画像を設定してください。
 				"width":100,
 				"height":100
 			}
@@ -32,7 +32,7 @@ particlesJS("particles-js", {
 			}
 		},
 		"size":{
-			"value": 5, //シェイプの大きさ
+			"value": 7, //シェイプの大きさ
 			"random":true,//サイズをランダムに
 			"anim":{
 				"enable":false,
@@ -46,7 +46,7 @@ particlesJS("particles-js", {
 		},
 		"move":{
 			"enable":true,
-			"speed":5,//この数値を小さくするとゆっくりな動きになる
+			"speed":6,//この数値を小さくするとゆっくりな動きになる
 			"direction":"bottom",//右下に向かって落ちる
 			"random":true,//動きはランダムにしない
 			"straight":false,//動きをとどめない
