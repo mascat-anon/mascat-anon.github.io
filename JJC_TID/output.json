@@ -1,0 +1,792 @@
+[
+    {
+        "time": "503",
+        "train": "401K",
+        "unten": "week"
+    },
+    {
+        "time": "524",
+        "train": "531S",
+        "unten": "week"
+    },
+    {
+        "time": "545",
+        "train": "547S",
+        "unten": "week"
+    },
+    {
+        "time": "550",
+        "train": "565E",
+        "unten": "week"
+    },
+    {
+        "time": "558",
+        "train": "535S",
+        "unten": "week"
+    },
+    {
+        "time": "606",
+        "train": "609S",
+        "unten": "week"
+    },
+    {
+        "time": "611",
+        "train": "537S",
+        "unten": "week"
+    },
+    {
+        "time": "617",
+        "train": "611K",
+        "unten": "week"
+    },
+    {
+        "time": "622",
+        "train": "539S",
+        "unten": "week"
+    },
+    {
+        "time": "626",
+        "train": "615S",
+        "unten": "week"
+    },
+    {
+        "time": "632",
+        "train": "515K",
+        "unten": "week"
+    },
+    {
+        "time": "639",
+        "train": "619S",
+        "unten": "week"
+    },
+    {
+        "time": "644",
+        "train": "541S",
+        "unten": "week"
+    },
+    {
+        "time": "648",
+        "train": "633S",
+        "unten": "week"
+    },
+    {
+        "time": "652",
+        "train": "601S",
+        "unten": "week"
+    },
+    {
+        "time": "658",
+        "train": "617K",
+        "unten": "week"
+    },
+    {
+        "time": "703",
+        "train": "643S",
+        "unten": "week"
+    },
+    {
+        "time": "708",
+        "train": "553E",
+        "unten": "week"
+    },
+    {
+        "time": "712",
+        "train": "603S",
+        "unten": "week"
+    },
+    {
+        "time": "716",
+        "train": "551E",
+        "unten": "week"
+    },
+    {
+        "time": "721",
+        "train": "603K",
+        "unten": "week"
+    },
+    {
+        "time": "728",
+        "train": "607S",
+        "unten": "week"
+    },
+    {
+        "time": "731",
+        "train": "555S",
+        "unten": "week"
+    },
+    {
+        "time": "736",
+        "train": "645S",
+        "unten": "week"
+    },
+    {
+        "time": "741",
+        "train": "613S",
+        "unten": "week"
+    },
+    {
+        "time": "748",
+        "train": "659S",
+        "unten": "week"
+    },
+    {
+        "time": "756",
+        "train": "653S",
+        "unten": "week"
+    },
+    {
+        "time": "800",
+        "train": "717S",
+        "unten": "week"
+    },
+    {
+        "time": "807",
+        "train": "709S",
+        "unten": "week"
+    },
+    {
+        "time": "818",
+        "train": "721S",
+        "unten": "week"
+    },
+    {
+        "time": "822",
+        "train": "725K",
+        "unten": "week"
+    },
+    {
+        "time": "829",
+        "train": "721K",
+        "unten": "week"
+    },
+    {
+        "time": "837",
+        "train": "757E",
+        "unten": "week"
+    },
+    {
+        "time": "847",
+        "train": "661S",
+        "unten": "week"
+    },
+    {
+        "time": "853",
+        "train": "705K",
+        "unten": "week"
+    },
+    {
+        "time": "859",
+        "train": "827K",
+        "unten": "week"
+    },
+    {
+        "time": "904",
+        "train": "809K",
+        "unten": "week"
+    },
+    {
+        "time": "910",
+        "train": "839S",
+        "unten": "week"
+    },
+    {
+        "time": "918",
+        "train": "749E",
+        "unten": "week"
+    },
+    {
+        "time": "922",
+        "train": "829K",
+        "unten": "week"
+    },
+    {
+        "time": "928",
+        "train": "743E",
+        "unten": "week"
+    },
+    {
+        "time": "932",
+        "train": "815K",
+        "unten": "week"
+    },
+    {
+        "time": "939",
+        "train": "713K",
+        "unten": "week"
+    },
+    {
+        "time": "947",
+        "train": "825S",
+        "unten": "week"
+    },
+    {
+        "time": "956",
+        "train": "923K",
+        "unten": "week"
+    },
+    {
+        "time": "1004",
+        "train": "911K",
+        "unten": "week"
+    },
+    {
+        "time": "1007",
+        "train": "907S",
+        "unten": "week"
+    },
+    {
+        "time": "1015",
+        "train": "955S",
+        "unten": "week"
+    },
+    {
+        "time": "1024",
+        "train": "915S",
+        "unten": "week"
+    },
+    {
+        "time": "1035",
+        "train": "911S",
+        "unten": "week"
+    },
+    {
+        "time": "1045",
+        "train": "901S",
+        "unten": "week"
+    },
+    {
+        "time": "1055",
+        "train": "1005S",
+        "unten": "week"
+    },
+    {
+        "time": "1105",
+        "train": "903S",
+        "unten": "week"
+    },
+    {
+        "time": "1115",
+        "train": "1031K",
+        "unten": "week"
+    },
+    {
+        "time": "1125",
+        "train": "1003K",
+        "unten": "week"
+    },
+    {
+        "time": "1135",
+        "train": "1061S",
+        "unten": "week"
+    },
+    {
+        "time": "1145",
+        "train": "1021S",
+        "unten": "week"
+    },
+    {
+        "time": "1155",
+        "train": "1139S",
+        "unten": "week"
+    },
+    {
+        "time": "1205",
+        "train": "1059S",
+        "unten": "week"
+    },
+    {
+        "time": "1215",
+        "train": "1129K",
+        "unten": "week"
+    },
+    {
+        "time": "1225",
+        "train": "1109K",
+        "unten": "week"
+    },
+    {
+        "time": "1235",
+        "train": "1125S",
+        "unten": "week"
+    },
+    {
+        "time": "1245",
+        "train": "1149E",
+        "unten": "week"
+    },
+    {
+        "time": "1255",
+        "train": "1207S",
+        "unten": "week"
+    },
+    {
+        "time": "1305",
+        "train": "1213K",
+        "unten": "week"
+    },
+    {
+        "time": "1315",
+        "train": "1215S",
+        "unten": "week"
+    },
+    {
+        "time": "1325",
+        "train": "1223K",
+        "unten": "week"
+    },
+    {
+        "time": "1335",
+        "train": "1205S",
+        "unten": "week"
+    },
+    {
+        "time": "1345",
+        "train": "1255S",
+        "unten": "week"
+    },
+    {
+        "time": "1355",
+        "train": "1331K",
+        "unten": "week"
+    },
+    {
+        "time": "1405",
+        "train": "1311S",
+        "unten": "week"
+    },
+    {
+        "time": "1415",
+        "train": "1361S",
+        "unten": "week"
+    },
+    {
+        "time": "1425",
+        "train": "1303S",
+        "unten": "week"
+    },
+    {
+        "time": "1435",
+        "train": "1339S",
+        "unten": "week"
+    },
+    {
+        "time": "1445",
+        "train": "1303K",
+        "unten": "week"
+    },
+    {
+        "time": "1455",
+        "train": "1429K",
+        "unten": "week"
+    },
+    {
+        "time": "1505",
+        "train": "1421S",
+        "unten": "week"
+    },
+    {
+        "time": "1515",
+        "train": "1425S",
+        "unten": "week"
+    },
+    {
+        "time": "1525",
+        "train": "1459S",
+        "unten": "week"
+    },
+    {
+        "time": "1535",
+        "train": "1407S",
+        "unten": "week"
+    },
+    {
+        "time": "1545",
+        "train": "1409K",
+        "unten": "week"
+    },
+    {
+        "time": "1555",
+        "train": "1515S",
+        "unten": "week"
+    },
+    {
+        "time": "1605",
+        "train": "1549E",
+        "unten": "week"
+    },
+    {
+        "time": "1615",
+        "train": "1505S",
+        "unten": "week"
+    },
+    {
+        "time": "1625",
+        "train": "1513K",
+        "unten": "week"
+    },
+    {
+        "time": "1635",
+        "train": "1531K",
+        "unten": "week"
+    },
+    {
+        "time": "1645",
+        "train": "1523K",
+        "unten": "week"
+    },
+    {
+        "time": "1654",
+        "train": "1661S",
+        "unten": "week"
+    },
+    {
+        "time": "1701",
+        "train": "1633S",
+        "unten": "week"
+    },
+    {
+        "time": "1709",
+        "train": "1655S",
+        "unten": "week"
+    },
+    {
+        "time": "1718",
+        "train": "1643S",
+        "unten": "week"
+    },
+    {
+        "time": "1725",
+        "train": "1603K",
+        "unten": "week"
+    },
+    {
+        "time": "1732",
+        "train": "1641S",
+        "unten": "week"
+    },
+    {
+        "time": "1737",
+        "train": "1629K",
+        "unten": "week"
+    },
+    {
+        "time": "1745",
+        "train": "1709S",
+        "unten": "week"
+    },
+    {
+        "time": "1749",
+        "train": "1653S",
+        "unten": "week"
+    },
+    {
+        "time": "1753",
+        "train": "1639S",
+        "unten": "week"
+    },
+    {
+        "time": "1759",
+        "train": "1711K",
+        "unten": "week"
+    },
+    {
+        "time": "1804",
+        "train": "1603S",
+        "unten": "week"
+    },
+    {
+        "time": "1809",
+        "train": "1759S",
+        "unten": "week"
+    },
+    {
+        "time": "1813",
+        "train": "1707K",
+        "unten": "week"
+    },
+    {
+        "time": "1817",
+        "train": "1745S",
+        "unten": "week"
+    },
+    {
+        "time": "1822",
+        "train": "1723S",
+        "unten": "week"
+    },
+    {
+        "time": "1826",
+        "train": "1759E",
+        "unten": "week"
+    },
+    {
+        "time": "1831",
+        "train": "1719S",
+        "unten": "week"
+    },
+    {
+        "time": "1835",
+        "train": "1717K",
+        "unten": "week"
+    },
+    {
+        "time": "1839",
+        "train": "1761E",
+        "unten": "week"
+    },
+    {
+        "time": "1844",
+        "train": "1731S",
+        "unten": "week"
+    },
+    {
+        "time": "1847",
+        "train": "1727S",
+        "unten": "week"
+    },
+    {
+        "time": "1853",
+        "train": "1857S",
+        "unten": "week"
+    },
+    {
+        "time": "1859",
+        "train": "1701K",
+        "unten": "week"
+    },
+    {
+        "time": "1902",
+        "train": "1851S",
+        "unten": "week"
+    },
+    {
+        "time": "1905",
+        "train": "1805K",
+        "unten": "week"
+    },
+    {
+        "time": "1908",
+        "train": "1821S",
+        "unten": "week"
+    },
+    {
+        "time": "1912",
+        "train": "1813S",
+        "unten": "week"
+    },
+    {
+        "time": "1917",
+        "train": "1807S",
+        "unten": "week"
+    },
+    {
+        "time": "1922",
+        "train": "1831K",
+        "unten": "week"
+    },
+    {
+        "time": "1927",
+        "train": "1851E",
+        "unten": "week"
+    },
+    {
+        "time": "1934",
+        "train": "1823K",
+        "unten": "week"
+    },
+    {
+        "time": "1941",
+        "train": "1949S",
+        "unten": "week"
+    },
+    {
+        "time": "1948",
+        "train": "1801S",
+        "unten": "week"
+    },
+    {
+        "time": "1952",
+        "train": "1955S",
+        "unten": "week"
+    },
+    {
+        "time": "1958",
+        "train": "1945E",
+        "unten": "week"
+    },
+    {
+        "time": "2005",
+        "train": "1943S",
+        "unten": "week"
+    },
+    {
+        "time": "2010",
+        "train": "1805S",
+        "unten": "week"
+    },
+    {
+        "time": "2015",
+        "train": "1903K",
+        "unten": "week"
+    },
+    {
+        "time": "2021",
+        "train": "1865E",
+        "unten": "week"
+    },
+    {
+        "time": "2027",
+        "train": "1913K",
+        "unten": "week"
+    },
+    {
+        "time": "2032",
+        "train": "1929K",
+        "unten": "week"
+    },
+    {
+        "time": "2039",
+        "train": "1941S",
+        "unten": "week"
+    },
+    {
+        "time": "2046",
+        "train": "2009K",
+        "unten": "week"
+    },
+    {
+        "time": "2053",
+        "train": "2007K",
+        "unten": "week"
+    },
+    {
+        "time": "2100",
+        "train": "1961S",
+        "unten": "week"
+    },
+    {
+        "time": "2108",
+        "train": "1929S",
+        "unten": "week"
+    },
+    {
+        "time": "2117",
+        "train": "2003S",
+        "unten": "week"
+    },
+    {
+        "time": "2126",
+        "train": "2057S",
+        "unten": "week"
+    },
+    {
+        "time": "2133",
+        "train": "2017K",
+        "unten": "week"
+    },
+    {
+        "time": "2140",
+        "train": "2011K",
+        "unten": "week"
+    },
+    {
+        "time": "2150",
+        "train": "2053S",
+        "unten": "week"
+    },
+    {
+        "time": "2159",
+        "train": "2023S",
+        "unten": "week"
+    },
+    {
+        "time": "2206",
+        "train": "2101K",
+        "unten": "week"
+    },
+    {
+        "time": "2216",
+        "train": "2121S",
+        "unten": "week"
+    },
+    {
+        "time": "2227",
+        "train": "2155S",
+        "unten": "week"
+    },
+    {
+        "time": "2237",
+        "train": "2101S",
+        "unten": "week"
+    },
+    {
+        "time": "2247",
+        "train": "2131S",
+        "unten": "week"
+    },
+    {
+        "time": "2257",
+        "train": "2243S",
+        "unten": "week"
+    },
+    {
+        "time": "2305",
+        "train": "2119K",
+        "unten": "week"
+    },
+    {
+        "time": "2314",
+        "train": "2265E",
+        "unten": "week"
+    },
+    {
+        "time": "2324",
+        "train": "2229K",
+        "unten": "week"
+    },
+    {
+        "time": "2333",
+        "train": "2209K",
+        "unten": "week"
+    },
+    {
+        "time": "2343",
+        "train": "2207K",
+        "unten": "week"
+    },
+    {
+        "time": "2352",
+        "train": "2361S",
+        "unten": "week"
+    },
+    {
+        "time": "0005",
+        "train": "2321K",
+        "unten": "week"
+    },
+    {
+        "time": "0016",
+        "train": "2317K",
+        "unten": "week"
+    },
+    {
+        "time": "0024",
+        "train": "2311K",
+        "unten": "week"
+    },
+    {
+        "time": "0031",
+        "train": "2325K",
+        "unten": "week"
+    },
+    {
+        "time": "0047",
+        "train": "2401K",
+        "unten": "week"
+    },
+    {
+        "time": "0057",
+        "train": "2429K",
+        "unten": "week"
+    }
+]

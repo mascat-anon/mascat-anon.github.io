@@ -1,0 +1,116 @@
+<html lang="ja" class="no-js no-svg">
+<head>
+<meta charset="UTF-8">
+  <title>常磐メトロ在線</title>
+  
+
+</head>
+
+<body>
+<!-- partial:index.partial.html -->
+<table id='TraininfoTable'> </table>
+<!-- partial -->
+<script>
+  setInterval("TakeApi()", 5000);
+  GetXMLHR('https://mini-tokyo.appspot.com/tid','TrainINFO'); 
+  function TakeApi() {
+    GetXMLHR('https://mini-tokyo.appspot.com/tid','TrainINFO'); 
+  }
+function GetXMLHR(FILE_URL, AFTER_SCRIPT_NAME) {
+  var XMLHR = new XMLHttpRequest();
+  XMLHR.onreadystatechange = function () {
+    if (XMLHR.readyState == 4 && XMLHR.status == 200) {
+      var DATA_LIST = XMLHR.responseText;
+      var AFTER_SCRIPT = new Function("引数", "return " + AFTER_SCRIPT_NAME + "(引数)");
+      AFTER_SCRIPT(DATA_LIST);
+    }
+  }
+  XMLHR.open("GET", FILE_URL, true);
+  XMLHR.send(null);
+}
+
+var TrainINFO_DATA =  new Array();
+function TrainINFO(DATA_LIST) {
+  DATA_LIST = DATA_LIST.replace(/[\n\r]/g, ""); 
+  var DATA = JSON.parse(DATA_LIST);
+  for (var i = 0; i < DATA.length; i++) {
+    if (DATA[i].id.startsWith("JR-East.JobanLocal")) {
+      var idSplit = DATA[i].id.split(".");
+      var num = idSplit[2].replace(/.$/, "");
+      var bound=""
+	if (num % 2 == 0) {
+    var bound="上り"
+	}
+	else {
+    var bound="下り"
+	}
+
+      var trainInfo = [
+         idSplit[2],
+        DATA[i].delay / 60000, // delayを60000で割る
+        bound,
+        "常磐"
+      ];
+      TrainINFO_DATA.push(trainInfo);
+    }
+    if (DATA[i].id.startsWith("TokyoMetro.Chiyoda")) {
+      var idSplit = DATA[i].id.split(".");
+      var num = idSplit[2].slice( 0, 1 );
+      var ConvertJRnumber=""
+      var bound=""
+	if (num == "A") {
+    var bound="上り"
+    onlynum = parseInt(idSplit[2].replace(/[^0-9]/g, ''));
+    var Company = idSplit[2].slice( -1 ) ;
+    ConvertJRnumber =onlynum-1 + Company
+
+	}
+	else {
+    var bound="下り"
+    onlynum = parseInt(idSplit[2].replace(/[^0-9]/g, ''));
+    var Company = idSplit[2].slice( -1 ) ;
+    ConvertJRnumber =onlynum + Company
+	}
+      var trainInfo = [
+       
+      ConvertJRnumber,
+         DATA[i].delay / 60000, // delayを60000で割る
+         bound,
+        "メトロ",
+        '<a href="https://tokyometroapp.cld.navitime.jp/congestion/stops?numbering=C20&trainNo='+idSplit[2]+'">'+idSplit[2]+'</a>'
+      ];
+      TrainINFO_DATA.push(trainInfo);
+    }
+  }
+  //テーブル作成クエリ
+  var tableEle = document.getElementById('TraininfoTable');
+	  var clrow = TrainINFO_DATA.length;
+	  tableEle.innerHTML = '';
+	  var tr = document.createElement('tr');
+	  tr.class = "MonitorRow";
+	  var thTitle = new Array("列番", "遅延", "方向", "線区", "メトロ列番");
+	  for (var j = 0; j < 5; j++) {
+		var th = document.createElement('th');
+		th.innerHTML = thTitle[j];
+		tr.appendChild(th);
+	  }
+
+
+	tableEle.appendChild(tr);
+	  for (var i = 0; i < clrow; i++) {
+		var tr = document.createElement('tr');
+		for (var j = 0; j < 5; j++) {
+		  var td = document.createElement('td');
+		  td.innerHTML = TrainINFO_DATA[i][j];
+		  td.style.textAlign = "center";
+		  tr.appendChild(td);
+		}
+
+		tableEle.appendChild(tr);
+	  }
+}
+  	
+</script>
+
+</body>
+</html>
