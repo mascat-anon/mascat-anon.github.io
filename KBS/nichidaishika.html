@@ -7,9 +7,9 @@
 <meta name="description" content="京成バス 松戸駅発 日大歯科病院方面行き" />
 <link rel="icon" href="toppg/favicon.ico">
 <link rel="apple-touch-icon" href="toppg/apple-touch-icon-180x180.png" sizes="180x180">
-<link rel="stylesheet" href="common/style.css?2024/04/30d">
+<link rel="stylesheet" href="common/style.css?2024/04/30">
 <script  src="common/holidays.js?2024/02/29"></script>
-<script  src="common/script.js?2024/02/29d"></script>
+<script  src="common/script.js?2024/02/29"></script>
 <script>
       window.onload = function () {
         showClock(); //内部時計定期実行
@@ -114,30 +114,28 @@
 
       </div>
       <div class="tab"> <label>
-        <input type="radio" name="tab" checked>
-        ダイヤモニタ
-    </label>
-      <div>
-        <div class="DataTable">
-          <table id='DaiaTable'> </table>
+          <input type="radio" name="tab" checked>
+          ダイヤモニタ
+      </label>
+        <div>
+          <div class="DataTable">
+            <table id='DataTable'> </table>
+          </div>
+        </div> <label>
+          <input type="radio" name="tab">
+          ｽｸﾛｰﾙ中文章
+      </label>
+        <div>
+          <div class="DataScrollMessage"> <span style="background-color:#000;color:#ffc800;" id="DataScrollMessage"></span> </div>
+        </div> <label>
+          <input type="radio" name="tab">
+          予備
+      </label>
+        <div>
+          <div class="DataTable"> </div>
         </div>
-      </div> <label>
-        <input type="radio" name="tab">
-        運行情報一覧
-    </label>
-      <div>
-        <div class="DataTable">
-          <table id='TraininfoTable'> </table>
-        </div>
-      </div> <label>
-        <input type="radio" name="tab">
-        予備
-    </label>
-      <div>
-        <div class="DataTable"> </div>
       </div>
     </div>
-  </div>
-  <div class="modal-name">メニュー画面</div> <a href="JavaScript:" class="modal-close" onclick="toggleModal()">×</a> </div>
+    <div class="modal-name">メニュー画面</div> <a href="JavaScript:" class="modal-close" onclick="toggleModal()">×</a> </div>
 </div>
 </body>

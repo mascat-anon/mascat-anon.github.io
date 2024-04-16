@@ -182,7 +182,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  }
 	}
   }
-  var TrainInfoTable = new Array();
   var ScrollMessage_TrainInfo = "";
   function TrainINFO(DATA_LIST) {
 	ScrollMessage_TrainInfo = ""; //内容クリア
@@ -198,8 +197,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		ScrollParam_Common = 0; //運行情報なし[0]あり[1]
 	} else {
 		ScrollParam_Common =  1; //運行情報なし[0]あり[1]
-		TrainInfoTable= DATA.values;
-		console.log(TrainInfoTable)
 	  for (var i = 0; i < DATA.values.length; i++) {
 		LineName[i] = DATA.values[i][0]; // Ｄ
 		Statues[i] = DATA.values[i][1];
@@ -372,7 +369,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	}
 
 	  //テーブル作成クエリ
-	  var tableEle = document.getElementById('DaiaTable');
+	  var tableEle = document.getElementById('DataTable');
 	  var clrow = TodayTimeTable.length;
 	  tableEle.innerHTML = '';
 	  var tr = document.createElement('tr');
@@ -601,32 +598,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  if (ScrollMessage_str !==ScrollMessage_Before) {
 		ScrollMessage_Before = ScrollMessage_str;
 		spanElement.innerHTML = Result_str;
-	  //テーブル作成クエリ
-	  var tableEle = document.getElementById('TraininfoTable');
-	  var clrow = TrainInfoTable.length;
-	  tableEle.innerHTML = '';
-	  var tr = document.createElement('tr');
-	  tr.class = "MonitorRow";
-	  var thTitle = new Array("路線", "状況", "内容", "ﾃﾞｰﾀ時刻", "原因");
-	  for (var j = 0; j < 5; j++) {
-		var th = document.createElement('th');
-		th.innerHTML = thTitle[j];
-		tr.appendChild(th);
-	  }
-
-
-	tableEle.appendChild(tr);
-	  for (var i = 0; i < clrow; i++) {
-		var tr = document.createElement('tr');
-		for (var j = 0; j < 5; j++) {
-		  var td = document.createElement('td');
-		  td.innerHTML = TrainInfoTable[i][j];
-		  td.style.textAlign = "left";
-		  tr.appendChild(td);
-		}
-
-		tableEle.appendChild(tr);
-	  }
+		document.getElementById("DataScrollMessage").innerHTML = Result_str;
 		startMarquee(marquee);
 	  }
 	}, 100)
