@@ -51,7 +51,7 @@ function TrainINFO(DATA_LIST) {
          idSplit[2],
         DATA[i].delay / 60000, // delayを60000で割る
         bound,
-        "常磐"
+        "常磐緩"
       ];
       TrainINFO_DATA.push(trainInfo);
     }
@@ -78,7 +78,7 @@ function TrainINFO(DATA_LIST) {
       ConvertJRnumber,
          DATA[i].delay / 60000, // delayを60000で割る
          bound,
-        "メトロ",
+        "千代田",
         '<a href="https://tokyometroapp.cld.navitime.jp/congestion/stops?numbering=C20&trainNo='+idSplit[2]+'">'+idSplit[2]+'</a>'
       ];
       TrainINFO_DATA.push(trainInfo);
