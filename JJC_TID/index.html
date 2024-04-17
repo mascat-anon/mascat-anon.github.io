@@ -29,9 +29,10 @@ function GetXMLHR(FILE_URL, AFTER_SCRIPT_NAME) {
   XMLHR.send(null);
 }
 
-var TrainINFO_DATA =  new Array();
+
 var tableEle = document.getElementById('TraininfoTable');	
 function TrainINFO(DATA_LIST) {
+	var TrainINFO_DATA =  new Array();
   DATA_LIST = DATA_LIST.replace(/[\n\r]/g, ""); 
   var DATA = JSON.parse(DATA_LIST);
   for (var i = 0; i < DATA.length; i++) {
