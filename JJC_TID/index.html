@@ -30,6 +30,7 @@ function GetXMLHR(FILE_URL, AFTER_SCRIPT_NAME) {
 }
 
 var TrainINFO_DATA =  new Array();
+var tableEle = document.getElementById('TraininfoTable');	
 function TrainINFO(DATA_LIST) {
   DATA_LIST = DATA_LIST.replace(/[\n\r]/g, ""); 
   var DATA = JSON.parse(DATA_LIST);
@@ -83,7 +84,7 @@ function TrainINFO(DATA_LIST) {
     }
   }
   //テーブル作成クエリ
-  var tableEle = document.getElementById('TraininfoTable');
+  
 	  var clrow = TrainINFO_DATA.length;
 	  tableEle.innerHTML = '';
 	  var tr = document.createElement('tr');
