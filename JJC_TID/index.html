@@ -62,14 +62,14 @@ function TrainINFO(DATA_LIST) {
       var bound=""
 	if (num == "A") {
     var bound="上り"
-    onlynum = parseInt(idSplit[2].replace(/[AB]\d+|\d+[AB]/g, ''));
+    onlynum = parseInt(idSplit[2].replace(/[AB\d]+/g, ''));
     var Company = idSplit[2].replace(/[AB\d]/g, '');
     ConvertJRnumber =onlynum-1 + Company
 
 	}
 	else {
     var bound="下り"
-    onlynum = parseInt(idSplit[2].replace(/[AB]\d+|\d+[AB]/g, ''));
+    onlynum = parseInt(idSplit[2].replace(/[AB\d]+/g, ''));
     var Company = idSplit[2].replace(/[AB\d]/g, '');
     ConvertJRnumber =onlynum + Company
 	}
