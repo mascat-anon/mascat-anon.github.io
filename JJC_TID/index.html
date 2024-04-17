@@ -62,16 +62,16 @@ function TrainINFO(DATA_LIST) {
       var bound=""
 	if (num == "A") {
     var bound="上り"
-    onlynum = parseInt(idSplit[2].replace(/[AB\d]+/g, ''));
+    onlynum = parseInt(idSplit[2].replace(/[AB]/g, '').match(/\d+/)?.[0] || '');
     var Company = idSplit[2].replace(/[AB\d]/g, '');
     ConvertJRnumber =onlynum-1 + Company
 
 	}
 	else {
     var bound="下り"
-    onlynum = parseInt(idSplit[2].replace(/[AB\d]+/g, ''));
+    onlynum = parseInt(idSplit[2].replace(/[AB]/g, '').match(/\d+/)?.[0] || '');
     var Company = idSplit[2].replace(/[AB\d]/g, '');
-    ConvertJRnumber =onlynum + Company
+     ConvertJRnumber =onlynum + Company
 	}
       var trainInfo = [
        
