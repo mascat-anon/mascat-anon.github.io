@@ -49,7 +49,7 @@ function addTime(time1, minutesToAdd) {
     finalHour = finalHour % 24; // 24時間制を超えないようにする
 
     // 結果の整形
-    var resultHour = finalHour < 10 ? '0' + finalHour : finalHour;
+    var resultHour = finalHour < 10 ? '' + finalHour : finalHour;
     var resultMin = finalMin < 10 ? '0' + finalMin : finalMin;
 
     return resultHour + '' + resultMin;
