@@ -21,8 +21,6 @@
  
   function TakeApi() {
     GetXMLHR('https://mini-tokyo.appspot.com/tid','TrainINFO'); 
-    GetXMLHR('./w_dia.csv','CSV_TimeTableData'); 
-    
   }
 function GetXMLHR(FILE_URL, AFTER_SCRIPT_NAME) {
   var XMLHR = new XMLHttpRequest();
@@ -148,7 +146,7 @@ function TrainINFO(DATA_LIST) {
 			  if (TimeTableData[i][1] < 1000) var time1 = "0" + TimeTableData[i][1] ;
 			   
 var minutesToAdd = TrainINFO_DATA[j][1];
-TimeTableData[i][2]  = addTime(time1, minutesToAdd);		  
+TimeTableData[i][3]  = addTime(time1, minutesToAdd);		  
 
 		  }
 		}	}
