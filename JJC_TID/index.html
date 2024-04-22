@@ -63,11 +63,11 @@ var TimeTableData = new Array();
 	for (i = 0; i < row.length; i++) {
 	  matrix[i] = new Array(); // Ｂ
 	  var columnDATA = row[i].split(","); // Ｃ
-	  var column = 7; //列番，時刻，行き先
+	  var column = 8; //列番，時刻，行き先
 
 	  for (var j = 0; j < column; j++) {
       if (columnDATA[j] === undefined) {
-        matrix[i][j] = "-"; // Ｄ
+        matrix[i][j] = ""; // Ｄ
 }else{
   matrix[i][j] = columnDATA[j]; // Ｄ
 }
