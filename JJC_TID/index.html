@@ -140,7 +140,7 @@ function TrainINFO(DATA_LIST) {
   for (var i = 0; i < TimeTableData.length; i++) {
   for (let j = 0; j < TrainINFO_DATA.length; j++) {
 		  if (TimeTableData[i][0] == TrainINFO_DATA[j][0]) {
-          if (TimeTableData[i][2] < 1000) TimeTableData[i][2]= "0" + TimeTableData[i][2] ;
+          if (TimeTableData[i][1] < 1000) TimeTableData[i][1]= "0" + TimeTableData[i][1] ;
 			  TimeTableData[i][4] = TrainINFO_DATA[j][1];
         TimeTableData[i][5] = TrainINFO_DATA[j][2];
         TimeTableData[i][6] = TrainINFO_DATA[j][3];
@@ -148,7 +148,7 @@ function TrainINFO(DATA_LIST) {
 			  if (TimeTableData[i][1] < 1000) var time1 = "0" + TimeTableData[i][1] ;
 			   
 var minutesToAdd = TrainINFO_DATA[j][1];
-TimeTableData[i][3]  = addTime(time1, minutesToAdd);		  
+TimeTableData[i][2]  = addTime(time1, minutesToAdd);		  
 
 		  }
 		}	}
