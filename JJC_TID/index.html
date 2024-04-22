@@ -138,8 +138,7 @@ function TrainINFO(DATA_LIST) {
   for (var i = 0; i < TimeTableData.length; i++) {
   for (let j = 0; j < TrainINFO_DATA.length; j++) {
 		  if (TimeTableData[i][0] == TrainINFO_DATA[j][0]) {
-          if (TimeTableData[i][1] < 1000) TimeTableData[i][1]= "0" + TimeTableData[i][1] ;
-			  TimeTableData[i][4] = TrainINFO_DATA[j][1];
+       TimeTableData[i][4] = TrainINFO_DATA[j][1];
         TimeTableData[i][5] = TrainINFO_DATA[j][2];
         TimeTableData[i][6] = TrainINFO_DATA[j][3];
         TimeTableData[i][7]  = TrainINFO_DATA[j][4];
