@@ -34,7 +34,26 @@ function GetXMLHR(FILE_URL, AFTER_SCRIPT_NAME) {
   XMLHR.open("GET", FILE_URL, true);
   XMLHR.send(null);
 }
+function addTime(time1, minutesToAdd) {
+    // 時間の解析
+    var hour1 = parseInt(time1.substring(0, 2));
+    var min1 = parseInt(time1.substring(2));
 
+    // 分の合計
+    var totalMin = min1 + minutesToAdd;
+    var carryHour = Math.floor(totalMin / 60);
+    var finalMin = totalMin % 60;
+
+    // 時の合計
+    var finalHour = hour1 + carryHour;
+    finalHour = finalHour % 24; // 24時間制を超えないようにする
+
+    // 結果の整形
+    var resultHour = finalHour < 10 ? '0' + finalHour : finalHour;
+    var resultMin = finalMin < 10 ? '0' + finalMin : finalMin;
+
+    return resultHour + '' + resultMin;
+}
 var TimeTableData = new Array();
   //経由と背景色のデータをCSVを配列から格納ここから
   function CSV_TimeTableData(dataArr) {
@@ -123,6 +142,11 @@ function TrainINFO(DATA_LIST) {
         TimeTableData[i][4] = TrainINFO_DATA[j][2];
         TimeTableData[i][5] = TrainINFO_DATA[j][3];
         TimeTableData[i][6]  = TrainINFO_DATA[j][4];
+			  if (TimeTableData[i][1] < 1000) var time1 = "0" + TimeTableData[i][1] ;
+			   
+var minutesToAdd = TrainINFO_DATA[j][1];
+TimeTableData[i][7]  = addTime(time1, minutesToAdd);		  
+
 		  }
 		}	}
 
@@ -145,7 +169,7 @@ function TrainINFO(DATA_LIST) {
 	  var tr = document.createElement('tr');
 	  tr.class = "MonitorRow";
 	  var thTitle = new Array("列番","時刻","行先", "遅延", "方向", "線区", "メトロ列番");
-	  for (var j = 0; j < 7; j++) {
+	  for (var j = 0; j < 8; j++) {
 		var th = document.createElement('th');
 		th.innerHTML = thTitle[j];
 		tr.appendChild(th);
@@ -155,7 +179,7 @@ function TrainINFO(DATA_LIST) {
 	tableEle.appendChild(tr);
 	  for (var i = 0; i < clrow; i++) {
 		var tr = document.createElement('tr');
-		for (var j = 0; j < 7; j++) {
+		for (var j = 0; j < 8; j++) {
 		  var td = document.createElement('td');
 		  td.innerHTML = TimeTableData[i][j];
 		  td.style.textAlign = "center";
