@@ -39,14 +39,12 @@ function addTime(time1, minutesToAdd) {
     var hour1 = parseInt(time1.substring(0, 2));
     var min1 = parseInt(time1.substring(2));
 
-    // 分の合計
-    var totalMin = min1 + minutesToAdd;
-    var carryHour = Math.floor(totalMin / 60);
-    var finalMin = totalMin % 60;
+    // 時間を分単位に変換して分の合計を計算
+    var totalMin = hour1 * 60 + min1 + minutesToAdd;
 
-    // 時の合計
-    var finalHour = hour1 + carryHour;
-    finalHour = finalHour % 24; // 24時間制を超えないようにする
+    // 時分に変換
+    var finalHour = Math.floor(totalMin / 60) % 24; // 24時間制を超えないようにする
+    var finalMin = totalMin % 60;
 
     // 結果の整形
     var resultHour = finalHour < 10 ? '' + finalHour : finalHour;
