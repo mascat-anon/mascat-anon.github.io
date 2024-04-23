@@ -176,15 +176,14 @@
 	  	  for (var i = 0; i < clrow; i++) {
 	  	
 	       // 
-	        var tr = document.createElement('tr');
+
+	  var CheckTime2 = Number(TimeTableData[i][7])  ;
+	     if (CheckTime1 <= CheckTime2) {
+			        var tr = document.createElement('tr');
 	        for (var j = 0; j < 8; j++) {
 	  		  var td = document.createElement('td');
-	  		  td.innerHTML = TimeTableData[i][j];
-	  var CheckTime2 = Number(TimeTableData[i][7])  ;
-	     if (CheckTime1 <= CheckTime2) {tr.style.color='green';
-		  }
-	       
-	        if (0 < TimeTableData[i][3]) {
+	  		  td.innerHTML = TimeTableData[i][j];    
+				        if (0 < TimeTableData[i][3]) {
 	          tr.style.color="red";
 	        }
 	  		  tr.appendChild(td);
@@ -192,6 +191,9 @@
 	      
 	    }
 	  tableEle.appendChild(tr);
+	     }
+	       
+
 	  
 	   // 
 	  	  }
