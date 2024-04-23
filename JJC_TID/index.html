@@ -50,9 +50,10 @@
 	  
 	      return resultHour + '' + resultMin;
 	  }
-	  var TimeTableData = new Array();
+	  var TimeTableData ;
 	    //経由と背景色のデータをCSVを配列から格納ここから
 	    function CSV_TimeTableData(dataArr) {
+		    TimeTableData = new Array();
 	  	var matrix = new Array();
 	  	if (dataArr.match(/\r/)) var row = dataArr.split("\r\n"); // Ａ
 	  	else row = dataArr.split("\n");
@@ -175,7 +176,7 @@
 	  	tableEle.appendChild(tr);
 	  	  for (var i = 0; i < clrow; i++) {
 	  	
-	  
+	        if (CheckTime <= TimeTableData[i][8]) {
 	        var tr = document.createElement('tr');
 	        for (var j = 0; j < 8; j++) {
 	  		  var td = document.createElement('td');
@@ -192,7 +193,7 @@
 	    }
 	  tableEle.appendChild(tr);
 	  
-	    
+	    }
 	  	  }
 	  }
 	</script>
