@@ -7,7 +7,9 @@
 </head>
 <body>
   <!-- partial:index.partial.html -->
-  <table id="TraininfoTable"> </table>
+            <div class="TraininfoTable">
+            <table id='TraininfoTable'> </table>
+          </div>
   <!-- partial -->
   <script>
     setInterval("TakeApi()", 5000);
@@ -176,20 +178,20 @@
     -webkit-text-size-adjust: 100%;
     background-color: #777777;
     }
-    #TraininfoTable{
+    .TraininfoTable{
     overflow: auto;
     width: 100%;
     height: 100%;
     background-color: #bebebe;
     
     }
-    #TraininfoTable table{
+    .TraininfoTable table{
     margin: 0;
     border-spacing: 0;
     width: 100%;
     
     }
-    #TraininfoTable td{
+    .TraininfoTable td{
     white-space: nowrap;
     border-right: 1px solid #999;
     border-bottom: 1px solid #999;
@@ -197,7 +199,7 @@
     text-align: center;
     padding: 0px 5px;
     }
-    #TraininfoTable th{
+    .TraininfoTable th{
     white-space: nowrap;
     color: #000;
     border-right: 1px solid #999;
@@ -208,7 +210,7 @@
     font-weight: normal;
     padding: 0px 5px;
     }
-    #TraininfoTable tr:hover td {
+    .TraininfoTable tr:hover td {
     background-color: #001545;
     color: #fff;
     }
