@@ -132,7 +132,7 @@
 	      }
 	    }
 	    for (var i = 0; i < TimeTableData.length; i++) {
-	      TimeTableData[i][8] =TimeTableData[i][1];
+	      TimeTableData[i][7] =TimeTableData[i][1];
 	    for (let j = 0; j < TrainINFO_DATA.length; j++) {
 	  		  if (TimeTableData[i][0] == TrainINFO_DATA[j][0]) {
 	         TimeTableData[i][3] = TrainINFO_DATA[j][1];
@@ -141,7 +141,7 @@
 	          TimeTableData[i][6]  = TrainINFO_DATA[j][4];
 	          var  time1=TimeTableData[i][1]
 	  var minutesToAdd = TrainINFO_DATA[j][1];
-	  TimeTableData[i][8] =addTime(time1, minutesToAdd);
+	  TimeTableData[i][7] =addTime(time1, minutesToAdd);
 	  
 	    
 	  
@@ -176,7 +176,7 @@
 	  	tableEle.appendChild(tr);
 	  	  for (var i = 0; i < clrow; i++) {
 	  	
-	        if (CheckTime <= TimeTableData[i][8]) {
+	        if (CheckTime <= TimeTableData[i][7]) {
 	        var tr = document.createElement('tr');
 	        for (var j = 0; j < 8; j++) {
 	  		  var td = document.createElement('td');
