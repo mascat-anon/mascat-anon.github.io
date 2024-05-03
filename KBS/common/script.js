@@ -133,7 +133,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	NowYear = NowTimeSource.getFullYear();
 	NowMonth = NowTimeSource.getMonth() + 1;
 	NowDay = NowTimeSource.getDate();
-	var checkToday = Number("" + nowYear + nowMonth + nowDay); // 文字列から数値への変換
+	var checkToday = Number("" + NowYear + NowMonth + NowDay); // 文字列から数値への変換
 	Holidayflag = false; // ループの前に初期化
 	for (var i = 0; i < HolidayTable.length; i++) {
 	  if (checkToday === HolidayTable[i][0]) { // 条件式修正
@@ -256,7 +256,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	let wi = 0;
 	let si = 0;
 	let hi = 0;
-	if (JapaneseHolidays.isHoliday(new Date())) { //休日判定外部ソース
+	if (Holidayflag) { //休日判定外部ソース
 	  NowWeek = 0;
 	} else {
 	  NowWeek = NowTimeSource.getDay();
