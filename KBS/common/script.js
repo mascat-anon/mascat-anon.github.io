@@ -26,38 +26,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	const minAspect = opt.min || 0;
 	let timeoutID = 0;
 	let delay = opt.delay || 500;
-	/**
-   * 
-	// #container のリサイズに対応
-	window.addEventListener("mouseup", ()=>{
-	  const tgt = document.querySelectorAll(div);
-		tgt.forEach((box) => {
-		  const isChoootype = box.querySelector('.js-addChoootype');
-		  if(isChoootype != null){
-			box.innerHTML = isChoootype.innerHTML;
-		  }
-		});
-		// Choootype();
-		__setChoootype(div);
-	}, false);
-  
-	// window のりサイズで再度長体の比率を調整
-	window.addEventListener("resize", ()=>{
-	  clearTimeout(timeoutID);
-	  timeoutID = setTimeout((div = ".choootype")=>{
-		const tgt = document.querySelectorAll(div);
-		tgt.forEach((box) => {
-		  const isChoootype = box.querySelector('.js-addChoootype');
-		  if(isChoootype != null){
-			box.innerHTML = isChoootype.innerHTML;
-		  }
-		});
-		// Choootype();
-		__setChoootype(div);
-	  }, delay);
-	}, false);
-	*
-	*/
+
 	// 長体をかける
 	function __setChoootype(div) {
 	  const tgt = document.querySelectorAll(div);
@@ -105,6 +74,50 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	move();
   }
   //こっからデータ
+  //祝日テーブル
+  var HolidayTable = [
+	[202411, "元日"],
+	[202418, "成人の日"],
+	[2024211, "建国記念の日"],
+	[2024212, "休日"],
+	[2024223, "天皇誕生日"],
+	[2024320, "春分の日"],
+	[2024429, "昭和の日"],
+	[202453, "憲法記念日"],
+	[202454, "みどりの日"],
+	[202455, "こどもの日"],
+	[202456, "休日"],
+	[2024715, "海の日"],
+	[2024811, "山の日"],
+	[2024812, "休日"],
+	[2024916, "敬老の日"],
+	[2024922, "秋分の日"],
+	[2024923, "休日"],
+	[20241014, "スポーツの日"],
+	[2024113, "文化の日"],
+	[2024114, "休日"],
+	[20241123, "勤労感謝の日"],
+	[202511, "元日"],
+	[2025113, "成人の日"],
+	[2025211, "建国記念の日"],
+	[2025223, "天皇誕生日"],
+	[2025224, "休日"],
+	[2025320, "春分の日"],
+	[2025429, "昭和の日"],
+	[202553, "憲法記念日"],
+	[202554, "みどりの日"],
+	[202555, "こどもの日"],
+	[202556, "休日"],
+	[2025721, "海の日"],
+	[2025811, "山の日"],
+	[2025915, "敬老の日"],
+	[2025923, "秋分の日"],
+	[20251013, "スポーツの日"],
+	[2025113, "文化の日"],
+	[20251123, "勤労感謝の日"],
+	[20251124, "休日"]
+  ];
+
   var NowTimeSource = "";
   var NowYear = "";
   var NowMonth = "";
@@ -113,13 +126,22 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
   var NowHour = "";
   var NowMin = "";
   var NowSec = "";
-  
+  var Holidayflag;
+
   function showClock() {
 	NowTimeSource = new Date();
 	NowYear = NowTimeSource.getFullYear();
 	NowMonth = NowTimeSource.getMonth() + 1;
 	NowDay = NowTimeSource.getDate();
-	if (JapaneseHolidays.isHoliday(NowTimeSource)) { //祝日判定
+	var checkToday = Number("" + nowYear + nowMonth + nowDay); // 文字列から数値への変換
+	Holidayflag = false; // ループの前に初期化
+	for (var i = 0; i < HolidayTable.length; i++) {
+	  if (checkToday === HolidayTable[i][0]) { // 条件式修正
+		Holidayflag = true;
+		break;
+	  }
+	}
+	if (Holidayflag) { //祝日判定
 	  NowWeek = 0;
 	} else {
 	  NowWeek = NowTimeSource.getDay();
