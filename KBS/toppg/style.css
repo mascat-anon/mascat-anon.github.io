@@ -302,7 +302,6 @@ height: auto;
 }
 .marquee {
   white-space: nowrap;
-  overflow: hidden;
   position: relative;
   width: 100%;
   color: #000d2b ;
@@ -310,8 +309,41 @@ height: auto;
 
 .marquee span {
   display: inline-block;
+  font-weight:500;
+}
+.marquee img{
+  width:45px;
+  padding-left: 45px;
+  padding-right: 5px;
+  vertical-align: bottom;
+}
+.marquee img:hover  {
+  animation: bounce 0.5s ease-out;
 }
 
+@keyframes bounce {
+  0% {
+      transform: translateY(0);
+  }
+
+  25% {
+      transform: translateY(-20px);
+      animation-timing-function: ease-in;
+  }
+
+  50% {
+      transform: translateY(0);
+  }
+
+  75% {
+      transform: translateY(-10px);
+      animation-timing-function: ease-in;
+  }
+
+  100% {
+      transform: translateY(0);
+  }
+}
 .text-tooltip {
   color: #fff;
   border-bottom: dotted 1px #fff;
