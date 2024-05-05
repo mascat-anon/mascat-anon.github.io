@@ -133,6 +133,10 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	NowYear = NowTimeSource.getFullYear();
 	NowMonth = NowTimeSource.getMonth() + 1;
 	NowDay = NowTimeSource.getDate();
+	yobi = new Array("Sun", "Mon", "Tus", "Wed", "Thu", "Fri", "Sat");
+	NowHour = NowTimeSource.getHours();
+	NowMin = NowTimeSource.getMinutes();
+	NowSec = NowTimeSource.getSeconds();
 	var checkToday = Number("" + NowYear + NowMonth + NowDay); // 文字列から数値への変換
 	Holidayflag = false; // ループの前に初期化
 	for (var i = 0; i < HolidayTable.length; i++) {
@@ -146,16 +150,14 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	} else {
 	  NowWeek = NowTimeSource.getDay();
 	}
-	yobi = new Array("Sun", "Mon", "Tus", "Wed", "Thu", "Fri", "Sat");
-	NowHour = NowTimeSource.getHours();
-	NowMin = NowTimeSource.getMinutes();
-	NowSec = NowTimeSource.getSeconds();
+
 	if (NowHour < 10) NowHour = "0" + NowHour;
 	if (NowMin < 10) NowMin = "0" + NowMin;
 	if (NowSec < 10) NowSec = "0" + NowSec;
-	var resetTime = "" + NowHour + NowMin + NowSec;
-	if (resetTime === "000000") { //0時にリセット
+	var ResetTime = "" + NowHour + NowMin + NowSec;
+	if (ResetTime === "000000") { //0時にリセット
 	  SetTimeTable();
+	  console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　ResetTime" +"　日付変更")
 	}
   }
   
@@ -203,6 +205,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		ScrollMessage_Force += "　" + DATA.values[i][1];
 	  }
 	}
+	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　ScrollINFO" +"　スクロール文章ファイル受信")
   }
   var TrainInfoTable = new Array();
   var ScrollMessage_TrainInfo = "";
@@ -218,10 +221,10 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	var DATA = eval("(" + DATA_LIST + ")"); // Ｃ
 	if (DATA.values[0][0] == "None Train Information") {
 		ScrollParam_Common = 0; //運行情報なし[0]あり[1]
+		console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　ScrollINFO" +"　運行情報ファイル受信"+"　運行情報なし")
 	} else {
 		ScrollParam_Common =  1; //運行情報なし[0]あり[1]
 		TrainInfoTable= DATA.values;
-		console.log(TrainInfoTable)
 	  for (var i = 0; i < DATA.values.length; i++) {
 		LineName[i] = DATA.values[i][0]; // Ｄ
 		Statues[i] = DATA.values[i][1];
@@ -230,6 +233,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		Cause[i] = DATA.values[i][4];
 		ScrollMessage_TrainInfo += "<sb><sr>【"  + Statues[i] + "】 <eb><er>" + Paragraph[i]+"　";
 	  }
+	  console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　ScrollINFO" +"　運行情報ファイル受信"+"　運行情報あり")
 	}
 	SetScroll();
   }
@@ -258,8 +262,12 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	let hi = 0;
 	if (Holidayflag) { //休日判定外部ソース
 	  NowWeek = 0;
+	  
+	  console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　Holidayflag" +"　祝日判定")
 	} else {
 	  NowWeek = NowTimeSource.getDay();
+	  
+	  console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　Holidayflag" +"　通常判定")
 	}
 	if (NowWeek == 0) { //  Holiday
 	  for (let i = 0; i < matrix.length; i++) { // 振り分け
@@ -284,7 +292,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  }
 	}
 	var DaiaCode = new Array("休日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "土曜ﾀﾞｲﾔ");
-	
+	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　DaiaCode" +"　"+ DaiaCode[NowWeek])
   }
   var ViaBunData = new Array();
   //経由と背景色のデータをCSVを配列から格納ここから
@@ -301,7 +309,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  }
 	}
 	ViaBunData = matrix;
-	console.log(ViaBunData)
+	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　ViaBunData" +"　経由文ファイル受信")
   }
   var RemarkBunData = new Array();
   //備考文のデータをCSVを配列から格納ここから
@@ -318,7 +326,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  }
 	}
 	RemarkBunData = matrix;
-	console.log(RemarkBunData)
+	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　RemarkBunData" +"　備考文ファイル受信")
   }
   var BusEND = "";
   //いまのデータをJSONを配列から格納ここから
@@ -330,7 +338,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	if (NowHour < 10) NowHour = "0" + NowHour;
 	var CheckTime = NowHour + "" + NowMin;
 	CheckTime = Number(CheckTime)
-	console.log(CheckTime)
 	DATA_LIST = DATA_LIST.replace(/[\n\r]/g, ""); // Ｂ
 	var BusInformationData = eval("(" + DATA_LIST + ")"); // Ｃ
 	RealTimeTable = new Array();
@@ -372,7 +379,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		  }
 		}
 		if (RealTimeTable[i][1] == ":") { //臨時ダイヤの取得
-		  console.log("臨時ダイヤ")
 		  TodayTimeTable.unshift(['臨時', '', '', '', '', '', '', '']);
 		  TodayTimeTable[0][1] = RealTimeTable[i][5];
 		  TodayTimeTable[0][2] = RealTimeTable[i][2];
@@ -388,7 +394,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	for (let j = 0; j < TodayTimeTable.length; j++) { //時間過ぎたら消す
 	  if (CheckTime > Number(TodayTimeTable[j][5].replace(/[^0-9]/g, ''))) {
 		TodayTimeTable.splice([j], 1);
-		console.log("消す")
 		j--
 	  }
 	}
@@ -420,6 +425,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  }
 	表示();
 	setTimeout(表示, 5000);
+	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　RealTimeTable" +"　バス情報ファイル受信")
   }
   var DispPattern = 0; //初期0
   function 表示() {
@@ -458,13 +464,8 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		document.getElementById('Time' + j).classList.remove("blink");
 		document.getElementById('Dist' + j).classList.remove("blink");
 		document.getElementById('Delay' + j).classList.remove("blink");
-		console.log("#発火")
-	  }
-
-		
+	  }	
 	}
-	console.log("#DispTableCount" + DispTableCount)
-	console.log("#NoneDispTableCount" + NoneDispTableCount)
 	for (let i = 0; i < DispTableCount; i++) {
 	  document.getElementById('Type' + i).innerHTML += TodayTimeTable[i][2];
 	  var DisplayTime = TodayTimeTable[i][1];
@@ -483,13 +484,10 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		DelayTime = DepPredictionTime.slice(-2) - DepPlannedTime.slice(-2);
 	  }
 	  var DepWill = 0;
-	  console.log(DepPredictionTime.slice(-2))
-	  console.log(NowMin)
 	  if (NowMin > DepPredictionTime.slice(-2)) { //あと何分で出る？
 		DepWill = DepPredictionTime.slice(-2) - NowMin + 60;
 	  } else {
 		DepWill = DepPredictionTime.slice(-2) - NowMin;
-		console.log(DepPredictionTime.slice(-2))
 	  }
 	  ViaBunData.forEach((index) => {
 		if (index[0] == TodayTimeTable[i][2] + TodayTimeTable[i][3]) {
@@ -510,7 +508,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		  if (index[0] == TodayTimeTable[i][4]) {
 			const marquee = document.getElementById("marquee" + i);
 			const spanElement = marquee.querySelector('span');
-			console.log(spanElement.textContent)
 			if (spanElement.textContent !== index[1]) {
 			  spanElement.innerHTML = index[1];
 			  startMarquee(marquee);
@@ -546,8 +543,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		  const After_spanElement = "このバスは" + TodayTimeTable[i][9] + TodayTimeTable[i][6] + "行き。" + TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。"
 		  if (spanElement.textContent !== After_spanElement) {
 			spanElement.innerHTML = After_spanElement;
-			console.log("#After_spanElement" + After_spanElement)
-			console.log("#After_spanElement" + spanElement.textContent)
 			startMarquee(marquee);
 		  }
 		} else {
@@ -557,8 +552,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		  const After_spanElement = "ただいま" + position + "つ前のバス停を出発。" + "このバスは" + TodayTimeTable[i][9] + TodayTimeTable[i][6] + "行き。" + TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。"
 		  if (spanElement.textContent !== After_spanElement) {
 			spanElement.innerHTML = After_spanElement;
-			console.log("#After_spanElement" + After_spanElement)
-			console.log("#After_spanElement" + spanElement.textContent)
 			startMarquee(marquee);
 		  }
 		}
@@ -575,7 +568,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		  if (index[0] == TodayTimeTable[i][4]) {
 			const marquee = document.getElementById("marquee" + i);
 			const spanElement = marquee.querySelector('span');
-			console.log(spanElement.textContent)
 			if (spanElement.textContent !== index[1]) {
 			  spanElement.innerHTML = index[1];
 			  startMarquee(marquee);
@@ -592,7 +584,6 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		document.getElementById('Type0').innerHTML = "情報要求失敗（自動的に再要求します）";
 	  }
 	}
-	console.log(TodayTimeTable)
 	if (DispPattern == 0) { //表示パターン
 	  DispPattern = 1;
 	} else if (DispPattern == 1) {

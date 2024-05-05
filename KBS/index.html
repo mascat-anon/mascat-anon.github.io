@@ -9,7 +9,7 @@
 <link rel="icon" href="toppg/favicon.ico">
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="toppg/apple-touch-icon-180x180.png" sizes="180x180">
-<link rel="stylesheet" href="./toppg/style.css?2024/04/16">
+<link rel="stylesheet" href="./toppg/style.css?2024/04/1d6">
 
 </head>
 <!-- Google tag (gtag.js) -->
@@ -24,7 +24,7 @@
       });
     }
     window.onload = function() {
-  
+      document.querySelectorAll('.marquee').forEach(startMarquee);
         const spinner = document.getElementById('loading');
   spinner.classList.add('loaded');
 
@@ -149,16 +149,16 @@
         <table>
           <tbody>
 <tr>
-              <td colspan="2"><a href="./common/"><img class="a-radius" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/title.jpg?" alt="松戸駅のバス発車表示" /></a></td>
+              <td colspan="2"><a href="./common/"><img class="img1" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/title.jpg?" alt="松戸駅のバス発車表示" /></a></td>
             </tr>
             <tr>
-              <td colspan="2"><img onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/map.jpg?" usemap="#ImageMap" alt="京成バスのマップ" /></td>
+              <td colspan="2"><img  class="img2" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/map.jpg?" usemap="#ImageMap" alt="京成バスのマップ" /></td>
             </tr>
             <tr>
-              <td><a href="matsudoeki.html"><img class="l-radius" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/matsudoeki.jpg?" alt="松戸駅のバス発車表示" /><svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 0 0">
+              <td><a href="matsudoeki.html"><img class="img3" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/matsudoeki.jpg?" alt="松戸駅のバス発車表示" /><svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 0 0">
               </svg>
                </img></a></div></td>
-              <td><a href="nichidaishika.html"><img class="r-radius" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/nichidaishika.jpg?" alt="日大歯科病院のバス発車表示" /><svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 0 0">
+              <td><a href="nichidaishika.html"><img class="img4" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/nichidaishika.jpg?" alt="日大歯科病院のバス発車表示" /><svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 0 0">
               </svg>
                </img></a></td>
             </tr>
@@ -169,9 +169,14 @@
 
 
       <div class="footer">
+        <div class="marquee" id="marquee1">
+          <span><img src="./toppg/info_bus.png" height="auto"  width="45px" style="padding-left: 45px;padding-right: 5px;vertical-align: bottom;" alt="代替テキスト"></span>
+        </div>
+        <div class="footer-box">
         <p><span class="text-tooltip" id="link-btn">Bus Information Board System をシェア<span class="tooltip-content">ホーム画面に追加すると便利です</span></span></p>
       <p>＜Version 3.74＞ Copyright © 2022-2024 T/M All Rights Reserved.</p>
         </div>
+      </div>
     </div>
 
 
@@ -186,8 +191,22 @@
     console.error(error);
   }
   });
-  
-  
+
+  function startMarquee(element) {
+  const speed = 1; // Adjust this value to change the scrolling speed
+  const containerWidth = element.offsetWidth;
+  const contentWidth = element.querySelector('span').offsetWidth;
+  let position = containerWidth;
+  function move() {
+    position -= speed;
+    element.querySelector('span').style.transform = `translateX(${position}px)`;
+    if (position < -contentWidth) {
+      position = containerWidth;
+    }
+    requestAnimationFrame(move);
+  }
+  move();
+}
   </script>
   <!-- 4月限定
     <script src="./toppg/particles/particles.min.js"></script>

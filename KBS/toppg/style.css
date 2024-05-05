@@ -43,7 +43,8 @@ body {
   z-index: 10;
 }
 
-img {
+
+.img1 {
   -webkit-user-drag: none;
   -moz-user-select: none;
   margin: none;
@@ -57,14 +58,53 @@ img {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
   box-shadow: 0 0 5px #cecece;
-}
-.a-radius {
 border-radius: 20px 20px 0px 0px; /* 左上・右上・右下・左下 */
 }
-.l-radius {
+.img2{
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  margin: none;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  vertical-align: bottom;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+  box-shadow: 0 0 5px #cecece;
+  }
+.img3 {
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  margin: none;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  vertical-align: bottom;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+  box-shadow: 0 0 5px #cecece;
 border-radius: 0px 0px 0px 20px; /* 左上・右上・右下・左下 */
 }
-.r-radius {
+.img4 {
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  margin: none;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  vertical-align: bottom;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+  box-shadow: 0 0 5px #cecece;
 border-radius: 0px 0px 20px 0px; /* 左上・右上・右下・左下 */
 }
 footer {
@@ -77,6 +117,7 @@ footer {
     color: #444;
 
 }
+
 /* ローディング画面 */
 #loading {
   width: 100vw;
@@ -248,15 +289,28 @@ padding: 80px 40px 20px 20px;
   left: 0;
   bottom: 0;
   width: 100%;
+  display: inline-block;
+}
+.footer-box {
+  display: inline-block;
+  width: 100%;
   font-size: 0.6rem;
-  padding-bottom:5px;
   color: #fff;
   text-align: center;
   background-color: #000d2b;
-
+height: auto;
+}
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  color: #000d2b ;
 }
 
-
+.marquee span {
+  display: inline-block;
+}
 
 .text-tooltip {
   color: #fff;
