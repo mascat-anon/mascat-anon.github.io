@@ -540,7 +540,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		if (TodayTimeTable[i][8] == "far") {
 		  const marquee = document.getElementById("marquee" + i);
 		  const spanElement = marquee.querySelector('span');
-		  const After_spanElement = "このバスは" + TodayTimeTable[i][9] + TodayTimeTable[i][6] + "行き。" + TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。"
+		  const After_spanElement = "このバスは" + TodayTimeTable[i][9] + TodayTimeTable[i][3] + "行き。" + TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。"
 		  if (spanElement.textContent !== After_spanElement) {
 			spanElement.innerHTML = After_spanElement;
 			startMarquee(marquee);
@@ -549,7 +549,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		  const marquee = document.getElementById("marquee" + i);
 		  const spanElement = marquee.querySelector('span');
 		  var position = TodayTimeTable[i][8].slice(9);
-		  const After_spanElement = "ただいま" + position + "つ前のバス停を出発。" + "このバスは" + TodayTimeTable[i][9] + TodayTimeTable[i][6] + "行き。" + TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。"
+		  const After_spanElement = "ただいま" + position + "つ前のバス停を出発。" + "このバスは" + TodayTimeTable[i][9] + TodayTimeTable[i][3] + "行き。" + TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。"
 		  if (spanElement.textContent !== After_spanElement) {
 			spanElement.innerHTML = After_spanElement;
 			startMarquee(marquee);
