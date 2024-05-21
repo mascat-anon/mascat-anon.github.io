@@ -8,6 +8,7 @@
 <body>
   <!-- partial:index.partial.html -->
             <div class="TraininfoTable">
+              <div class="TitleBox">金町駅下り時刻表</div>
             <table id='TraininfoTable'> </table>
           </div>
   <!-- partial -->
@@ -144,7 +145,7 @@
     var clrow = TimeTableData.length;
     tableEle.innerHTML = '';
     var tr = document.createElement('tr');
-    var thTitle = new Array("列番","定刻","行先","遅延", "方向", "位置", "ﾒﾄﾛ内列番",CheckTime1);
+    var thTitle = new Array("列車番号","定刻","行先","遅延（分）", "方向", "在線位置", "ﾒﾄﾛ内列番",CheckTime1);
     for (var j = 0; j < 7; j++) {
     var th = document.createElement('th');
     th.innerHTML = thTitle[j];
@@ -176,14 +177,25 @@
     body {
     margin: 0px;
     -webkit-text-size-adjust: 100%;
-    background-color: #777777;
+    background-color: #333;
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", HiraKakuProN-W3, -apple-system, BlinkMacSystemFont, "ＭＳ Ｐゴシック", "MS PGothic", Verdana, Arial, sans-serif;
+    font-weight: 400;
     }
     .TraininfoTable{
     overflow: auto;
     width: 100%;
     height: 100%;
-    background-color: #bebebe;
     
+    }
+    .TitleBox{
+    white-space: nowrap;
+    color: #fff;
+    border-right: 1px ;
+    background: #999;
+    top: 0;
+    padding: 5px;
+    font-size: 16px;
+    text-align: center;
     }
     .TraininfoTable table{
     margin: 0;
@@ -193,22 +205,30 @@
     }
     .TraininfoTable td{
     white-space: nowrap;
-    border-right: 1px solid #999;
     border-bottom: 1px solid #999;
-    background: #FFF;
     text-align: center;
-    padding: 0px 5px;
+    padding: 5px;
+    color: #fff;
+    font-size: 16px;
     }
+
     .TraininfoTable th{
     white-space: nowrap;
-    color: #0000FF;
-    border-right: 1px solid #999;
+    color: #fff;
+    border-right: 1px ;
     border-bottom: 1px solid #999;
-    background: #ddd;
+    background: #00bb85;
     position: sticky;
     top: 0;
     font-weight: normal;
-    padding: 0px 5px;
+    padding: 5px;
+    font-size: 13px;
+    }
+    .TraininfoTable td a:link{
+    color: #fff;
+    }
+    .TraininfoTable td a:visited {
+    color: #fff;
     }
     .TraininfoTable tr:hover td {
     background-color: #001545;
