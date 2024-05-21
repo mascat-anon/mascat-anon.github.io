@@ -127,7 +127,7 @@
     TimeTableData[i][7] =TimeTableData[i][1];
     for (let j = 0; j < TrainINFO_DATA.length; j++) {
     if (TimeTableData[i][0] == TrainINFO_DATA[j][0]) {
-    TimeTableData[i][3] = TrainINFO_DATA[j][1];
+    TimeTableData[i][3] =  TrainINFO_DATA[j][1];
     TimeTableData[i][4] = TrainINFO_DATA[j][2];
     TimeTableData[i][5] = TrainINFO_DATA[j][3];
     TimeTableData[i][6]  = TrainINFO_DATA[j][4];
@@ -205,6 +205,7 @@
     }
     .TraininfoTable td{
     white-space: nowrap;
+    border-right: 1px solid #999;
     border-bottom: 1px solid #999;
     text-align: center;
     padding: 5px;
@@ -216,6 +217,7 @@
     white-space: nowrap;
     color: #fff;
     border-right: 1px ;
+    border-right: 1px solid #999;
     border-bottom: 1px solid #999;
     background: #00bb85;
     position: sticky;
