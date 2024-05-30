@@ -617,6 +617,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 // 時刻表を作成
   function createTimetable(data) {
 	const tbody = document.getElementById('TimeTableView');
+	tbody.innerHTML = "";
 	const timeTable = {};
 	// データを整理
 	data.forEach(row => {
