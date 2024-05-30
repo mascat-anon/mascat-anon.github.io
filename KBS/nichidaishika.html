@@ -7,7 +7,7 @@
 <meta name="description" content="京成バス 松戸駅発 日大歯科病院方面行き" />
 <link rel="icon" href="toppg/favicon.ico">
 <link rel="apple-touch-icon" href="toppg/apple-touch-icon-180x180.png" sizes="180x180">
-<link rel="stylesheet" href="common/style.css?2024/04/30d">
+<link rel="stylesheet" href="common/style.css?2024/05/30">
 <script  src="common/script.js?2024/05/30"></script>
 <script>
       window.onload = function () {
@@ -114,12 +114,19 @@
       </div>
       <div class="tab"> <label>
         <input type="radio" name="tab" checked>
-        ダイヤモニタ
+        本日の時刻表
     </label>
       <div>
-        <div class="DataTable">
-          <table id='DaiaTable'> </table>
-        </div>
+        <div class="DataTable3"><table id="TimeTableView"> </table> </div>
+
+      </div> <label>
+        <input type="radio" name="tab">
+        ダイヤモニタ
+    </label>
+      <div>          <div class="DataTable">
+        <table id='DaiaTable'> </table>
+      </div>
+  
       </div> <label>
         <input type="radio" name="tab">
         運行情報一覧
@@ -128,12 +135,6 @@
         <div class="DataTable">
           <table id='TraininfoTable'> </table>
         </div>
-      </div> <label>
-        <input type="radio" name="tab">
-        予備
-    </label>
-      <div>
-        <div class="DataTable"> </div>
       </div>
     </div>
   </div>

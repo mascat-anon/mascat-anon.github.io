@@ -293,6 +293,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	}
 	var DaiaCode = new Array("休日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "土曜ﾀﾞｲﾔ");
 	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　DaiaCode" +"　"+ DaiaCode[NowWeek])
+	createTimetable(TodayTimeTable);
   }
   var ViaBunData = new Array();
   //経由と背景色のデータをCSVを配列から格納ここから
@@ -391,6 +392,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		}
 	  }
 	}
+	
 	for (let j = 0; j < TodayTimeTable.length; j++) { //時間過ぎたら消す
 	  if (CheckTime > Number(TodayTimeTable[j][5].replace(/[^0-9]/g, ''))) {
 		TodayTimeTable.splice([j], 1);
@@ -610,7 +612,63 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
   }
   var ScrollMessage_str ="";
   var ScrollMessage_Before ="";
+
+
+// 時刻表を作成
+  function createTimetable(data) {
+	const tbody = document.getElementById('TimeTableView');
+	const timeTable = {};
+	// データを整理
+	data.forEach(row => {
+		const time = row[1].split(':');
+		const hour = parseInt(time[0], 10);
+		const minute = time[1];
+		const line = row[2];
+		const destination = row[3];
+
+		if (!timeTable[hour]) {
+			timeTable[hour] = [];
+		}
+		timeTable[hour].push({ minute, line, destination });
+	});
+	for (const hour in timeTable) {
+					 const row = document.createElement('tr');
+		
+		const hourCell = document.createElement('th');
+		hourCell.className = 'side01';
+		hourCell.textContent = hour;
+		
+		const minuteCell = document.createElement('td');
+		timeTable[hour].forEach(entry => {
+			const div = document.createElement('div');
+			div.className = 'tablebox';
+			div.setAttribute('nowrap', '');
+			const span1 = document.createElement('span');
+			span1.className = 'type';
+			span1.textContent = entry.line;
+			const br = document.createElement('br');
+			const span2 = document.createElement('span');
+			span2.className = 'min';
+			span2.textContent = entry.minute;
+			const br2 = document.createElement('br');	
+			const span3 = document.createElement('span');
+			span3.className = 'distnation';
+			span3.textContent = entry.destination;
+			div.appendChild(span1);
+			div.appendChild(br);
+			div.appendChild(span2);
+			div.appendChild(br2);
+			div.appendChild(span3);
+			minuteCell.appendChild(div);
+		});
+		row.appendChild(hourCell);
+		row.appendChild(minuteCell);
+		tbody.appendChild(row);
+	}
+}
   function SetScroll() {
+
+  console.log(TodayTimeTable)
 	const timerId = setInterval(function () { //表示成功まで繰り返す
 	  if (ScrollParam_Force == 1) {
 		 ScrollMessage_str =ScrollMessage_Force;
