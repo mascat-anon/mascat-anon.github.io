@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#81B214"></head>
+
+  <script type="text/javascript">
+    const stations = [
+{Ecode:"E001",Staname:"京成上野"},
+{Ecode:"E003",Staname:"日暮里"},
+{Ecode:"E004",Staname:"新三河島"},
+{Ecode:"E005",Staname:"町屋"},
+{Ecode:"E006",Staname:"千住大橋"},
+{Ecode:"E007",Staname:"京成関屋"},
+{Ecode:"E008",Staname:"堀切菖蒲園"},
+{Ecode:"E009",Staname:"お花茶屋"},
+{Ecode:"E010",Staname:"青砥"},
+{Ecode:"E011",Staname:"京成高砂"},
+{Ecode:"E012",Staname:"京成小岩"},
+{Ecode:"E013",Staname:"江戸川"},
+{Ecode:"E014",Staname:"国府台"},
+{Ecode:"E015",Staname:"市川真間"},
+{Ecode:"E016",Staname:"菅野"},
+{Ecode:"E017",Staname:"京成八幡"},
+{Ecode:"E018",Staname:"鬼越"},
+{Ecode:"E019",Staname:"京成中山"},
+{Ecode:"E020",Staname:"東中山"},
+{Ecode:"E021",Staname:"京成西船"},
+{Ecode:"E022",Staname:"海神"},
+{Ecode:"E023",Staname:"京成船橋"},
+{Ecode:"E024",Staname:"大神宮下"},
+{Ecode:"E025",Staname:"船橋競馬場"},
+{Ecode:"E026",Staname:"谷津"},
+{Ecode:"E027",Staname:"京成津田沼"},
+{Ecode:"E028",Staname:"京成大久保"},
+{Ecode:"E029",Staname:"実籾"},
+{Ecode:"E030",Staname:"八千代台"},
+{Ecode:"E031",Staname:"京成大和田"},
+{Ecode:"E032",Staname:"勝田台"},
+{Ecode:"E033",Staname:"志津"},
+{Ecode:"E034",Staname:"ユーカリが丘"},
+{Ecode:"E035",Staname:"京成臼井"},
+{Ecode:"E036",Staname:"京成佐倉"},
+{Ecode:"E037",Staname:"大佐倉"},
+{Ecode:"E038",Staname:"京成酒々井"},
+{Ecode:"E039",Staname:"宗吾参道"},
+{Ecode:"E040",Staname:"公津の杜"},
+{Ecode:"E041",Staname:"京成成田"},
+{Ecode:"E043",Staname:""},
+{Ecode:"E044",Staname:"空港第2ビル"},
+{Ecode:"E045",Staname:"成田空港"},
+{Ecode:"E046",Staname:"東成田"},
+{Ecode:"E047",Staname:"押上"},
+{Ecode:"E048",Staname:"京成曳舟"},
+{Ecode:"E049",Staname:"八広"},
+{Ecode:"E050",Staname:"四ツ木"},
+{Ecode:"E051",Staname:"京成立石"},
+{Ecode:"E052",Staname:"柴又"},
+{Ecode:"E053",Staname:"京成金町"},
+{Ecode:"E054",Staname:"京成幕張本郷"},
+{Ecode:"E055",Staname:"京成幕張"},
+{Ecode:"E056",Staname:"検見川"},
+{Ecode:"E057",Staname:"京成稲毛"},
+{Ecode:"E058",Staname:"みどり台"},
+{Ecode:"E059",Staname:"西登戸"},
+{Ecode:"E060",Staname:"新千葉"},
+{Ecode:"E061",Staname:"京成千葉"},
+{Ecode:"E062",Staname:"千葉中央"},
+{Ecode:"E080",Staname:"大森台"},
+{Ecode:"E081",Staname:"学園前"},
+{Ecode:"E082",Staname:"おゆみ野"},
+{Ecode:"E083",Staname:"ちはら台"},
+{Ecode:"E084",Staname:"千葉寺"},
+{Ecode:"E090",Staname:"西馬込"},
+{Ecode:"E091",Staname:"泉岳寺"},
+{Ecode:"E092",Staname:"浅草橋"},
+{Ecode:"E093",Staname:"蔵前"},
+{Ecode:"E094",Staname:"浅草"},
+{Ecode:"E095",Staname:"本所吾妻橋"},
+{Ecode:"E100",Staname:"品川"},
+{Ecode:"E101",Staname:"京急川崎"},
+{Ecode:"E102",Staname:"神奈川新町"},
+{Ecode:"E103",Staname:"金沢文庫"},
+{Ecode:"E104",Staname:"堀ノ内"},
+{Ecode:"E105",Staname:"浦賀"},
+{Ecode:"E106",Staname:"横浜"},
+{Ecode:"E107",Staname:"子安"},
+{Ecode:"E110",Staname:"京急久里浜"},
+{Ecode:"E111",Staname:"三浦海岸"},
+{Ecode:"E112",Staname:"三崎口"},
+{Ecode:"E113",Staname:""},
+{Ecode:"E120",Staname:"逗子・葉山"},
+{Ecode:"E121",Staname:"羽田空港"},
+{Ecode:"E122",Staname:""},
+{Ecode:"E130",Staname:"芝山千代田"},
+{Ecode:"E131",Staname:"新津田沼"},
+{Ecode:"E132",Staname:"高根公団"},
+{Ecode:"E133",Staname:"鎌ヶ谷大仏"},
+{Ecode:"E134",Staname:"くぬぎ山"},
+{Ecode:"E135",Staname:"八柱"},
+{Ecode:"E136",Staname:"松戸"},
+{Ecode:"E140",Staname:"矢切"},
+{Ecode:"E141",Staname:"新鎌ヶ谷"},
+{Ecode:"E142",Staname:"西白井"},
+{Ecode:"E143",Staname:"千葉ﾆｭｰﾀｳﾝ中央"},
+{Ecode:"E144",Staname:"印西牧の原"},
+{Ecode:"E145",Staname:"印旛日本医大"},
+{Ecode:"E146",Staname:"成田湯川"},
+{Ecode:"E147",Staname:"根古屋信号場"},
+{Ecode:"E148",Staname:"東松戸"},
+{Ecode:"E149",Staname:"小室"},
+{Ecode:"E150",Staname:""},
+{Ecode:"E151",Staname:""},
+{Ecode:"E211",Staname:"新柴又"},
+{Ecode:"E212",Staname:"北国分"},
+{Ecode:"E213",Staname:"秋山"},
+{Ecode:"E214",Staname:"松飛台"},
+{Ecode:"E215",Staname:"大町"},
+{Ecode:"E216",Staname:"白井"},
+];
+    function ファイル読込(ファイル名, 読込後処理名) {
+    var ＸＭＬＨＲ = new XMLHttpRequest();
+    ＸＭＬＨＲ.onreadystatechange = function () {
+      if (ＸＭＬＨＲ.readyState == 4 && ＸＭＬＨＲ.status == 200) {
+        var 読込文 = ＸＭＬＨＲ.responseText;
+        var 読込後処理 = new Function("引数", "return " + 読込後処理名 + "(引数)");
+        読込後処理(読込文);
+      }
+    }
+    ＸＭＬＨＲ.open("GET", ファイル名, true);
+    ＸＭＬＨＲ.send(null);
+  }
+
+  function ＪＳＯＮ表示(読込文) {
+    var 駅番号 = new Array(); // Ａ
+    var 列番 = new Array();
+    var 番線 = new Array();
+    var 分延 = new Array();
+    var TS表示内容 = new Array();
+var EK表示内容 = new Array();
+    読込文 = 読込文.replace(/[\n\r]/g, ""); // Ｂ
+    var 学生表 = eval("(" + 読込文 + ")"); // Ｃ
+    var 時 = 学生表.UP[0].dt[0].hh;
+    var 分 = 学生表.UP[0].dt[0].mm;
+    var 秒 = 学生表.UP[0].dt[0].ss;
+    TS表示内容 += 時 + "時" + 　分 + "分" + 秒 + "秒 現在<br>";
+    if (typeof 学生表.TS === "undefined") {
+      TS表示内容 += "在線なし<br>";
+    } else if (学生表.TS.length) {
+      var 列車在駅数 = 学生表.TS.length;
+      for (var i = 0; i < 列車在駅数; i++) {
+        駅番号[i] = 学生表.TS[i].id; // Ｄ
+  
+        stations.forEach((station) => {
+	if(station.Ecode == 駅番号[i] ){
+    TS表示内容 += "[" + station.Staname + "] = ";
+	}
+});
+        var 列車本数 = 学生表.TS[i].tr.length;
+        for (var j = 列車本数- 1; j >= 0 ; j--) {// 到着が古い方を手前にしたいため
+          列番[j] = 学生表.TS[i].tr[j].no;
+          番線[j] = 学生表.TS[i].tr[j].bs;
+          分延[j] = 学生表.TS[i].tr[j].dl;
+          
+          TS表示内容 += "[" + 列番[j] + "レ/#" + 番線[j] + "/" + 分延[j] + "]";
+        }
+        TS表示内容 += "<br>";
+      }
+      TS表示内容 += "列車在駅本数=" + 列車在駅数 + "<br>";
+    }
+    
+    EK表示内容 += 時 + "時" + 　分 + "分" + 秒 + "秒 現在<br>";
+    if (typeof 学生表.EK === "undefined") {
+      EK表示内容 += "在線なし<br>";
+    } else if (学生表.EK.length) {
+      var 列車在駅数 = 学生表.EK.length;
+      for (var i = 0; i < 列車在駅数; i++) {
+        駅番号[i] = 学生表.EK[i].id; // Ｄ
+        EK表示内容 += "駅番号[" + i + "] = " + 駅番号[i];
+ 
+        var 列車本数 = 学生表.EK[i].tr.length;
+        for (var j = 列車本数- 1; j >= 0 ; j--) {// 到着が古い方を手前にしたいため
+          列番[j] = 学生表.EK[i].tr[j].no;
+          番線[j] = 学生表.EK[i].tr[j].bs;
+          分延[j] = 学生表.EK[i].tr[j].dl;
+          EK表示内容 += "[" + 列番[j] + "レ/#" + 番線[j] + "/" + 分延[j] + "]";
+        }
+        EK表示内容 += "<br>";
+      }
+      EK表示内容 += "列車駅間本数=" + 列車在駅数 + "<br>";
+    }
+    
+    document.getElementById('列車在駅').innerHTML = TS表示内容;
+        document.getElementById('駅間在線').innerHTML = EK表示内容;
+  }
+   
+  setInterval("ファイル読込('https://zaisen.tid-keisei.jp/data/traffic_info.json', 'ＪＳＯＮ表示')", 1000);
+    
+    
+
+</script>
+
+</head>
+<body>
+
+  
+    <div class="container-box"> 
+<div class="separate-box">
+    <div class="separate-box-left" id="列車在駅">列車在駅データ要求中...</div>
+    <div class="separate-box-right" id="駅間在線">駅間在線データ要求中...</div>
+  </div>
+      </div>
+<!-- partial -->
+
+
+
+<!-- partial -->
+
+
+
+
+<style>
+    html,body{
+        height: 100%;
+    }
+    body {  
+       margin: 0px;
+       -webkit-text-size-adjust: 100%;
+    }
+.container-box {
+  width: 100%;
+  height: 100%;
+  background-color: black; /* 視覚化のための背景色 */
+display: flex;
+      align-items: center;
+      justify-content: center;
+}
+.separate-box {
+  max-width: 1920px;
+  width: 100%;
+  max-height: 1080px;
+  height: 100%;
+  margin: 0; /* 要素の外側の余白を0に定義 */
+  padding: 0; /* 要素の内側の余白を0に定義 */
+  background-color: #000; /* 視覚化のための背景色 */
+}
+.separate-box-left {
+  height: 100%;
+  float: left;
+  width: 50%; /* 要素の幅を50%に定義 */
+  background-color: #aaa; /* 視覚化のための背景色 */
+    overflow-x: auto;
+}
+.separate-box-right {
+    height: 100%;
+  float: right;
+  width: 50%; /* 要素の幅を50%に定義 */
+  background-color: #ddd; /* 視覚化のための背景色 */
+    overflow-x: auto;
+}
+</style>
+</body>
+</html>
