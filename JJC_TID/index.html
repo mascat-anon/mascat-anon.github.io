@@ -62,10 +62,14 @@
     for (var j = 0; j < column; j++) {
     if (columnDATA[j] === undefined) {
     matrix[i][j] = ""; // Ｄ
-    }else{
+    }else
+    {
     matrix[i][j] = columnDATA[j]; // Ｄ
     }
     }
+      disp_H =matrix[i][1].slice( 0, -2 );
+      disp_M=matrix[i][1].slice( -2 );
+      matrix[i][1]=disp_H+':'+disp_M;
     }
     TimeTableData = matrix;
     console.log(TimeTableData)
@@ -157,9 +161,7 @@
     var CheckTime2 = Number(TimeTableData[i][7])  ;
     if (CheckTime1 <= CheckTime2) {
     var tr = document.createElement('tr');
-      disp_H =TimeTableData[i][1].slice( 0, -2 );
-      disp_M=TimeTableData[i][1].slice( -2 );
-      TimeTableData[i][1]=disp_H+':'+disp_M;
+      
     for (var j = 0; j < 7; j++) {
     var td = document.createElement('td');
     td.innerHTML = TimeTableData[i][j];
