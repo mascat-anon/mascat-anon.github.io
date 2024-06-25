@@ -125,9 +125,7 @@
     }
     for (var i = 0; i < TimeTableData.length; i++) {
     TimeTableData[i][7] =TimeTableData[i][1];
-      disp_H =TimeTableData[i][1].slice( 0, -2 );
-      disp_M=TimeTableData[i][1].slice( -2 );
-      TimeTableData[i][1]=disp_H+':'+disp_M;
+
     for (let j = 0; j < TrainINFO_DATA.length; j++) {
     if (TimeTableData[i][0] == TrainINFO_DATA[j][0]) {
     TimeTableData[i][3] =  TrainINFO_DATA[j][1];
@@ -159,6 +157,9 @@
     var CheckTime2 = Number(TimeTableData[i][7])  ;
     if (CheckTime1 <= CheckTime2) {
     var tr = document.createElement('tr');
+      disp_H =TimeTableData[i][1].slice( 0, -2 );
+      disp_M=TimeTableData[i][1].slice( -2 );
+      TimeTableData[i][1]=disp_H+':'+disp_M;
     for (var j = 0; j < 7; j++) {
     var td = document.createElement('td');
     td.innerHTML = TimeTableData[i][j];
