@@ -260,14 +260,18 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	let wi = 0;
 	let si = 0;
 	let hi = 0;
+	var data_info_01 = document.getElementById('data_info_01');
 	if (Holidayflag) { //休日判定外部ソース
 	  NowWeek = 0;
 	  
 	  console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　Holidayflag" +"　祝日判定")
+
+	  data_info_01.innerHTML = '（祝日ﾓｰﾄﾞ）';
 	} else {
 	  NowWeek = NowTimeSource.getDay();
 	  
 	  console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　Holidayflag" +"　通常判定")
+	  data_info_01.innerHTML = '（通常ﾓｰﾄﾞ）';
 	}
 	if (NowWeek == 0) { //  Holiday
 	  for (let i = 0; i < matrix.length; i++) { // 振り分け
@@ -294,6 +298,8 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	var DaiaCode = new Array("休日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "土曜ﾀﾞｲﾔ");
 	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　DaiaCode" +"　"+ DaiaCode[NowWeek])
 	createTimetable(TodayTimeTable);
+	var data_info_02 = document.getElementById('data_info_02');
+	data_info_02.innerHTML = DaiaCode[NowWeek];
   }
   var ViaBunData = new Array();
   //経由と背景色のデータをCSVを配列から格納ここから

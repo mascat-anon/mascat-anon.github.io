@@ -464,7 +464,7 @@ overflow: auto;
 
 .button_solid015 {
   text-align: center;
-  height:50%;
+  height:40%;
 }
 .button_solid015 p {
   margin-bottom: 5px;
@@ -509,7 +509,13 @@ font-size: 20px;
   text-decoration: none;
   border-radius: 20px;
 }
+.data_info {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  height:20%;
 
+}
 .tab {
 display: flex;
 flex-wrap: wrap;
