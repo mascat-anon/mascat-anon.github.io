@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webclassプリント化ツール</title>
+    <style>
+
+        body {
+            font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+        }
+        .input-area, .result-area {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .input-area {
+            border-right: 2px solid #ccc;
+        }
+        textarea {
+            width: 100%;
+            height: 95%;
+            border: none;
+            box-sizing: border-box;
+            font-family: monospace;
+            font-size: 16px;
+        }
+        .ui-content {
+            margin: 0px;
+            border-top: solid 2px;
+            min-height: 50vh;
+            box-sizing: border-box;
+        }
+        h2 {
+            font-size: 20px;
+            margin: 0px;
+        }
+        h3 {
+            margin: 0px;
+        }
+        .after-correct {
+            color: red;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #resultContent, #resultContent * {
+                visibility: visible;
+            }
+            #resultContent {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-area">
+            <textarea id="inputText" placeholder="設問結果 / 解説内の各ページの＜div data-role='content' class='ui-content' role='main'＞を貼り付け"></textarea>
+            <button id="submitBtn">結果を表示</button><button onclick="window.print();">印刷プレビュー</button>
+        </div>
+        <div class="result-area">
+            <div id="resultContent" class="">
+                <!-- 結果がここに表示されます -->
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var submitBtn = document.getElementById('submitBtn');
+            var resultContent = document.getElementById('resultContent');
+            
+            submitBtn.addEventListener('click', function() {
+                var inputText = document.getElementById('inputText').value;
+                
+                // 結果表示エリアに入力されたテキストを表示
+                resultContent.innerHTML = inputText;
+                
+                // <h3>タグを検出して次の要素にスタイルを適用
+                var h3Elements = resultContent.querySelectorAll('h3');
+                h3Elements.forEach(function(h3) {
+                    if (h3.textContent === '正解' || h3.textContent === '解説') {
+                        var nextElement = h3.nextElementSibling;
+                        if (nextElement) {
+                            nextElement.classList.add('after-correct');
+                        }
+                    }
+                    if (h3.textContent === '回答') {
+                        var nextElement = h3.nextElementSibling;
+                        // <h3>回答</h3> とその次の <ul> や <li> を削除
+                        h3.remove();
+                        while (nextElement && (nextElement.tagName === 'UL' || nextElement.tagName === 'LI')) {
+                            var nextNextElement = nextElement.nextElementSibling;
+                            nextElement.remove();
+                            nextElement = nextNextElement;
+                        }
+                    }
+                });
+
+                // <span>タグを検出して指定された文字列を削除
+                var spans = resultContent.querySelectorAll('span');
+                spans.forEach(function(span) {
+                    if (span.textContent === '不正解です' || span.style.color === '正解です') {
+                        span.remove();
+                    }
+                });
+                
+            });
+        });
+    </script>
+</body>
+</html>
