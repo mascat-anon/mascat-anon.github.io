@@ -508,6 +508,18 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		  document.getElementById('Dist' + i).style.color = index[2];
 		}
 	  });
+
+	  if (DispPattern == 0) {}
+	  else if (DispPattern == 1) {
+
+	  }
+	  else if (DispPattern == 2) {
+		if (TodayTimeTable[i][4] == "0"){
+			document.getElementById('Time' + i).innerHTML = "当バス停始発"
+			document.getElementById('Time' + i).style.color = '#00FFFF';
+		}
+	  }
+
 	  if (TodayTimeTable[i][0] == "臨時") { //臨時表示
 		document.getElementById('Delay' + i).innerHTML = "臨時運行予定";
 		document.getElementById('Delay' + i).style.color = '#FF00FF';
@@ -522,6 +534,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 			}
 		  }
 		});
+
 	  } else if (TodayTimeTable[i][0] == "当日") { //当日データが取れているものだけ吐く
 		if (DispPattern == 0) { //表示パターン
 		  if (DelayTime > 15) {
@@ -544,37 +557,52 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		  } else {
 			document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
 		  }
-		}
+		}else if (DispPattern == 2) {
+			if (TodayTimeTable[i][8] == "far") {
+				if (DelayTime > 15) {
+					document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
+				  } else if (DelayTime > 0) {
+					document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
+				  } else {
+					document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
+				  }
+			}else{
+				var position = TodayTimeTable[i][8].slice(9);
+				document.getElementById('Delay' + i).innerHTML = position + "つ前のバス停出発";
+				document.getElementById('Delay' + i).style.color = '';
+			}
+		  }
 		
-		if (TodayTimeTable[i][8] == "far") {
-		  RemarkBunData.forEach((index) => {
-			if (index[0] == TodayTimeTable[i][4]) {
-			  const marquee = document.getElementById("marquee" + i);
-			  const spanElement = marquee.querySelector('span');
-			  if (spanElement.textContent !== index[1]) {
-				const After_spanElement =  index[1].replace(/（Destination）/g,TodayTimeTable[i][3])+ TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。";
-				if (spanElement.textContent !== After_spanElement) {
-				  spanElement.innerHTML = After_spanElement;
-				  startMarquee(marquee);
+		
+		  if (TodayTimeTable[i][8] == "far") {
+			RemarkBunData.forEach((index) => {
+			  if (index[0] == TodayTimeTable[i][4]) {
+				const marquee = document.getElementById("marquee" + i);
+				const spanElement = marquee.querySelector('span');
+				if (spanElement.textContent !== index[1]) {
+				  const After_spanElement =  index[1].replace(/（Destination）/g,TodayTimeTable[i][3])+"　　"+ TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。";
+				  if (spanElement.textContent !== After_spanElement) {
+					spanElement.innerHTML = After_spanElement;
+					startMarquee(marquee);
+				  }
 				}
 			  }
-			}
-		  });
-		} else {
-		  var position = TodayTimeTable[i][8].slice(9);
-		  RemarkBunData.forEach((index) => {
-			if (index[0] == TodayTimeTable[i][4]) {
-			  const marquee = document.getElementById("marquee" + i);
-			  const spanElement = marquee.querySelector('span');
-			  if (spanElement.textContent !== index[1]) {
-				const After_spanElement =  "ただいま" + position + "つ前のバス停を出発。" +index[1].replace(/（Destination）/g,TodayTimeTable[i][3])+ TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。";
-				if (spanElement.textContent !== After_spanElement) {
-				  spanElement.innerHTML = After_spanElement;
-				  startMarquee(marquee);
+			});
+		  } else {
+			var position = TodayTimeTable[i][8].slice(9);
+			RemarkBunData.forEach((index) => {
+			  if (index[0] == TodayTimeTable[i][4]) {
+				const marquee = document.getElementById("marquee" + i);
+				const spanElement = marquee.querySelector('span');
+				if (spanElement.textContent !== index[1]) {
+				  const After_spanElement =  "ただいま" + position + "つ前のバス停を出発しました。"+"　　" +index[1].replace(/（Destination）/g,TodayTimeTable[i][3])+"　　"+ TodayTimeTable[i][6] + "には" + TodayTimeTable[i][7] + "ごろ到着予定です。";
+				  if (spanElement.textContent !== After_spanElement) {
+					spanElement.innerHTML = After_spanElement;
+					startMarquee(marquee);
+				  }
 				}
 			  }
-			}
-		  });
+			});
 		}
 		if (DepWill < 2) { //出発N分切るとだす
 		  document.getElementById('Delay' + i).innerHTML = "まもなく出発";
@@ -609,10 +637,12 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  }
 	}
 	if (DispPattern == 0) { //表示パターン
-	  DispPattern = 1;
-	} else if (DispPattern == 1) {
-	  DispPattern = 0;
-	}
+		DispPattern = 1;
+	  } else if (DispPattern == 1) {
+		DispPattern = 2;
+	  }else if (DispPattern == 2) {
+		  DispPattern = 0;
+		}
 	//平体のフィッテング
 	Choootype();
   }
