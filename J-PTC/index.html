@@ -127,15 +127,15 @@
     }
     for (var i = 0; i < TimeTableData.length; i++) {
     TimeTableData[i][9] =TimeTableData[i][1];
-
+TimeTableData[i][7]  = 'r';
+        TimeTableData[i][8]  = '';
     for (let j = 0; j < TrainINFO_DATA.length; j++) {
     if (TimeTableData[i][0] == TrainINFO_DATA[j][0]) {
     TimeTableData[i][3] =  TrainINFO_DATA[j][1];
     TimeTableData[i][4] = TrainINFO_DATA[j][2];
     TimeTableData[i][5] = TrainINFO_DATA[j][3];
     TimeTableData[i][6]  = TrainINFO_DATA[j][4];
-      TimeTableData[i][7]  = 'r';
-        TimeTableData[i][8]  = '';
+      
     var  time1=TimeTableData[i][1]
     var minutesToAdd = TrainINFO_DATA[j][1];
     TimeTableData[i][9] =addTime(time1, minutesToAdd);
