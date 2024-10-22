@@ -126,7 +126,7 @@
     }
     }
     for (var i = 0; i < TimeTableData.length; i++) {
-    TimeTableData[i][7] =TimeTableData[i][1];
+    TimeTableData[i][9] =TimeTableData[i][1];
 
     for (let j = 0; j < TrainINFO_DATA.length; j++) {
     if (TimeTableData[i][0] == TrainINFO_DATA[j][0]) {
@@ -136,7 +136,7 @@
     TimeTableData[i][6]  = TrainINFO_DATA[j][4];
     var  time1=TimeTableData[i][1]
     var minutesToAdd = TrainINFO_DATA[j][1];
-    TimeTableData[i][7] =addTime(time1, minutesToAdd);
+    TimeTableData[i][9] =addTime(time1, minutesToAdd);
     }
     }}
     //テーブル作成クエリ
@@ -148,19 +148,19 @@
     var clrow = TimeTableData.length;
     tableEle.innerHTML = '';
     var tr = document.createElement('tr');
-    var thTitle = new Array("列車番号","定刻","行先","遅延(分)", "方向", "在線位置", "ﾒﾄﾛ内列番",CheckTime1);
-    for (var j = 0; j < 7; j++) {
+    var thTitle = new Array("列車番号","定刻","行先","遅延(分)", "方向", "在線位置", "ﾒﾄﾛ内列番",,,CheckTime1);
+    for (var j = 0; j < 8; j++) {
     var th = document.createElement('th');
     th.innerHTML = thTitle[j];
     tr.appendChild(th);
     }
     tableEle.appendChild(tr);
     for (var i = 0; i < clrow; i++) {
-    var CheckTime2 = Number(TimeTableData[i][7].slice( 0, -3 )+TimeTableData[i][7].slice( -2 ))  ;
+    var CheckTime2 = Number(TimeTableData[i][9].slice( 0, -3 )+TimeTableData[i][9].slice( -2 ))  ;
     if (CheckTime1 <= CheckTime2) {
     var tr = document.createElement('tr');
       
-    for (var j = 0; j < 7; j++) {
+    for (var j = 0; j < 8; j++) {
     var td = document.createElement('td');
     td.innerHTML = TimeTableData[i][j];
     if (0 < TimeTableData[i][3]) {
