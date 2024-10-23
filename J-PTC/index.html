@@ -154,8 +154,11 @@
     th.innerHTML = thTitle[j];
     tr.appendChild(th);
     }
+    console.log(TimeTableData)
+      
     tableEle.appendChild(tr);
     for (var i = 0; i < clrow; i++) {
+  
     var CheckTime2 = Number(TimeTableData[i][8].slice( 0, -3 )+TimeTableData[i][8].slice( -2 ))  ;
     if (CheckTime1 <= CheckTime2) {
     var tr = document.createElement('tr');
