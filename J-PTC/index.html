@@ -156,14 +156,14 @@
     }
     tableEle.appendChild(tr);
     for (var i = 0; i < clrow; i++) {
-    var CheckTime2 = Number(TimeTableData[i][7].slice( 0, -3 )+TimeTableData[i][7].slice( -2 ))  ;
+    var CheckTime2 = Number(TimeTableData[i][8].slice( 0, -3 )+TimeTableData[i][8].slice( -2 ))  ;
     if (CheckTime1 <= CheckTime2) {
     var tr = document.createElement('tr');
       
     for (var j = 0; j < 8; j++) {
     var td = document.createElement('td');
     td.innerHTML = TimeTableData[i][j];
-    if (0 < TimeTableData[i][3]) {
+    if (0 < TimeTableData[i][4]) {
     tr.style.color="red";
     }
     tr.appendChild(td);
