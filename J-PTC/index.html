@@ -155,7 +155,7 @@
     tableEle.innerHTML = '';
     var tr = document.createElement('tr');
     var thTitle = new Array("列車番号","定刻","行先", "松戸開扉向","遅延", "方向", "在線位置", "ﾒﾄﾛ内列番",CheckTime1);
-    document.getElementById("updatetime").innerHTML=NowHour+":"+NowMin+":"+NowSec;
+    document.getElementById("updatetime").innerHTML=NowHour+":"+NowMin+":"+NowSec+"更新";
     for (var j = 0; j < 8; j++) {
     var th = document.createElement('th');
     th.innerHTML = thTitle[j];
@@ -215,8 +215,9 @@
   left: 10px;
   font-size: 16px;
   margin: 0;
-  border: 1px solid #fff;
+  outline: 1px solid #fff;
   border-radius: 2px;
+  box-sizing:border-box;
 }
     .TableBox{
       overflow: auto;
