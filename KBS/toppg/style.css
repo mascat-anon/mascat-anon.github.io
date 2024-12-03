@@ -1,15 +1,21 @@
+@font-face {
+  font-family: "KBS-Disp-JP";
+  font-style: normal;
+  src: url("../common/KBS-Disp-JP.woff") format("woff");
+  font-display: swap;
+}
 html,
 body {
   height: 100%;
   width: 100%;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: "KBS-Disp-JP", sans-serif;
 }
 
 body {
 
   margin: 0px;
   -webkit-text-size-adjust: 100%;
-
+  user-select: none;
   background-color: #dcdcdc;
 }
 #particles-js{
@@ -59,6 +65,7 @@ position: relative;
 padding-bottom: 100px;
 }
 .bus-stop {
+  cursor: pointer;
 display: flex;
 justify-content: center;
 align-items: center;

@@ -80,12 +80,10 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
   let progress = 0;
 
   function updateProgress() {
-    progress += 33.33;
-    progressBar.style.width = progress + '%';
-    percent.innerText = Math.round(progress) + '%';
+    progress= 100;
 
-    // 100%になったらメッセージ表示
-    if (progress >= 100) {
+    // 100%になったら
+    if (progress = 100) {
 		document.getElementById("loading-screen").classList.add('loaded');
     }
   }
@@ -314,8 +312,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　DaiaCode" +"　"+ DaiaCode[NowWeek])
 	createTimetable(TodayTimeTable);
 	var data_info_02 = document.getElementById('data_info_02');
-	data_info_02.innerHTML = DaiaCode[NowWeek];
-	updateProgress();  //進捗1  
+	data_info_02.innerHTML = DaiaCode[NowWeek]; 
 }
   var ViaBunData = new Array();
   //経由と背景色のデータをCSVを配列から格納ここから
@@ -333,7 +330,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	}
 	ViaBunData = matrix;
 	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　ViaBunData" +"　経由文ファイル受信")
-	updateProgress();  //進捗２  
+
 }
   var RemarkBunData = new Array();
   //備考文のデータをCSVを配列から格納ここから
@@ -351,7 +348,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	}
 	RemarkBunData = matrix;
 	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　RemarkBunData" +"　備考文ファイル受信")
-	updateProgress();  //進捗３
+
 }
   var BusEND = "";
   //いまのデータをJSONを配列から格納ここから
@@ -450,6 +447,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		tableEle.appendChild(tr);
 	  }
 	表示();
+	updateProgress();  //進捗３
 	setTimeout(表示, 5000);
 	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　RealTimeTable" +"　バス情報ファイル受信")
   }

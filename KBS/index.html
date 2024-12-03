@@ -50,16 +50,16 @@
  </img>
 </div>
   </head>
-  <body>
+  <body onSelectStart="return false;" oncontextmenu="return false;" >
       <div class="container">
-          <div class="map">  <img  class="mainimg" onSelectStart="return false;" oncontextmenu="return false;" src="./toppg/map.svg"  alt="京成バスのマップ" />
+          <div class="map">  <img  class="mainimg" src="./toppg/map.svg"  alt="京成バスのマップ" />
             <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 0 0"></svg>
           </div>
           <div class="select-container">
             <div class="bus-stop-container">
               <div class="line-front"></div>
                 <!-- バス停1 -->
-                <div class="bus-stop" onClick="location.href='matsudoeki.html'">松戸駅 <span style="writing-mode: vertical-rl;font-size: 14px;">出発</span></div>
+                <div class="bus-stop"  onClick="location.href='matsudoeki.html'";>松戸駅 <span style="writing-mode: vertical-rl;font-size: 14px;margin-bottom: 0.05vw;">出発</span></div>
         
                 <!-- バス停間の線と所要時間 -->
                 <div class="line">
@@ -80,7 +80,7 @@
                 </div>
         
                 <!-- バス停2 -->
-                <div class="bus-stop" onClick="location.href='nichidaishika.html'">日大歯科病院 <span style="writing-mode: vertical-rl;font-size: 14px;">出発</span></div>
+                <div class="bus-stop" onClick="location.href='nichidaishika.html'">日大歯科病院 <span style="writing-mode: vertical-rl;font-size: 14px;margin-bottom:0.05vw;">出発</span></div>
               <div class="line-tail"></div>
               <div class="bus-stop-text">南流山駅・江戸川台駅</div>
             </div>
