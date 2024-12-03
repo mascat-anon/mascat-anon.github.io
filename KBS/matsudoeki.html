@@ -7,7 +7,7 @@
 <meta name="description" content="京成バス 松戸駅発 日大歯科病院方面行き" />
 <link rel="icon" href="toppg/favicon.ico">
 <link rel="apple-touch-icon" href="toppg/apple-touch-icon-180x180.png" sizes="180x180">
-<link rel="stylesheet" href="common/style.css?2024/10/31eee">
+<link rel="stylesheet" href="common/style.css?2024/10/fd">
 <script  src="common/script.js?2024/10/111"></script>
 <script>
   window.onload = function () {
@@ -103,44 +103,54 @@
 <div class="modal-wrapper" id="modal-01"> <a href="JavaScript:" class="modal-overlay" onclick="toggleModal()"></a>
   <div class="modal-window">
     <div class="modal-content">
-      <div class="button_box">
-        <div class="button_solid015">
-          <p>ほかのバス停を選択</p> <a class="" href="./">バス停選択画面</a> 
-        </div>
-        <div class="button_solid015">
-          <p>作者コンテンツ一覧へ</p> <a href="../">トップページ</a> 
-        </div>
-        <div class="data_info">
-          
-          <span id="data_info_02"></span>
-          <span id="data_info_01"></span>
-        </div>
-      </div>
-      <div class="tab"> <label>
-          <input type="radio" name="tab" checked>
-          <span>本日の時刻表</span>
-      </label>
-        <div>
-          <div class="DataTable3"><table id="TimeTableView"> </table> </div>
 
-        </div> <label>
-          <input type="radio" name="tab">
-          ダイヤモニタ
-      </label>
-        <div>          <div class="DataTable">
-          <table id='DaiaTable'> </table>
-        </div>
-    
-        </div> <label>
-          <input type="radio" name="tab">
-          運行情報一覧
-      </label>
-        <div>
-          <div class="DataTable">
-            <table id='TraininfoTable'> </table>
+      <div class="tab"> 
+        <label>
+        <input type="radio" name="tab" checked>
+        操作
+    </label>
+      <div>
+        <div class="DataTable">      <div class="button_box">
+          <div class="button_solid015">
+            <p>ほかのバス停を選択</p> <a class="" href="./">バス停選択画面</a> 
           </div>
+          <div class="button_solid015">
+            <p>作者コンテンツ一覧へ</p> <a href="../">トップページ</a> 
+          </div>
+          <div class="data_info">
+            
+            <span id="data_info_02"></span>
+            <span id="data_info_01"></span>
+          </div>
+        </div></div>
+
+      </div> 
+      <label>
+        <input type="radio" name="tab" >
+        時刻表
+    </label>
+      <div>
+        <div class="DataTable3"><table id="TimeTableView"> </table> </div>
+
+      </div> 
+      <label>
+        <input type="radio" name="tab">
+        モニタ
+    </label>
+      <div>          <div class="DataTable">
+        <table id='DaiaTable'> </table>
+      </div>
+  
+      </div> <label>
+        <input type="radio" name="tab">
+        運行情報
+    </label>
+      <div>
+        <div class="DataTable">
+          <table id='TraininfoTable'> </table>
         </div>
       </div>
+    </div>
     </div>
     <div class="modal-name">メニュー画面</div> <a href="JavaScript:" class="modal-close" onclick="toggleModal()">×</a> </div>
 </div>
