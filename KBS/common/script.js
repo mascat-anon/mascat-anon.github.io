@@ -57,6 +57,8 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
   };
   Choootype();
   
+
+
   function startMarquee(element) {
 	const speed = 1.8; // Adjust this value to change the scrolling speed
 	const containerWidth = element.offsetWidth;
@@ -453,6 +455,11 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
   }
   var DispPattern = 0; //初期0
   function 表示() {
+	if (stopValue === 'matsudo') {
+		document.getElementById('Displayname').innerHTML  = "京成バス 松戸駅出発";
+	  } else if (stopValue === 'nichidai') {
+			document.getElementById('Displayname').innerHTML  = "京成バス 日大歯科病院出発";
+	  } 
 	for (let j = 0; j < 5; j++) { //初期状態にもどしてく
 	  document.getElementById('Type' + j).innerHTML = "";
 	  document.getElementById('TypeBox' + j).style.backgroundColor = "";

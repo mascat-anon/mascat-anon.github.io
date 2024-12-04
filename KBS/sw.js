@@ -1,5 +1,5 @@
 // Cache name
-const CACHE_NAME = 'Bus Information Board System-caches-v3.84.5';
+const CACHE_NAME = 'Bus Information Board System-caches-v3.85';
 // Cache targets
 const urlsToCache = [
   './',
