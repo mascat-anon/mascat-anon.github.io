@@ -463,7 +463,9 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		document.getElementById('Displayname').innerHTML  = "京成バス 松戸駅出発";
 	  } else if (stopValue === 'nichidai') {
 			document.getElementById('Displayname').innerHTML  = "京成バス 日大歯科病院出発";
-	  } 
+	  } else if (stopValue === 'nagareyama') {
+		document.getElementById('Displayname').innerHTML  = "京成バス 南流山駅出発（松戸方面）";
+  } 
 	for (let j = 0; j < 5; j++) { //初期状態にもどしてく
 	  document.getElementById('Type' + j).innerHTML = "";
 	  document.getElementById('TypeBox' + j).style.backgroundColor = "";
