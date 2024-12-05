@@ -711,7 +711,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		timeTable[hour].forEach(entry => {
 			const div = document.createElement('div');
 			div.className = 'tablebox';
-			div.style.border = "solid 4px "; 
+			div.style.border = "solid 3px "; 
 			div.style.borderColor  = entry.color;
 			div.setAttribute('nowrap', '');
 			const span1 = document.createElement('span');
