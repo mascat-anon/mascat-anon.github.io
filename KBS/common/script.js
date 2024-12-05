@@ -253,6 +253,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	SetScroll();
   }
   var TodayTimeTable = new Array();
+  var TodayTimeTableMaster = new Array();
   //本日のデータをCSVを配列から格納ここから
   function CSV_TimeTable(dataArr) {
 	var matrix = new Array();
@@ -292,6 +293,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  for (let i = 0; i < matrix.length; i++) { // 振り分け
 		if (matrix[i][0] == '休日') {
 		  TodayTimeTable[hi] = matrix[i];
+		  TodayTimeTableMaster[hi] = matrix[i];
 		  hi++;
 		}
 	  }
@@ -299,6 +301,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  for (let i = 0; i < matrix.length; i++) { // 振り分け
 		if (matrix[i][0] == '土曜') {
 		  TodayTimeTable[si] = matrix[i];
+		  TodayTimeTableMaster[si] = matrix[i];
 		  si++;
 		}
 	  }
@@ -306,13 +309,14 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	  for (let i = 0; i < matrix.length; i++) { // 振り分け
 		if (matrix[i][0] == '平日') {
 		  TodayTimeTable[wi] = matrix[i];
+		  TodayTimeTableMaster[wi] = matrix[i];
 		  wi++;
 		}
 	  }
 	}
 	var DaiaCode = new Array("休日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "平日ﾀﾞｲﾔ", "土曜ﾀﾞｲﾔ");
 	console.log(""+NowYear+"/"+NowMonth+"/"+ NowDay+"　"+ NowHour +":"+ NowMin +":"+NowSec+"　DaiaCode" +"　"+ DaiaCode[NowWeek])
-	createTimetable(TodayTimeTable);
+	
 	var data_info_02 = document.getElementById('data_info_02');
 	data_info_02.innerHTML = DaiaCode[NowWeek]; 
 }
@@ -673,23 +677,28 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
   var ScrollMessage_Before ="";
 
 
-// 時刻表を作成
+// 詳細開いたら時刻表を作成
   function createTimetable(data) {
-	const tbody = document.getElementById('TimeTableView');
+	var tbody = document.getElementById('TimeTableView');
 	tbody.innerHTML = "";
-	const timeTable = {};
+	var timeTable = {};
 	// データを整理
 	data.forEach(row => {
-		const time = row[1].split(':');
-		const hour = parseInt(time[0], 10);
-		const minute = time[1];
-		const line = row[2];
-		const destination = row[3];
-
+		var time = row[1].split(':');
+		var hour = parseInt(time[0], 10);
+		var minute = time[1];
+		var line = row[2];
+		var destination = row[3];
+		var color = "";
+		ViaBunData.forEach((index) => {
+			if (index[0] == row[2]+row[3]) {
+				color = index[2];
+			}
+		  });
 		if (!timeTable[hour]) {
 			timeTable[hour] = [];
 		}
-		timeTable[hour].push({ minute, line, destination });
+		timeTable[hour].push({ minute, line, destination,color });
 	});
 	for (const hour in timeTable) {
 					 const row = document.createElement('tr');
@@ -702,6 +711,8 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		timeTable[hour].forEach(entry => {
 			const div = document.createElement('div');
 			div.className = 'tablebox';
+			div.style.border = "solid 4px "; 
+			div.style.borderColor  = entry.color;
 			div.setAttribute('nowrap', '');
 			const span1 = document.createElement('span');
 			span1.className = 'type';
@@ -720,6 +731,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 			div.appendChild(br2);
 			div.appendChild(span3);
 			minuteCell.appendChild(div);
+			
 		});
 		row.appendChild(hourCell);
 		row.appendChild(minuteCell);
@@ -781,6 +793,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
   document.querySelectorAll('.marquee').forEach(startMarquee);
 
   function toggleModal() {
+	createTimetable(TodayTimeTableMaster);
     var modal = document.getElementById('modal-01');
     modal.classList.toggle('open');
   }

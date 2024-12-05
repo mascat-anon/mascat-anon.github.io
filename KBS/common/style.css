@@ -431,7 +431,8 @@
         }
         .tablebox {
             display: inline-block;
-            margin: 5px;
+            margin: 3px;
+            padding: 2px;
         }
         .tablebox {
               text-align: center;
