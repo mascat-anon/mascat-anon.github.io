@@ -329,7 +329,7 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 	for (i = 0; i < row.length; i++) {
 	  matrix[i] = new Array(); // Ｂ
 	  var columnDATA = row[i].split(","); // Ｃ
-	  var column = 3; //系統行先,経由,カラー
+	  var column = 4; //系統行先,経由,カラー1,カラー2
 	  for (var j = 0; j < column; j++) {
 		matrix[i][j] = columnDATA[j]; // Ｄ
 	  }
@@ -690,17 +690,19 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		var hour = parseInt(time[0], 10);
 		var minute = time[1];
 		var line = row[2];
-		var destination = row[3];
-		var color = "";
+		var destination = row[3].substr( 0, 1 );
+		var color1 = "";
+		var color2 = "";
 		ViaBunData.forEach((index) => {
 			if (index[0] == row[2]+row[3]) {
-				color = index[2];
+				color1 = index[2];
+				color2 = index[3];
 			}
 		  });
 		if (!timeTable[hour]) {
 			timeTable[hour] = [];
 		}
-		timeTable[hour].push({ minute, line, destination,color });
+		timeTable[hour].push({ minute, line, destination,color1,color2 });
 	});
 	for (const hour in timeTable) {
 					 const row = document.createElement('tr');
@@ -713,8 +715,9 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		timeTable[hour].forEach(entry => {
 			const div = document.createElement('div');
 			div.className = 'tablebox';
-			div.style.border = "solid 3px "; 
-			div.style.borderColor  = entry.color;
+			div.style.border = "solid 2px "; 
+			div.style.borderColor  = entry.color1;
+			div.style.backgroundColor = entry.color2;
 			div.setAttribute('nowrap', '');
 			const span1 = document.createElement('span');
 			span1.className = 'type';
@@ -739,6 +742,42 @@ var Choootype = function (div = ".auto_narrow", opt = {}) {
 		row.appendChild(minuteCell);
 		tbody.appendChild(row);
 	}
+	// 凡例行を作成
+	var notedist="";
+	var countMap = {}; // 行き先をカウント
+	for (var i = 0; i < data.length; i++) {
+		var destination = data[i][3];
+		if (countMap[destination] === undefined) {
+			countMap[destination] = 1;
+		} else {
+			countMap[destination]++;
+		}
+	}
+// 多い順に並べ替え
+	var sortedDestinations = [];
+	for (var key in countMap) {
+		sortedDestinations.push([key, countMap[key]]);
+	}
+	sortedDestinations.sort(function(a, b) {
+		return b[1] - a[1];
+	});
+
+	for (var i = 0; i < sortedDestinations.length; i++) {
+		notedist+=sortedDestinations[i][0].substr( 0, 1) + "：" + sortedDestinations[i][0]+ "　";
+	}
+	if(sortedDestinations.length==0){
+		notedist="本日この路線の運行はありません";
+	}
+const noteRow = document.createElement('tr');
+const noteHourCell = document.createElement('th');
+noteHourCell.className = 'side01';
+noteHourCell.textContent = '凡例'; // 空のセル内容
+const noteMinuteCell = document.createElement('td');
+noteMinuteCell.innerHTML =notedist; // 空のセル内容
+noteRow.appendChild(noteHourCell);
+noteRow.appendChild(noteMinuteCell);
+tbody.appendChild(noteRow);
+
 }
   function SetScroll() {
 

@@ -415,14 +415,7 @@
     font-weight: normal;
     padding: 0px 5px;
   }
-  .DataTable3 tr:hover td {
-    background-color: #001545;
-    color: #fff;
-  }
-  .DataTable3 tr:hover th {
-    background-color: #001545;
-    color: #fff;
-  }
+
           .name_side01 {
             font-weight: bold;
         }
@@ -436,7 +429,7 @@
         }
         .tablebox {
               text-align: center;
-              width: 65px;
+              width: 40px;
         }
         .min {
 font-weight: 900;
