@@ -2,6 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <title>下顎左側第一大臼歯</title>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
         <script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
         <script src="https://unpkg.com/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
         <script src="https://unpkg.com/three@0.147.0/examples/js/loaders/OBJLoader.js"></script>
@@ -10,10 +11,9 @@
     <style>
  html, body {
     width: 100%;
-    height: 80%; /* 高さを100%に設定 */
+    height: 100%; /* 高さを100%に設定 */
     margin: 0; /* マージンをリセット */
     padding: 0; /* パディングをリセット */
-    overflow: hidden; /* スクロールバーを非表示にする */
     
     -webkit-text-size-adjust: 100%;
 }
@@ -21,20 +21,13 @@
 #mainBoard {
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* 親要素内でスクロールバーを非表示 */
-    position: relative; /* 必要に応じて相対位置を設定 */
 }
 
-canvas {
-    display: block; /* ブロック要素化して余白をなくす */
-}
 
 
         </style>
     <body>
-        <div id="mainBoard" style="height: 100%; width: 100%;">
+        <div id="mainBoard">
             <canvas id="myCanvas"></canvas>
         </div>
         

@@ -39,10 +39,19 @@ function init() {
     objLoader.load(
         './models/mo.obj',
         function (obj) {
+            // バウンディングボックスを計算
+            const box = new THREE.Box3().setFromObject(obj);
+        
+            // バウンディングボックスの中心を計算
+            const center = new THREE.Vector3();
+            box.getCenter(center);
+        
+            // モデルをシーンに追加
             scene.add(obj);
-            obj.position.x = 0;
-            obj.position.y = 0;
-        },
+        
+            // 重心が (0, 0, 0) に来るように位置を調整
+            obj.position.set(-center.x, -center.y, -center.z);
+        }
     );
 
     tick();
