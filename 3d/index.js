@@ -17,7 +17,7 @@ function init() {
 
     // シーンを作成
     const scene = new THREE.Scene();
-
+      scene.background = new THREE.Color(0x666666);
     // カメラを作成
     const camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
     camera.position.set(0, 0, 100);
