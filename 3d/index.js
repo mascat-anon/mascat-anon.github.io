@@ -37,7 +37,7 @@ scene.background = new THREE.Color(0x404040);
     // 3Dモデルの読み込み
     const objLoader = new THREE.OBJLoader();
     objLoader.load(
-        './models/mo.obj',
+        './models/Mandible.obj',
         function (obj) {
             // バウンディングボックスを計算
             const box = new THREE.Box3().setFromObject(obj);
