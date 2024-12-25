@@ -30,7 +30,7 @@ function init() {
     // カメラの方向に追従するライト
     const cameraLight = new THREE.DirectionalLight(0xffffff); // カメラに追従するライト
     cameraLight.intensity = 0.75;
-    cameraLight.distance = 10;
+    cameraLight.distance = 100;
     scene.add(cameraLight);
 
 
