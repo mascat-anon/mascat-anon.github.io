@@ -14,7 +14,7 @@ function init() {
     });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(width, height);
-
+renderer.shadowMap.enabled = true;
     // シーンを作成
     const scene = new THREE.Scene();
       scene.background = new THREE.Color(0x666666);
@@ -31,6 +31,7 @@ function init() {
     // カメラの方向に追従するライト
     const cameraLight = new THREE.DirectionalLight(0xffffff); // カメラに追従するライト
     cameraLight.intensity = 0.75;
+    cameraLight.distance = 1;
     scene.add(cameraLight);
 
 
