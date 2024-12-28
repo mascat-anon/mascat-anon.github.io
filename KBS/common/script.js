@@ -593,11 +593,11 @@ function 表示() {
 		} else if (TodayTimeTable[i][0] == "当日") { //当日データが取れているものだけ吐く
 			if (DispPattern == 0) { //表示パターン
 				if (DelayTime > 15) {
-					document.getElementById('Delay' + i).innerHTML = "大幅な遅れ";
+					document.getElementById('Delay' + i).innerHTML = "到着大幅遅れ";
 					document.getElementById('Delay' + i).style.color = 'red';
 					document.getElementById('Time' + i).innerHTML = ""
 				} else if (DelayTime > 0) {
-					document.getElementById('Delay' + i).innerHTML = " 遅れ約" + DelayTime + "分";
+					document.getElementById('Delay' + i).innerHTML = TodayTimeTable[i][5]+" 出発予定";
 					document.getElementById('Delay' + i).style.color = 'Orange';
 				} else {
 					document.getElementById('Delay' + i).innerHTML = "定刻通り出発";
@@ -605,21 +605,24 @@ function 表示() {
 				}
 			} else if (DispPattern == 1) {
 				if (DelayTime > 15) {
-					document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
+					document.getElementById('Delay' + i).innerHTML = "到着大幅遅れ";
+					document.getElementById('Delay' + i).style.color = 'red';
 					document.getElementById('Time' + i).innerHTML = ""
 				} else if (DelayTime > 0) {
-					document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
+					document.getElementById('Delay' + i).innerHTML = "出発遅れ 約" + DelayTime + "分";
+					document.getElementById('Delay' + i).style.color = 'Orange';
 				} else {
-					document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
+					document.getElementById('Delay' + i).innerHTML = "定刻通り出発";
+					document.getElementById('Delay' + i).style.color = '#00ff00';
 				}
 			} else if (DispPattern == 2) {
 				if (TodayTimeTable[i][8] == "far") {
 					if (DelayTime > 15) {
-						document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
+						document.getElementById('Delay' + i).innerHTML = "出発まで 約" + DepWill + "分";
 					} else if (DelayTime > 0) {
-						document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
+						document.getElementById('Delay' + i).innerHTML = "出発まで 約" + DepWill + "分";
 					} else {
-						document.getElementById('Delay' + i).innerHTML = "出発まで約" + DepWill + "分";
+						document.getElementById('Delay' + i).innerHTML = "出発まで 約" + DepWill + "分";
 					}
 				} else {
 					var position = TodayTimeTable[i][8].slice(9);
