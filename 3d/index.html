@@ -1,0 +1,150 @@
+<html lang="ja" class="no-js no-svg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 ,user-scalable=no">
+  <title>3D Dental Study</title>
+  <link rel="stylesheet" href="./style.css?2025/01/2vsa5">
+  <script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://unpkg.com/three@0.147.0/examples/js/loaders/OBJLoader.js"></script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">
+        <span class="large">3D</span>
+        <div class="subtitle">
+          <span>歯の鑑別</span><br>
+          <span>Dental Study</span>
+        </div>
+      </div>
+      <div class="button pause" id="text_q">出題設定</div>
+    </div>
+    <div class="set-content">
+     <div class="set-menu">
+        <div class="row">
+            <label for="type"><span id="typelabel">歯種</span></label>
+            <select id="type" name="type">
+                <option value="permanent">永久歯のみ</option>
+                <option value="deciduous">乳歯のみ</option>
+                <option value="all">乳歯・永久歯</option>
+            </select>
+        </div>
+<hr>
+        <div class="row">
+            <label for="TestSet"><span id="TestSetlabel">本数</span></label>
+            <select id="TestSet" name="number"></select>
+        </div>
+       
+       <div class="button set"  id="startButton">開始する</div>        
+    </div>
+    <div class="language-button"  onClick="location.href='./?language=EN'">English Ver.</div>
+      
+    </div>
+
+    <div class="test-content">
+<div class="q-table">
+
+  <span id="progress"></span>
+  <div id="mainBoard">
+    <canvas id="myCanvas"></canvas>
+</div>
+<span id="debug"></span>
+      </div>
+      
+<div class="resize-bar"></div> <!-- 追加 -->
+      <div class="state">解答してください</div>
+<div class="a-table">
+       <div class="button change" id="toggleButton">永久歯 ⇄ 乳歯</div>
+        <div class="scroll-container">
+          <div class="permanent-grid">
+            <div class="horizontal-line"></div>
+            <div class="vertical-line"></div>
+
+            <!-- セルの部分 -->
+            <div class="cell" data-number="17">7</div>
+            <div class="cell" data-number="16">6</div>
+            <div class="cell" data-number="15">5</div>
+            <div class="cell" data-number="14">4</div>
+            <div class="cell" data-number="13">3</div>
+            <div class="cell" data-number="12">2</div>
+            <div class="cell" data-number="11">1</div>
+
+            <div class="cell" data-number="21">1</div>
+            <div class="cell" data-number="22">2</div>
+            <div class="cell" data-number="23">3</div>
+            <div class="cell" data-number="24">4</div>
+            <div class="cell" data-number="25">5</div>
+            <div class="cell" data-number="26">6</div>
+            <div class="cell" data-number="27">7</div>
+
+            <div class="cell" data-number="47">7</div>
+            <div class="cell" data-number="46">6</div>
+            <div class="cell" data-number="45">5</div>
+            <div class="cell" data-number="44">4</div>
+            <div class="cell" data-number="43">3</div>
+            <div class="cell" data-number="42">2</div>
+            <div class="cell" data-number="41">1</div>
+            <div class="cell" data-number="31">1</div>
+            <div class="cell" data-number="32">2</div>
+            <div class="cell" data-number="33">3</div>
+            <div class="cell" data-number="34">4</div>
+            <div class="cell" data-number="35">5</div>
+            <div class="cell" data-number="36">6</div>
+            <div class="cell" data-number="37">7</div>
+          </div>
+                    <div class="deciduous-grid">
+            <div class="horizontal-line"></div>
+            <div class="vertical-line"></div>
+
+            <!-- セルの部分 -->
+           <div class="cell" data-number="55">E</div>
+<div class="cell" data-number="54">D</div>
+<div class="cell" data-number="53">C</div>
+<div class="cell" data-number="52">B</div>
+<div class="cell" data-number="51">A</div>
+
+<div class="cell" data-number="61">A</div>
+<div class="cell" data-number="62">B</div>
+<div class="cell" data-number="63">C</div>
+<div class="cell" data-number="64">D</div>
+<div class="cell" data-number="65">E</div>
+
+                      <div class="cell" data-number="85">E</div>
+<div class="cell" data-number="84">D</div>
+<div class="cell" data-number="83">C</div>
+<div class="cell" data-number="82">B</div>
+<div class="cell" data-number="81">A</div>
+
+                      
+<div class="cell" data-number="71">A</div>
+<div class="cell" data-number="72">B</div>
+<div class="cell" data-number="73">C</div>
+<div class="cell" data-number="74">D</div>
+<div class="cell" data-number="75">E</div>
+                      
+                      
+          </div>
+        </div>
+            <div class="button answer" id="answerButton">解答する</div>
+      </div>
+     
+    </div>
+    <div class="result-content">
+     
+        <table id='result-box-table'></table>
+      <div class="button set"   id="resetButton">リセット</div>  
+      
+    </div>
+  </div>
+</body>
+<!-- partial -->
+  <script  src="./script.js?efｃｄｃｄvw"></script>
+
+</body>
+</html>
