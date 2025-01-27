@@ -572,6 +572,12 @@ function 表示() {
 			if (TodayTimeTable[i][4] == "0") {
 				document.getElementById('Time' + i).innerHTML = "当バス停始発"
 				document.getElementById('Time' + i).style.color = '#00FFFF';
+			}else if (TodayTimeTable[i][4] == "11") {
+				document.getElementById('Time' + i).innerHTML = "最終バス1本前"
+				document.getElementById('Time' + i).style.color = '#00ff00';
+			}else if (TodayTimeTable[i][4] == "10") {
+				document.getElementById('Time' + i).innerHTML = "最終バス"
+				document.getElementById('Time' + i).style.color = 'red';
 			}
 		}
 
