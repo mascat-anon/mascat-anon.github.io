@@ -49,7 +49,13 @@
 </svg>
  </img>
 </div>
-  </head>
+<div id="hideOnPWA">このdivはPWAでは表示されません</div>
+
+<script>
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    document.getElementById('hideOnPWA').style.display = 'none';
+  }
+</script>
   <body onSelectStart="return false;" oncontextmenu="return false;" >
       <div class="container">
           <div class="map">  <img  class="mainimg" src="./toppg/map.svg"  alt="京成バスのマップ" />
