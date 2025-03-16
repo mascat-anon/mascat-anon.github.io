@@ -10,7 +10,7 @@
 <link rel="icon" href="toppg/favicon.ico">
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="toppg/apple-touch-icon-180x180.png" sizes="180x180">
-<link rel="stylesheet" href="./toppg/style.css?2024/10/222">
+<link rel="stylesheet" href="./toppg/style.css?2024/10/24322">
 
 </head>
 <!-- Google tag (gtag.js) -->
@@ -37,10 +37,17 @@
 
   gtag('config', 'G-NQVFDDY566');
 
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    document.getElementById('hideOnPWA').style.display = 'none';
+  }
 
+
+function alertFunction() {
+    alert("ブラウザの「共有ボタン」または「︙」を押し、\n「ホーム画面に追加」を選択してください\n");
+}
 
 </script>
-<body>
+<body onSelectStart="return false;" oncontextmenu="return false;" >
   <!-- ローディング画面 -->
 <div id="loading">
   <img src="./toppg/start.svg" class="spinner">
@@ -49,14 +56,11 @@
 </svg>
  </img>
 </div>
-<div id="hideOnPWA">このdivはPWAでは表示されません</div>
 
-<script>
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    document.getElementById('hideOnPWA').style.display = 'none';
-  }
-</script>
-  <body onSelectStart="return false;" oncontextmenu="return false;" >
+
+<div id="hideOnPWA">    <p>アプリをホーム画面に追加できます。</p>
+  <div onclick="alertFunction()" class="button">追加する</div></div>
+
       <div class="container">
           <div class="map">  <img  class="mainimg" src="./toppg/map.svg"  alt="京成バスのマップ" />
             <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 0 0"></svg>
@@ -86,7 +90,7 @@
               </div>
               <div class="footer-box">
               <p><span class="text-tooltip" id="link-btn">Bus Information Board System をシェア<span class="tooltip-content">ホーム画面に追加すると便利です</span></span></p>
-            <p>＜Version 3.90＞ Copyright © 2022-2024 T/M All Rights Reserved.</p>
+            <p>＜Version 3.91＞ Copyright © 2022-2025 T/M All Rights Reserved.</p>
               </div>
             </div>
     

@@ -303,3 +303,21 @@ height: auto;
   opacity: 1;
   visibility: visible;
 }
+
+#hideOnPWA{
+  background-color: #fff;
+  padding: 10px 0px;
+  align-items: center;
+  font-size: 18px;
+text-align:center;
+width:100%;
+}
+.button {
+  background-color: black;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  margin-left: 10px;
+  display: inline-block;
+}
