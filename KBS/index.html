@@ -37,9 +37,6 @@
 
   gtag('config', 'G-NQVFDDY566');
 
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    document.getElementById('hideOnPWA').style.display = 'none';
-  }
 
 
 function alertFunction() {
@@ -102,6 +99,10 @@ function alertFunction() {
 
 </body>
 <script>
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    document.getElementById('hideOnPWA').style.display = 'none';
+  }
+
 
   const link_btn = document.getElementById('link-btn');
   link_btn.addEventListener('click', async () => {
