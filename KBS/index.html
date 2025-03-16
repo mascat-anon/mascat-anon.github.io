@@ -99,13 +99,15 @@
   if (window.matchMedia('(display-mode: standalone)').matches) {
     document.getElementById('hideOnPWA').style.display = 'none';
   }
-  var promoteText;
+var promoteText;
 var ua = window.navigator.userAgent.toLowerCase();
 
-osDetermine(ua);
+osDetermine();
 
-function osDetermine(ua) {
-    const isIOS = /iphone|ipad|ipod/.test(ua);
+function osDetermine() {
+    const ua = window.navigator.userAgent.toLowerCase();
+    const isIOS = /iphone|ipod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isIPad = /ipad/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     const isAndroid = /android/.test(ua);
     const isSafari = isIOS && /safari/.test(ua) && !/chrome/.test(ua);
     const isChrome = /chrome/.test(ua) && !/edg/.test(ua) && !isSafari;
@@ -114,7 +116,7 @@ function osDetermine(ua) {
         promoteText = "ブラウザの「︙」ボタンを押し、\n「ホーム画面に追加」を選択してください\n";
     } else if (isIOS && isChrome) {
         promoteText = "Chromeの「…」ボタンを押し、\n「ホーム画面に追加」を選択してください\n";
-    } else if (isIOS && isSafari) {
+    } else if ((isIOS || isIPad) && isSafari) {
         promoteText = "Safariの「共有」ボタンを押し、\n「ホーム画面に追加」を選択してください\n";
     } else {
         promoteText = "このデバイスではホーム画面に追加の機能が利用できません。\n";
