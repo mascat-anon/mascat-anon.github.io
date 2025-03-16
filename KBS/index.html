@@ -39,9 +39,6 @@
 
 
 
-function alertFunction() {
-    alert("ブラウザの「共有ボタン」または「︙」を押し、\n「ホーム画面に追加」を選択してください\n");
-}
 
 </script>
 <body onSelectStart="return false;" oncontextmenu="return false;" >
@@ -102,7 +99,32 @@ function alertFunction() {
   if (window.matchMedia('(display-mode: standalone)').matches) {
     document.getElementById('hideOnPWA').style.display = 'none';
   }
+  var promoteText;
+var ua = window.navigator.userAgent.toLowerCase();
 
+osDetermine(ua);
+
+function osDetermine(ua) {
+    const isIOS = /iphone|ipad|ipod/.test(ua);
+    const isAndroid = /android/.test(ua);
+    const isSafari = isIOS && /safari/.test(ua) && !/chrome/.test(ua);
+    const isChrome = /chrome/.test(ua) && !/edg/.test(ua) && !isSafari;
+
+    if (isAndroid) {
+        promoteText = "ブラウザの「︙」ボタンを押し、\n「ホーム画面に追加」を選択してください\n";
+    } else if (isIOS && isChrome) {
+        promoteText = "Chromeの「…」ボタンを押し、\n「ホーム画面に追加」を選択してください\n";
+    } else if (isIOS && isSafari) {
+        promoteText = "Safariの「共有」ボタンを押し、\n「ホーム画面に追加」を選択してください\n";
+    } else {
+        promoteText = "このデバイスではホーム画面に追加の機能が利用できません。\n";
+        document.getElementById('hideOnPWA').style.display = 'none';
+    }
+}
+
+function alertFunction() {
+    alert(promoteText);
+}
 
   const link_btn = document.getElementById('link-btn');
   link_btn.addEventListener('click', async () => {
