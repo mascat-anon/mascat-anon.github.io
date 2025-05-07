@@ -1,111 +1,14 @@
-<html lang="ja" class="no-js no-svg">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>仕様書</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Bus Information Board System" />
-<link rel="icon" href="toppg/favicon.ico">
-<link rel="apple-touch-icon" href="toppg/apple-touch-icon-180x180.png" sizes="180x180">
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0;URL=https://dental-try.com/KBS/">
+<title>HTML入門-ページリダイレクト</title>
 </head>
-<style>
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  margin: 0px;
-  -webkit-text-size-adjust: 100%;
-}
-
-.main {
-
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-
-}
-
-.box30 {
-  padding: 0;
-  margin: auto;
-  width: auto;
-  max-width: 700px;
-  text-align: justify;
-}
-
-</style>
 <body>
-  <div class="main">
-    <div class="box30">
-        <p>１． 件名
-          <br>Bus Information Board System　バス発車標システム（以下、本システムという）
-          <br>
-          <br>２． 利用期間
-          <br>京成バスの運行時間の終日
-          <br>
-          <br>３． 本システムの案内データの流れ
-          <br>通常，APIにより受信したリアルタイムの運行情報と，設定された時刻表データを基に，本システムは自動的に動作します。
-          <br>なお，APIサーバーの不調等により正しい情報を取得できない場合があります。
-          <br>
-          <br>４． 表示領域について
-          <br>①経由表示領域
-          <br>　・系統、経由地を表示します。
-          <br>②備考文表示領域
-          <br>　・あらかじめ設定された備考文章を表示します。データマッチングが成功すると目的地到着時刻、出発までの時間が表示されます。
-          <br>③出発時刻表示領域
-          <br>　・ダイヤ上の出発時刻が表示されます。なお、15分以上の遅れがある場合は出発時刻表示が消えます。
-          <br>④行先表示領域
-          <br>　・行先が表示されます。終バス前、終バスは文字色が変化します。
-          <br>⑤出発情報表示領域
-          <br>　・ダイヤ通りであれば定刻出発予定、または遅延している場合は遅れている時間を表示します。
-          <br>
-          <br>５． 本システムの基本的な動作
-          <br>①各種情報が記載されファイルを取得
-          <br>　・リアルタイムな運行情報データ（JSONファイル）
-          <br>　・鉄道の運行情報データ（JSONファイル）
-          <br>　・ダイヤデータ（CSVファイル）
-          <br>　・経由文データ（CSVファイル）
-          <br>　・備考文データ（CSVファイル）
-          <br>②データマッチング
-          <br>　・ダイヤデータ（CSVファイル）を配列に格納し，リアルタイムな運行情報データ（JSONファイル）とマッチングを行う。マッチングが成功した場合、本システムは以下の情報を表示します。
-          <br>　・定刻出発予定または遅れている時間（出発情報表示領域）
-          <br>　・目的地到着時刻（備考文領域）
-          <br>　・出発までの時間（備考文領域）
-          <br>　・バスの位置情報（表示設定は無し）
-          <br>　・車両番号（表示設定は無し）
-          <br>
-          <br>６． データ内容
-          <br>①ダイヤデータ
-          <br>　・ファイル名　<a href="common/csv/MatsudoekiTimeTable.csv">MatsudoekiTimeTable.csv</a>　<a href="common/csv/NichidaishikaTimeTable.csv">NichidaishikaTimeTable.csv</a>
-          <br>　・ファイル形式　CSVファイル　UTF-8
-          <br>　・配列
-          <br>　　　列１　運行設定日　平日/土曜/祝日
-          <br>　　　列２　発時(計)　時刻が一桁の場合は０は先頭に付けないこと。
-          <br>　　　列３　系統　系統。
-          <br>　　　列４　行先　行先。
-          <br>　　　列５　摘要　備考文の設定番号。
-          <br>　・その他　発時(計)は上から発車時刻順に並べ替えること。
-          <br>②備考文データ
-          <br>　・ファイル名　<a href="common/csv/RemarkBunData.csv">RemarkBunData.csv</a>
-          <br>　・ファイル形式　CSVファイル　UTF-8
-          <br>　・配列
-          <br>　　　列１　備考文の設定番号。
-          <br>　　　列２　本文。
-          <br>　　　列３　行先領域のカスタム色。空欄でも可。
-          <br>③経由文データ
-          <br>　・ファイル名　<a href="common/csv/ViaBunData.csv">ViaBunData.csv</a>
-          <br>　・ファイル形式　CSVファイル　UTF-8
-          <br>　・配列
-          <br>　　　列１　系統行先。
-          <br>　　　列２　経由文。
-          <br>　　　列３　経由表示領域の背景色。
-          <br>
-          <br>７． 免責事項
-          <br>本システムは、APIサーバーから受信した情報を元に自動的に動作するため、APIサーバーの不調や通信状況によっては正確な情報を表示できない場合があります。また、本システムの利用によって生じたいかなる損害についても、一切の責任を負いかねます。ご了承ください。
-        </p>
-    </div>
-  </div>
+<h1>リダイレクト</h1>
+<p>本サイトは移転しました。5秒後にジャンプします。<br>
+ジャンプしない場合は、以下のURLをクリックしてください。</p>
+<p><a href="https://dental-try.com/KBS/">移転先のページ</a></p>
 </body>
 </html>
