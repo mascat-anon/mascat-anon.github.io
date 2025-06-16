@@ -32,15 +32,18 @@
         return;
       }
 
-      let speeds = [];
-      let prevTime = null;
+      let speedHistory = [];
+      let timeHistory = [];
       let prevLat = null, prevLon = null;
+      let prevTime = null;
       let displaySpeed = 0;
       let targetSpeed = 0;
+      let motionState = "待機中";
 
-      const DIST_THRESHOLD = 5;  // 5m未満の移動は無視
-      const SPEED_HISTORY = 5;   // 過去データの履歴数
-      const RUNNING_THRESHOLD = 3; // 3km/h以上で「走行中」
+      const SPEED_HISTORY_LIMIT = 5;
+      const DIST_THRESHOLD = 5; // メートル未満の移動は無視
+      const SPEED_THRESHOLD = 3; // km/h
+      const ACCEL_THRESHOLD = 0.3; // km/h/s
 
       function haversine(lat1, lon1, lat2, lon2) {
         const R = 6371000;
@@ -54,15 +57,28 @@
         return R * c;
       }
 
+      function getAcceleration() {
+        if (speedHistory.length < 2) return 0;
+        const v1 = speedHistory[speedHistory.length - 2];
+        const v2 = speedHistory[speedHistory.length - 1];
+        const t1 = timeHistory[timeHistory.length - 2];
+        const t2 = timeHistory[timeHistory.length - 1];
+        const dt = (t2 - t1) / 1000;
+        return dt > 0 ? (v2 - v1) / dt : 0;
+      }
+
+      function classifyMotion(avgSpeed, acceleration) {
+        if (avgSpeed < SPEED_THRESHOLD) return "停止中";
+        if (acceleration > ACCEL_THRESHOLD) return "加速中";
+        if (acceleration < -ACCEL_THRESHOLD) return "減速中";
+        return "走行中";
+      }
+
       function animateSpeed() {
         displaySpeed += (targetSpeed - displaySpeed) * 0.2;
         const shown = Math.round(displaySpeed);
         $(".speed").text("速度: " + shown + " km/h");
-
-        // 状態分類（走行/停止）
-        const motionText = shown >= RUNNING_THRESHOLD ? "走行中" : "停止中";
-        $(".motion").text("状態分類: " + motionText);
-
+        $(".motion").text("状態分類: " + motionState);
         setTimeout(animateSpeed, 100);
       }
 
@@ -82,15 +98,21 @@
           if (prevLat !== null && prevLon !== null && prevTime !== null) {
             const dt = (now - prevTime) / 1000;
             const dist = haversine(prevLat, prevLon, lat, lon);
+            let speed = (dist / dt) * 3.6; // m/s → km/h
 
-            let speed = (dist / dt) * 3.6;
             if (dist < DIST_THRESHOLD || speed < 0) speed = 0;
 
-            speeds.push(speed);
-            if (speeds.length > SPEED_HISTORY) speeds.shift();
+            speedHistory.push(speed);
+            timeHistory.push(now);
+            if (speedHistory.length > SPEED_HISTORY_LIMIT) {
+              speedHistory.shift();
+              timeHistory.shift();
+            }
 
-            const avg = speeds.reduce((a, b) => a + b, 0) / speeds.length;
+            const avg = speedHistory.reduce((a, b) => a + b, 0) / speedHistory.length;
+            const acc = getAcceleration();
             targetSpeed = avg;
+            motionState = classifyMotion(avg, acc);
           }
 
           prevLat = lat;
