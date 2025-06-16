@@ -1,126 +1,139 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <style>
-    .speed {
-      font-size: 2em;
-    }
-    .motion {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #0066cc;
-    }
+    body { font-family: sans-serif; padding: 1em; }
+    #watch-position p { margin: 0.5em 0; }
+    .speed { font-size: 2em; font-weight: bold; }
+    .motion { font-size: 1.2em; color: #007700; }
   </style>
 </head>
 <body>
   <div id="watch-position">
     <p class="status">処理中・・・</p>
     <p class="time">Timestamp: </p>
-    <p class="lat">緯度： wait...</p>
-    <p class="lon">経度： wait...</p>
+    <p class="lat">緯度：</p>
+    <p class="lon">経度：</p>
+    <p class="alt">高度：</p>
+    <p class="acc">正確性：</p>
+    <p class="alt-acc">高度の正確性：</p>
+    <p class="heading">方位：</p>
     <p class="speed">速度：0 km/h</p>
-    <p class="motion">状態分類：待機中</p>
+    <p class="motion">状態分類：-</p>
   </div>
 
   <script>
-    $(function () {
+    $(function(){
       if (!navigator.geolocation) {
-        alert("このブラウザでは位置情報がサポートされていません。");
+        alert("このブラウザは位置情報に対応していません。");
         return;
       }
 
-      let speeds = [];
-      let prevAvgSpeed = 0;
-      let prevTime = null;
-      let prevLat = null, prevLon = null;
-      let displaySpeed = 0;
-      let targetSpeed = 0;
-      let lastMotion = "待機中";
+      const DIST_THRESHOLD = 5; // 5m以下の移動は誤差とみなす
+      const SPEED_MIN = 2;      // 2km/h未満は0扱い
+      let prevLat = null, prevLon = null, prevTime = null;
+      let speeds = [], prevAvgSpeed = 0, targetSpeed = 0, currentSpeed = 0;
+      let lastMotion = "-";
 
-      // 距離計算
       function haversine(lat1, lon1, lat2, lon2) {
         const R = 6371000;
         const toRad = deg => deg * Math.PI / 180;
         const dLat = toRad(lat2 - lat1);
         const dLon = toRad(lon2 - lon1);
-        const a = Math.sin(dLat / 2) ** 2 +
-          Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-          Math.sin(dLon / 2) ** 2;
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c;
+        const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+        return 2 * R * Math.asin(Math.sqrt(a));
       }
 
-      // 状態判定
-      function classifyMotion(avg, prev) {
-        if (Math.abs(avg - prev) > 5) {
-          return avg > prev ? "加速中" : "減速中";
-        } else if (Math.max(...speeds) - Math.min(...speeds) > 10) {
-          return "蛇行中";
-        } else {
-          return "安定走行";
-        }
+      function classifyMotion(current, previous) {
+        if (current === 0) return "静止中";
+        const diff = current - previous;
+        if (Math.abs(diff) > 5) return "蛇行中";
+        if (diff > 1) return "加速中";
+        if (diff < -1) return "減速中";
+        return "巡航中";
       }
 
-      // 滑らかな速度表示更新
-      function animateSpeed() {
-        displaySpeed += (targetSpeed - displaySpeed) * 0.3;
-        const shown = Math.floor(displaySpeed);
-        $(".speed").text("速度: " + shown + " km/h");
+      function updateSmoothedSpeed() {
+        const delta = targetSpeed - currentSpeed;
+        currentSpeed += delta * 0.2;
+        $(".speed").text("速度：" + Math.round(currentSpeed) + " km/h");
+        requestAnimationFrame(updateSmoothedSpeed);
       }
 
-      setInterval(animateSpeed, 100); // 毎0.1秒で表示更新
+      updateSmoothedSpeed();
 
-      // watchPosition で位置を追いかける
-      navigator.geolocation.watchPosition(
-        function (pos) {
-          const now = Date.now();
-          const lat = pos.coords.latitude;
-          const lon = pos.coords.longitude;
-
-          $('.time').text("取得: " + new Date().toLocaleString());
-          $('.status').text("状態: 正常");
-          $('.lat').text("緯度: " + lat.toFixed(6));
-          $('.lon').text("経度: " + lon.toFixed(6));
-
-          if (prevLat !== null && prevLon !== null && prevTime !== null) {
-            const dt = (now - prevTime) / 1000;
-            const dist = haversine(prevLat, prevLon, lat, lon);
-            const speed = (dist / dt) * 3.6;
-
-            speeds.push(speed);
-            if (speeds.length > 3) speeds.shift();
-
-            const avg = speeds.reduce((a, b) => a + b, 0) / speeds.length;
-            const motion = classifyMotion(avg, prevAvgSpeed);
-            prevAvgSpeed = avg;
-
-            targetSpeed = avg;
-            lastMotion = motion;
-            $(".motion").text("状態分類: " + motion);
-          }
-
-          prevLat = lat;
-          prevLon = lon;
-          prevTime = now;
-        },
-        function (error) {
-          let msg = "エラー不明";
-          if (error.code === 1) msg = "位置情報が許可されていません";
-          if (error.code === 2) msg = "現在地を特定できません";
-          if (error.code === 3) msg = "取得がタイムアウトしました";
-
-          $(".status").text("エラー: " + msg);
-          $(".motion").text("状態分類: 取得失敗");
-        },
-        {
+      setInterval(() => {
+        navigator.geolocation.getCurrentPosition(success, error, {
           enableHighAccuracy: true,
           maximumAge: 0,
           timeout: 10000
+        });
+      }, 500);
+
+      function success(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const alt = position.coords.altitude;
+        const acc = position.coords.accuracy;
+        const altAcc = position.coords.altitudeAccuracy;
+        const heading = position.coords.heading;
+        const now = Date.now();
+
+        const date = new Date(now);
+        const timeStr = date.getFullYear() + '/' +
+                        ('0' + (date.getMonth() + 1)).slice(-2) + '/' +
+                        ('0' + date.getDate()).slice(-2) + ' ' +
+                        ('0' + date.getHours()).slice(-2) + ':' +
+                        ('0' + date.getMinutes()).slice(-2) + ':' +
+                        ('0' + date.getSeconds()).slice(-2);
+
+        $("#watch-position .status").text("位置情報取得中");
+        $("#watch-position .time").text("取得: " + timeStr);
+        $("#watch-position .lat").text("緯度: " + lat);
+        $("#watch-position .lon").text("経度: " + lon);
+        $("#watch-position .alt").text("高度[m]: " + (alt ?? "不明"));
+        $("#watch-position .acc").text("精度[m]: " + acc);
+        $("#watch-position .alt-acc").text("高度の正確性[m]: " + (altAcc ?? "不明"));
+        $("#watch-position .heading").text("方位[deg]: " + (heading ?? "不明"));
+
+        if (prevLat !== null && prevLon !== null && prevTime !== null) {
+          const dt = (now - prevTime) / 1000;
+          const dist = haversine(prevLat, prevLon, lat, lon);
+          let speed = (dist / dt) * 3.6;
+
+          if (dist < DIST_THRESHOLD || speed < SPEED_MIN) {
+            speed = 0;
+          }
+
+          speeds.push(speed);
+          if (speeds.length > 3) speeds.shift();
+
+          const avgSpeed = speeds.reduce((a, b) => a + b, 0) / speeds.length;
+          const motion = classifyMotion(avgSpeed, prevAvgSpeed);
+          prevAvgSpeed = avgSpeed;
+          targetSpeed = avgSpeed;
+
+          $(".motion").text("状態分類: " + motion);
         }
-      );
+
+        prevLat = lat;
+        prevLon = lon;
+        prevTime = now;
+      }
+
+      function error(err) {
+        let msg = "";
+        switch (err.code) {
+          case 1: msg = "位置情報の利用が許可されていません。"; break;
+          case 2: msg = "位置情報が取得できません。"; break;
+          case 3: msg = "位置情報の取得がタイムアウトしました。"; break;
+          default: msg = "不明なエラーが発生しました。"; break;
+        }
+        $("#watch-position .status").text("エラー：" + msg);
+      }
     });
   </script>
 </body>
