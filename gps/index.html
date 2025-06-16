@@ -33,15 +33,14 @@
       }
 
       let speeds = [];
-      let prevAvgSpeed = 0;
       let prevTime = null;
       let prevLat = null, prevLon = null;
       let displaySpeed = 0;
       let targetSpeed = 0;
-      let lastMotion = "待機中";
 
-      const DIST_THRESHOLD = 5;  // 5m以下の移動は無視
-      const SPEED_HISTORY = 5;   // 平均速度に使う履歴数
+      const DIST_THRESHOLD = 5;  // 5m未満の移動は無視
+      const SPEED_HISTORY = 5;   // 過去データの履歴数
+      const RUNNING_THRESHOLD = 3; // 3km/h以上で「走行中」
 
       function haversine(lat1, lon1, lat2, lon2) {
         const R = 6371000;
@@ -55,21 +54,16 @@
         return R * c;
       }
 
-      function classifyMotion(avg, prev, history) {
-        const diff = avg - prev;
-        const spread = Math.max(...history) - Math.min(...history);
-
-        if (spread > 1) return "蛇行中";
-        if (diff > 1) return "加速中";
-        if (diff < -1) return "減速中";
-        return "巡航中";
-      }
-
       function animateSpeed() {
         displaySpeed += (targetSpeed - displaySpeed) * 0.2;
         const shown = Math.round(displaySpeed);
         $(".speed").text("速度: " + shown + " km/h");
-        setTimeout(animateSpeed, 100); // 再帰で滑らかに更新
+
+        // 状態分類（走行/停止）
+        const motionText = shown >= RUNNING_THRESHOLD ? "走行中" : "停止中";
+        $(".motion").text("状態分類: " + motionText);
+
+        setTimeout(animateSpeed, 100);
       }
 
       animateSpeed();
@@ -96,11 +90,7 @@
             if (speeds.length > SPEED_HISTORY) speeds.shift();
 
             const avg = speeds.reduce((a, b) => a + b, 0) / speeds.length;
-            const motion = classifyMotion(avg, prevAvgSpeed, speeds);
-
-            prevAvgSpeed = avg;
             targetSpeed = avg;
-            $(".motion").text("状態分類: " + motion);
           }
 
           prevLat = lat;
