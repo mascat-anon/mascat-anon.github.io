@@ -40,40 +40,40 @@
       let targetSpeed = 0;
       let lastMotion = "待機中";
 
-      // 距離計算
+      const DIST_THRESHOLD = 5;  // 5m以下の移動は無視
+      const SPEED_HISTORY = 5;   // 平均速度に使う履歴数
+
       function haversine(lat1, lon1, lat2, lon2) {
         const R = 6371000;
         const toRad = deg => deg * Math.PI / 180;
         const dLat = toRad(lat2 - lat1);
         const dLon = toRad(lon2 - lon1);
         const a = Math.sin(dLat / 2) ** 2 +
-          Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-          Math.sin(dLon / 2) ** 2;
+                  Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                  Math.sin(dLon / 2) ** 2;
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
       }
 
-      // 状態判定
-      function classifyMotion(avg, prev) {
-        if (Math.abs(avg - prev) > 5) {
-          return avg > prev ? "加速中" : "減速中";
-        } else if (Math.max(...speeds) - Math.min(...speeds) > 10) {
-          return "蛇行中";
-        } else {
-          return "安定走行";
-        }
+      function classifyMotion(avg, prev, history) {
+        const diff = avg - prev;
+        const spread = Math.max(...history) - Math.min(...history);
+
+        if (spread > 1) return "蛇行中";
+        if (diff > 1) return "加速中";
+        if (diff < -1) return "減速中";
+        return "巡航中";
       }
 
-      // 滑らかな速度表示更新
       function animateSpeed() {
-        displaySpeed += (targetSpeed - displaySpeed) * 0.3;
-        const shown = Math.floor(displaySpeed);
+        displaySpeed += (targetSpeed - displaySpeed) * 0.2;
+        const shown = Math.round(displaySpeed);
         $(".speed").text("速度: " + shown + " km/h");
+        setTimeout(animateSpeed, 100); // 再帰で滑らかに更新
       }
 
-      setInterval(animateSpeed, 100); // 毎0.1秒で表示更新
+      animateSpeed();
 
-      // watchPosition で位置を追いかける
       navigator.geolocation.watchPosition(
         function (pos) {
           const now = Date.now();
@@ -88,17 +88,18 @@
           if (prevLat !== null && prevLon !== null && prevTime !== null) {
             const dt = (now - prevTime) / 1000;
             const dist = haversine(prevLat, prevLon, lat, lon);
-            const speed = (dist / dt) * 3.6;
+
+            let speed = (dist / dt) * 3.6;
+            if (dist < DIST_THRESHOLD || speed < 0) speed = 0;
 
             speeds.push(speed);
-            if (speeds.length > 3) speeds.shift();
+            if (speeds.length > SPEED_HISTORY) speeds.shift();
 
             const avg = speeds.reduce((a, b) => a + b, 0) / speeds.length;
-            const motion = classifyMotion(avg, prevAvgSpeed);
-            prevAvgSpeed = avg;
+            const motion = classifyMotion(avg, prevAvgSpeed, speeds);
 
+            prevAvgSpeed = avg;
             targetSpeed = avg;
-            lastMotion = motion;
             $(".motion").text("状態分類: " + motion);
           }
 
