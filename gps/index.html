@@ -1,101 +1,104 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script>
-(function(){
-  $(function(){
-    /*
-    Geolocation（緯度・経度）
-    getCurrentPosition :or: watchPosition
-    */
-    // 対応しているかチェック
-    if (!navigator.geolocation){
-      alert("navigator.geolocation の対応しているブラウザを使用してください。");
-    }else{
-      /* 位置情報取得オプション option object */
-      var option = {
-        enableHighAccuracy: true, // より高精度な位置を求める
-        maximumAge: 1,         // 最後の現在地情報取得が [maximuAge][ms]以内であればその情報を再利用する設定
-        timeout: 10000          // timeout[ms]以内に現在地情報を取得できなければ、処理を終了
-      };
-
-
-
-      /* watchPosition */
-      var watch = 'watch-position';
-      navigator.geolocation.watchPosition(
-        function(position){
-          success(watch, position);
-        },
-        function(error){ err(watch, error); },
-        option
-      );
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <style>
+    .speed {
+      font-size: 2em;
+      transition: all 0.5s ease-in-out;
     }
-    // 位置情報の取得に成功した時の処理
-    function success(id, position) {
-
-      var lat = position.coords.latitude;            //緯度
-      var lon = position.coords.longitude;           //経度
-      var alt = position.coords.altitude;            //高度
-      var acc = position.coords.accuracy;            //正確性
-      var alt_acc = position.coords.altitudeAccuracy;//高度の正確性
-      var heading = position.coords.heading;         //方位
-      var speed = position.coords.speed;             //速
-      var date = new Date();
-var y = date.getFullYear();
-var m = ('0' + (date.getMonth() + 1)).slice(-2);
-var d = ('0' +　date.getDate()).slice(-2);
-var h = ('0' +　date.getHours()).slice(-2);
-var min = ('0' + date.getMinutes()).slice(-2);
-var s = ('0' + date.getSeconds()).slice(-2);
-var time = y + '/' + m + '/' + d + ' ' + h + ':' + min + ':' + s;
-      
-      $('#'+id + " .status").html("位置情報表示中");
-      $('#'+id + " .time").html("取得: " + time);
-      $('#'+id + " .lat").html("緯度: " + lat);
-      $('#'+id + " .lon").html("経度: " + lon);
-      $('#'+id + " .alt").html("高度[m]: " + alt);
-      $('#'+id + " .acc").html("精度[m]: " + acc);
-      $('#'+id + " .alt-acc").html("高度の正確性[m]: " + alt_acc);
-      $('#'+id + " .heading").html("方位[deg]: " + heading);
-      $('#'+id + " .speed").html("速度: " + Math.floor(speed*3.6)+"km/h");
-
-    }
-
-    // 位置情報の取得に失敗した場合の処理
-    function err(id, error){
-      var e = "";
-      if (error.code == 1) { //1＝位置情報取得が許可されてない（ブラウザの設定）
-        e = "位置情報が許可されてません";
+  </style>
+  <script>
+    $(function () {
+      if (!navigator.geolocation) {
+        alert("このブラウザでは位置情報がサポートされていません。");
+        return;
       }
-      if (error.code == 2) { //2＝現在地を特定できない
-        e = "現在位置を特定できません";
-      }
-      if (error.code == 3) { //3＝位置情報を取得する前にタイムアウトになった場合
-        e = "位置情報を取得する前にタイムアウトになりました";
-      }
-      $('#'+id + " .status").html("エラー：" + e);
-    }
-  });
 
-})();
-</script>
+      const speeds = []; // 速度履歴（最大3個）
+      let currentDisplaySpeed = 0; // 表示用速度
+
+      function calcAverageSpeed() {
+        if (speeds.length === 0) return 0;
+        const sum = speeds.reduce((a, b) => a + b, 0);
+        return sum / speeds.length;
+      }
+
+      function classifyMotion(avgSpeed, prevAvg) {
+        if (Math.abs(avgSpeed - prevAvg) > 5) {
+          return avgSpeed > prevAvg ? "加速中" : "減速中";
+        } else if (speeds.length === 3 && Math.max(...speeds) - Math.min(...speeds) > 10) {
+          return "蛇行中";
+        } else {
+          return "安定走行";
+        }
+      }
+
+      function updateDisplay(speed) {
+        const smoothSpeed = currentDisplaySpeed + (speed - currentDisplaySpeed) * 0.3;
+        currentDisplaySpeed = smoothSpeed;
+        $('.speed').text("速度: " + Math.floor(smoothSpeed) + " km/h");
+      }
+
+      let prevAvgSpeed = 0;
+
+      function getPosition() {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const speedMps = position.coords.speed || 0;
+          const speedKmh = speedMps * 3.6;
+
+          // 速度履歴に追加（最大3件）
+          speeds.push(speedKmh);
+          if (speeds.length > 3) speeds.shift();
+
+          const avgSpeed = calcAverageSpeed();
+          const motion = classifyMotion(avgSpeed, prevAvgSpeed);
+          prevAvgSpeed = avgSpeed;
+
+          // 日時なども更新
+          const date = new Date();
+          const time = date.toLocaleString();
+          $('#watch-position .time').text("取得: " + time);
+          $('#watch-position .lat').text("緯度: " + position.coords.latitude);
+          $('#watch-position .lon').text("経度: " + position.coords.longitude);
+          $('#watch-position .alt').text("高度[m]: " + position.coords.altitude);
+          $('#watch-position .acc').text("精度[m]: " + position.coords.accuracy);
+          $('#watch-position .alt-acc').text("高度の正確性[m]: " + position.coords.altitudeAccuracy);
+          $('#watch-position .heading').text("方位[deg]: " + position.coords.heading);
+          $('#watch-position .status').text("状態: " + motion);
+
+          updateDisplay(avgSpeed);
+        }, function (error) {
+          let msg = "不明なエラー";
+          if (error.code === 1) msg = "位置情報が許可されていません";
+          if (error.code === 2) msg = "現在地を特定できません";
+          if (error.code === 3) msg = "位置情報取得がタイムアウトしました";
+          $('#watch-position .status').text("エラー: " + msg);
+        }, {
+          enableHighAccuracy: true,
+          maximumAge: 0,
+          timeout: 10000
+        });
+      }
+
+      // 0.5秒ごとに速度取得
+      setInterval(getPosition, 500);
+    });
+  </script>
 </head>
 <body>
-      <div id="watch-position">
-
-        <p class="status">処理中・・・</p>
-        <p class="time">Timestamp: </p>
-        <p class="lat">緯度： wait...</p>
-        <p class="lon">経度： wait...</p>
-        <p class="alt">高度：</p>
-        <p class="acc">正確性：</p>
-        <p class="alt-acc">高度の正確性：</p>
-        <p class="heading">方位：</p>
-        <p class="speed">速度：</p>
-      </div>
+  <div id="watch-position">
+    <p class="status">処理中・・・</p>
+    <p class="time">Timestamp: </p>
+    <p class="lat">緯度： wait...</p>
+    <p class="lon">経度： wait...</p>
+    <p class="alt">高度：</p>
+    <p class="acc">正確性：</p>
+    <p class="alt-acc">高度の正確性：</p>
+    <p class="heading">方位：</p>
+    <p class="speed">速度：</p>
+  </div>
 </body>
 </html>
