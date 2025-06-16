@@ -1,154 +1,60 @@
 <!DOCTYPE html><html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
+      background: black;
+      color: white;
       font-family: sans-serif;
-      text-align: center;
       margin: 0;
-      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
     .speedometer {
       position: relative;
       width: 300px;
-      height: 150px;
-      margin: 50px auto 0;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #111 60%, #000);
+      border: 4px solid #555;
     }
-    .gauge {
-      width: 100%;
-      height: 100%;
-    }
-    .center-speed {
+    .speed-value {
       position: absolute;
-      bottom: 0;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      font-size: 2.5em;
+      transform: translate(-50%, -50%);
+      font-size: 48px;
+      color: white;
     }
-    .motion {
+    .tick {
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      background: white;
+      transform-origin: center bottom;
+      top: 0;
+      left: 50%;
+    }
+    .label {
+      position: absolute;
+      color: white;
+      font-size: 12px;
+      transform: translate(-50%, -50%);
+    }
+    .motion-state {
       margin-top: 20px;
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #00ccff;
+      font-size: 24px;
+      color: #0af;
     }
   </style>
 </head>
 <body>
-  <div class="speedometer">
-    <svg class="gauge" viewBox="0 0 200 100">
-      <!-- メーター目盛 -->
-      <g id="ticks"></g>
-      <!-- 針 -->
-      <line id="needle" x1="100" y1="100" x2="100" y2="30" stroke="white" stroke-width="4" />
-    </svg>
-    <div class="center-speed" id="speed-value">0</div>
+  <div class="speedometer" id="speedometer">
+    <div class="speed-value" id="speedValue">0</div>
   </div>
-  <div class="motion" id="motion-status">状態: 待機中</div>  <script>
-    const speeds = [];
-    let prevTime = null;
-    let prevLat = null, prevLon = null;
-    let displaySpeed = 0;
-    let targetSpeed = 0;
-    let lastMotion = "待機中";
-    let lastChangeTime = 0;
-
-    function haversine(lat1, lon1, lat2, lon2) {
-      const R = 6371000;
-      const toRad = deg => deg * Math.PI / 180;
-      const dLat = toRad(lat2 - lat1);
-      const dLon = toRad(lon2 - lon1);
-      const a = Math.sin(dLat / 2) ** 2 +
-        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-        Math.sin(dLon / 2) ** 2;
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      return R * c;
-    }
-
-    function classifyMotion(avg, prevAvg, now) {
-      const delta = avg - prevAvg;
-      if (Math.abs(delta) > 2 && (now - lastChangeTime) > 1500) {
-        lastChangeTime = now;
-        return delta > 0 ? "加速中" : "減速中";
-      }
-      return "走行中";
-    }
-
-    function updateNeedle(speed) {
-      const angle = (speed / 160) * 180 - 90;
-      const rad = angle * Math.PI / 180;
-      const r = 70;
-      const x2 = 100 + r * Math.cos(rad);
-      const y2 = 100 + r * Math.sin(rad);
-      document.getElementById("needle").setAttribute("x2", x2);
-      document.getElementById("needle").setAttribute("y2", y2);
-    }
-
-    function animateSpeed() {
-      displaySpeed += (targetSpeed - displaySpeed) * 0.2;
-      const shown = Math.round(displaySpeed);
-      document.getElementById("speed-value").textContent = shown;
-      updateNeedle(shown);
-    }
-    setInterval(animateSpeed, 100);
-
-    // メーター目盛の描画
-    const ticks = document.getElementById("ticks");
-    for (let i = 0; i <= 160; i += 20) {
-      const angle = (i / 160) * 180 - 90;
-      const rad = angle * Math.PI / 180;
-      const outer = 90;
-      const inner = 80;
-      const x1 = 100 + outer * Math.cos(rad);
-      const y1 = 100 + outer * Math.sin(rad);
-      const x2 = 100 + inner * Math.cos(rad);
-      const y2 = 100 + inner * Math.sin(rad);
-      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      line.setAttribute("x1", x1);
-      line.setAttribute("y1", y1);
-      line.setAttribute("x2", x2);
-      line.setAttribute("y2", y2);
-      line.setAttribute("stroke", "white");
-      line.setAttribute("stroke-width", "2");
-      ticks.appendChild(line);
-    }
-
-    navigator.geolocation.watchPosition(
-      function (pos) {
-        const now = Date.now();
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-
-        if (prevLat !== null && prevLon !== null && prevTime !== null) {
-          const dt = (now - prevTime) / 1000;
-          const dist = haversine(prevLat, prevLon, lat, lon);
-          const speed = (dist / dt) * 3.6;
-
-          speeds.push(speed);
-          if (speeds.length > 3) speeds.shift();
-
-          const avg = speeds.reduce((a, b) => a + b, 0) / speeds.length;
-          const motion = classifyMotion(avg, displaySpeed, now);
-          document.getElementById("motion-status").textContent = "状態: " + motion;
-
-          targetSpeed = avg;
-        }
-
-        prevLat = lat;
-        prevLon = lon;
-        prevTime = now;
-      },
-      function (error) {
-        document.getElementById("motion-status").textContent = "状態: 取得失敗";
-      },
-      {
-        enableHighAccuracy: true,
-        maximumAge: 0,
-        timeout: 10000
-      }
-    );
-  </script></body>
-</html>
+  <div class="motion-state" id="motionState">状態分類：
